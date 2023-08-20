@@ -3,8 +3,8 @@ import type { Locale, Brand } from './types';
 export const DEFAULT_LOCALE: Locale = 'en';
 
 export const BRAND = {
-	name: 'KesvaL',
-	url: 'https://starter.kesval.com',
+	name: 'SupaPower',
+	url: 'https://supapower.kesval.com',
 	author: {
 		name: 'Kesval',
 		url: 'https://kesval.com'

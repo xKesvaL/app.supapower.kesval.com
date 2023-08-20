@@ -18,14 +18,14 @@
 <div class="logo {size} {scaleOrigin}" class:animated class:repeat>
 	<svg
 		class="flex h-full max-h-7 w-auto justify-center text-center"
-		width="250"
-		height="60"
-		viewBox="0 0 200 60"
+		width="480"
+		height="70"
+		viewBox="0 0 200 70"
 		fill="none"
 		xmlns="http://www.w3.org/2000/svg"
 	>
 		<text class="text"
-			><tspan x="-20" y="50"
+			><tspan x="-135" y="55"
 				><tspan class="tspan">
 					{BRAND.name}
 				</tspan></tspan

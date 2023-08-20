@@ -1,15 +1,7 @@
 @font-face {
-	font-family: 'Rubik';
-	src: url('/fonts/rubik-variablefont_wght-webfont.woff2') format('woff2'),
-		url('/fonts/rubik-variablefont_wght-webfont.woff') format('woff');
-	font-weight: normal;
+	font-family: 'Benzin';
+	src: local('Benzin Bold'), local('Benzin'), url('/fonts/benz.woff2') format('woff2');
+	font-display: swap;
 	font-style: normal;
-}
-
-@font-face {
-	font-family: 'Montserrat';
-	src: url('/fonts/montserrat-variablefont_wght-webfont.woff2') format('woff2'),
-		url('/fonts/montserrat-variablefont_wght-webfont.woff') format('woff');
-	font-weight: normal;
-	font-style: normal;
+	font-weight: 700;
 }
