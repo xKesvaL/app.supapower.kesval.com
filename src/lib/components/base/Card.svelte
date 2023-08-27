@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { ThemeColor, ThemeSize } from '$lib/types';
+	import type { ThemeColor, ThemeSize } from '$lib/typings/standard';
 	import type { MouseEventHandler } from 'svelte/elements';
 
 	export let href: string | undefined = undefined;
@@ -11,6 +11,9 @@
 	export let justify: 'start' | 'center' | 'end' = 'center';
 	export let align: 'start' | 'center' | 'end' = 'start';
 	export let gap: ThemeSize = 'md';
+	export let maxWidth = true;
+
+	export let customCardStyle = '';
 
 	let el: HTMLElement;
 
@@ -35,6 +38,8 @@
 	on:mousemove={onHover}
 	class="card rounding-{rounding}"
 	class:scale
+	class:maxWidth
+	style={customCardStyle}
 	role="region"
 >
 	<div
@@ -56,6 +61,12 @@
 		flex-direction: column;
 		transition: 0.2s;
 		padding: 0;
+		box-shadow: 0 0.5rem 1rem rgba(var(--primary-900-rgb), 0.05),
+			0 0.25rem 0.5rem rgba(var(--primary-900-rgb), 0.05);
+
+		&.maxWidth {
+			max-width: none;
+		}
 
 		&.rounding-sm {
 			border-radius: 0.25rem;
@@ -84,6 +95,7 @@
 			width: 100%;
 			display: flex;
 			flex-direction: column;
+			flex: 1;
 
 			&.justify {
 				&-start {

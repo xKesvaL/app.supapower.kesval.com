@@ -1,14 +1,16 @@
 <script lang="ts">
 	import IconPhotoOff from '$lib/icons/IconPhotoOff.svelte';
-	import type { ThemeSize } from '$lib/types';
+	import type { ThemeSize } from '$lib/typings/standard';
 	import { Image } from '@kesval/image-svelte';
 
 	export let src: string;
 	export let alt: string;
 
 	export let loading: 'lazy' | 'eager' = 'lazy';
-	export let figcaption: string;
+	export let figcaption: string | null = null;
 	export let rounding: ThemeSize | 'full' = 'md';
+
+	export let objectFit: 'cover' | 'contain' = 'cover';
 
 	let error = false;
 </script>
@@ -26,7 +28,7 @@
 	{:else}
 		<figure>
 			<img
-				class="rounding-{rounding}"
+				class="rounding-{rounding} {objectFit}"
 				{src}
 				{alt}
 				srcset={srcSet}
@@ -80,7 +82,14 @@
 		img {
 			width: 100%;
 			height: 100%;
-			object-fit: cover;
+
+			&.cover {
+				object-fit: cover;
+			}
+
+			&.contain {
+				object-fit: contain;
+			}
 		}
 	}
 

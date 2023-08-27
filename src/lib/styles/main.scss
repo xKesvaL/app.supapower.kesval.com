@@ -5,3 +5,17 @@
 	font-style: normal;
 	font-weight: 700;
 }
+
+.error {
+	color: var(--danger-700);
+	font-size: var(--fs-200);
+	font-weight: 400;
+}
+
+.ml-auto {
+	margin-left: auto;
+}
+
+.text-right {
+	text-align: right;
+}

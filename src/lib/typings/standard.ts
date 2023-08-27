@@ -20,6 +20,12 @@ export interface BrandAuthor {
 	url: string;
 }
 
-export type ThemeColor = 'primary' | 'secondary';
+export type ThemeColor = 'primary' | 'secondary' | 'info' | 'danger' | 'success';
 
 export type ThemeSize = 'sm' | 'md' | 'lg';
+
+export interface FormattedZodError {
+	[key: string]: {
+		message: string;
+	};
+}

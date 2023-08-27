@@ -3,7 +3,7 @@
 
 	export let animated = true;
 
-	export let size: 'normal' | 'semi-large' | 'large' = 'normal';
+	export let size: number;
 
 	export let scaleOrigin: 'center' | 'left' = 'center';
 
@@ -15,7 +15,7 @@
 	If the logo fits but is not centered or cut off on the left side, play with the tspan x value
 	It's roughly 5px per 20px of the svg width that you should change the tspan x value by
 -->
-<div class="logo {size} {scaleOrigin}" class:animated class:repeat>
+<div class="logo {scaleOrigin}" style="transform: scale({size})" class:animated class:repeat>
 	<svg
 		class="flex h-full max-h-7 w-auto justify-center text-center"
 		width="480"
@@ -45,14 +45,6 @@
 		justify-content: center;
 		gap: 0.5rem;
 		transform-origin: center;
-
-		&.semi-large {
-			scale: 1.5;
-		}
-
-		&.large {
-			scale: 2;
-		}
 
 		&.left {
 			transform-origin: left;
