@@ -14,7 +14,7 @@
 		"build": "vite build && npm run optimize-images",
 		"optimize-images": "image-opti --source ./build/images --target ./build/images",
 		"build:vercel": "npm run build && npm run optimize-images:vercel",
-		"optimize-images:vercel": "image-opti --source .vercel/output/static/images --target .vercel/output/static/images"
+		"optimize-images:vercel": "image-opti --source ./images --target ./images"
 	},
 	"devDependencies": {
 		"@formkit/auto-animate": "^0.7.0",
