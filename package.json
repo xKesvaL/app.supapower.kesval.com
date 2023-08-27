@@ -14,13 +14,13 @@
 		"build": "vite build && npm run optimize-images",
 		"optimize-images": "image-opti --source ./build/images --target ./build/images",
 		"build:vercel": "npm run build && npm run optimize-images:vercel",
-		"optimize-images:vercel": "image-opti --source ./images --target ./images"
+		"optimize-images:vercel": "image-opti -s ./static/images -t ./static/images"
 	},
 	"devDependencies": {
 		"@formkit/auto-animate": "^0.7.0",
 		"@kesval/design": "^3.1.0",
-		"@kesval/image": "^0.1.4",
-		"@kesval/image-svelte": "^0.1.4",
+		"@kesval/image": "^0.2.0",
+		"@kesval/image-svelte": "^0.2.0",
 		"@storybook/addon-a11y": "^7.2.2",
 		"@storybook/addon-docs": "^7.2.2",
 		"@storybook/addon-essentials": "^7.2.2",
