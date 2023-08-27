@@ -35,7 +35,7 @@
 		if (currentStep === steps.length - 1) {
 			setUserData({
 				uid: $user.uid,
-				username: username.value,
+				username: username.value.toLowerCase(),
 				workout: workout,
 				lang: ($locale || 'en') as Locale
 			});

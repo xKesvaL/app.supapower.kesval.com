@@ -18,8 +18,11 @@ const defaultUserData: Omit<UserData, 'uid' | 'username' | 'lang' | 'workout'> =
 
 const isUsernameUnique = async (username: string): Promise<boolean> => {
 	return (
-		(await getDocs(query(collection(firestore, 'users'), where('username', '==', username)))).docs
-			.length === 0
+		(
+			await getDocs(
+				query(collection(firestore, 'users'), where('username', '==', username.toLowerCase()))
+			)
+		).docs.length === 0
 	);
 };
 
