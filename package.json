@@ -13,8 +13,8 @@
 		"format": "prettier --plugin-search-dir . --write .",
 		"build": "vite build && npm run optimize-images",
 		"optimize-images": "image-opti --source ./build/images --target ./build/images",
-		"build:vercel": "npm run build && npm run optimize-images:vercel",
-		"optimize-images:vercel": "image-opti -s ./static/images -t ./static/images"
+		"build:vercel": "vite build && npm run optimize-images:vercel",
+		"optimize-images:vercel": "image-opti -s .vercel/output/static/images -t .vercel/output/static/images -v"
 	},
 	"devDependencies": {
 		"@formkit/auto-animate": "^0.7.0",
