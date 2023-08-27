@@ -15,7 +15,7 @@
 	let error = false;
 </script>
 
-<Image {src} {alt} let:srcSet>
+<Image {src} {alt} srcPrefix="/images.vercel/output/static" let:srcSet>
 	{#if error}
 		<div class="invalid-source rounding-{rounding}">
 			<div class="icon">
