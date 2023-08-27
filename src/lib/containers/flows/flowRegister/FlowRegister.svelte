@@ -94,6 +94,7 @@
 				canGoNext = false;
 				username.unique = false;
 				username.loading = false;
+				username.error = 'flows.register.steps.0.inputs.username.error.taken';
 				return;
 			}
 		}, 750);
