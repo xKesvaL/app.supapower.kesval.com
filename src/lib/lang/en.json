@@ -1,98 +1,106 @@
 {
-  "auth": {
-    "errors": {
-      "email": {
-        "invalid": "Invalid email address",
-        "required": "Email is required"
-      },
-      "login": {
-        "auth/invalid-email": "Invalid email",
-        "auth/user-disabled": "User disabled",
-        "auth/user-not-found": "User not found",
-        "auth/wrong-password": "Wrong password"
-      },
-      "password": {
-        "max": "Password must be at most 32 characters long",
-        "min": "Password must be at least 8 characters long",
-        "required": "Password is required"
-      },
-      "register": {
-        "auth/email-already-in-use": "Email already in use",
-        "auth/invalid-email": "Invalid email",
-        "auth/operation-not-allowed": "Operation not allowed",
-        "auth/weak-password": "Weak password"
-      }
-    },
-    "fields": {
-      "email": {
-        "label": "Email"
-      },
-      "password": {
-        "label": "Password"
-      }
-    },
-    "login": {
-      "action": "Log In",
-      "forgotPassword": "Forgot password?",
-      "label": "Login"
-    },
-    "register": {
-      "action": "Register",
-      "label": "Register"
-    },
-    "switchTo": {
-      "login": "Don't have an account? Register.",
-      "register": "Already have an account? Log In."
-    }
-  },
-  "flows": {
-    "register": {
-      "buttons": {
-        "next": "Next"
-      },
-      "steps": {
-        "0": {
-          "inputs": {
-            "username": {
-              "error": {
-                "short": "Sorry! Your username must be at least 4 characters long.",
-                "taken": "Sorry! Your username already exists, please choose another one."
-              },
-              "label": "How should we call you ?",
-              "placeholder": "Username"
-            }
-          },
-          "label": "Account"
-        },
-        "1": {
-          "label": "Workout Type"
-        },
-        "2": {
-          "label": "Frequency"
-        }
-      }
-    }
-  },
-  "std": {
-    "bottom": "bottom",
-    "days": "days",
-    "finish": "Finish",
-    "next": "Next",
-    "previous": "Previous",
-    "scrollTo": "scroll to",
-    "top": "top"
-  },
-  "workouts": {
-    "types": {
-      "bodybuilding": {
-        "name": "Bodybuilding"
-      },
-      "powerbuilding": {
-        "name": "Powerbuilding"
-      },
-      "powerlifting": {
-        "name": "Powerlifting"
-      }
-    }
-  }
+	"auth": {
+		"errors": {
+			"email": {
+				"invalid": "Invalid email address",
+				"required": "Email is required"
+			},
+			"login": {
+				"auth/invalid-email": "Invalid email",
+				"auth/user-disabled": "User disabled",
+				"auth/user-not-found": "User not found",
+				"auth/wrong-password": "Wrong password"
+			},
+			"password": {
+				"max": "Password must be at most 32 characters long",
+				"min": "Password must be at least 8 characters long",
+				"required": "Password is required"
+			},
+			"register": {
+				"auth/email-already-in-use": "Email already in use",
+				"auth/invalid-email": "Invalid email",
+				"auth/operation-not-allowed": "Operation not allowed",
+				"auth/weak-password": "Weak password"
+			}
+		},
+		"fields": {
+			"email": {
+				"label": "Email"
+			},
+			"password": {
+				"label": "Password"
+			}
+		},
+		"login": {
+			"action": "Log In",
+			"forgotPassword": "Forgot password?",
+			"label": "Login"
+		},
+		"register": {
+			"action": "Register",
+			"label": "Register"
+		},
+		"switchTo": {
+			"login": "Don't have an account? Register.",
+			"register": "Already have an account? Log In."
+		},
+		"password": {
+			"strength": {
+				"0": "Very weak password",
+				"1": "Weak password",
+				"2": "Fair password",
+				"3": "Good password"
+			}
+		}
+	},
+	"flows": {
+		"register": {
+			"buttons": {
+				"next": "Next"
+			},
+			"steps": {
+				"0": {
+					"inputs": {
+						"username": {
+							"error": {
+								"short": "Sorry! Your username must be at least 4 characters long.",
+								"taken": "Sorry! Your username already exists, please choose another one."
+							},
+							"label": "How should we call you ?",
+							"placeholder": "Username"
+						}
+					},
+					"label": "Account"
+				},
+				"1": {
+					"label": "Workout Type"
+				},
+				"2": {
+					"label": "Frequency"
+				}
+			}
+		}
+	},
+	"std": {
+		"bottom": "bottom",
+		"days": "days",
+		"finish": "Finish",
+		"next": "Next",
+		"previous": "Previous",
+		"scrollTo": "scroll to",
+		"top": "top"
+	},
+	"workouts": {
+		"types": {
+			"bodybuilding": {
+				"name": "Bodybuilding"
+			},
+			"powerbuilding": {
+				"name": "Powerbuilding"
+			},
+			"powerlifting": {
+				"name": "Powerlifting"
+			}
+		}
+	}
 }

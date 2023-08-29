@@ -14,11 +14,14 @@
 	import { createEventDispatcher } from 'svelte';
 	import IconEyeOff from '$lib/icons/IconEyeOff.svelte';
 	import IconEye from '$lib/icons/IconEye.svelte';
+	import PasswordStrength from './PasswordStrength.svelte';
+	import type { FormEventHandler } from 'svelte/elements';
 
 	let fieldErrors: FormattedZodError = {};
 	let authError: AuthError | null = null;
 	let loading = false;
 	let showPassword = false;
+	let password = '';
 
 	const dispatch = createEventDispatcher();
 
@@ -30,7 +33,7 @@
 
 		const userData = {
 			email: formData.get('email'),
-			password: formData.get('password')
+			password
 		};
 
 		const schemaRes = AuthRegisterWithPasswordSchema.safeParse(userData);
@@ -57,6 +60,10 @@
 	const toggleShowPassword = () => {
 		showPassword = !showPassword;
 	};
+
+	const setPassword: FormEventHandler<HTMLInputElement> = (e) => {
+		password = (e.currentTarget as HTMLInputElement).value;
+	};
 </script>
 
 <form on:submit|preventDefault={login}>
@@ -80,6 +87,7 @@
 					type={showPassword ? 'text' : 'password'}
 					autocomplete="new-password"
 					name="password"
+					on:input={setPassword}
 				/>
 				<button type="button" class="icon" on:click={() => toggleShowPassword()}>
 					{#if showPassword}
@@ -89,6 +97,7 @@
 					{/if}
 				</button>
 			</div>
+			<PasswordStrength {password} />
 			{#if fieldErrors.password}
 				<span class="error" transition:blur={{ duration: 200 }}
 					>{$t(fieldErrors.password.message)}</span
