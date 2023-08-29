@@ -20,14 +20,14 @@ const isUsernameUnique = async (username: string): Promise<boolean> => {
 	return !(await getDoc(doc(firestore, 'usernames', username))).exists();
 };
 
-interface SetUserDataFunctionData {
+interface CreateUserDataFunctionData {
 	uid: string;
 	username: string;
 	workout: UserDataWorkout;
 	lang: Locale;
 }
 
-const setUserData = async (data: SetUserDataFunctionData) => {
+const createUserData = async (data: CreateUserDataFunctionData) => {
 	const userDoc = doc(firestore, 'users', data.uid);
 	const usernameDoc = doc(firestore, 'usernames', data.username);
 
@@ -43,4 +43,4 @@ const setUserData = async (data: SetUserDataFunctionData) => {
 	await batch.commit();
 };
 
-export { isUsernameUnique, setUserData };
+export { isUsernameUnique, createUserData };

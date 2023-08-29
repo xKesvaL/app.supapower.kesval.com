@@ -17,7 +17,7 @@
 
 	import Image from '$lib/components/base/Image.svelte';
 
-	import { isUsernameUnique, setUserData } from '$lib/firebase/user/actions';
+	import { isUsernameUnique, createUserData } from '$lib/firebase/user/actions';
 	import type { UserDataWorkout, WorkoutType } from '$lib/firebase/user/types';
 
 	import type { User } from 'firebase/auth';
@@ -33,7 +33,7 @@
 
 	const nextStep = async () => {
 		if (currentStep === steps.length - 1) {
-			setUserData({
+			createUserData({
 				uid: $user.uid,
 				username: username.value.toLowerCase(),
 				workout: workout,
