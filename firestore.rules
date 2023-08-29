@@ -13,7 +13,33 @@ service cloud.firestore {
     // all client requests to your Firestore database will be denied until you Update
     // your rules
     match /{document=**} {
-      allow read, write: if request.time < timestamp.date(2023, 9, 24);
+      match /users/{userId} {
+        allow read;
+        allow create: if isValidUser(userId);
+      }
+
+      function isValidUser(userId) {
+        let isOwner = request.auth.uid == userId;
+      	let username = request.resource.data.username;
+        let createdValidUsername = existsAfter(/databases/$(database)/documents/usernames/$(username));
+        
+        return isOwner && createdValidUsername;
+      }
+
+      match /usernames/{username} {
+        allow read;
+        allow create: if isValidUsername(username);
+      }
+
+       function isValidUsername(username) {
+        let isOwner = request.auth.uid == request.resource.data.uid;
+        let isValidLength = username.size() >= 3 && username.size() <= 24;
+        let isValidUserDoc = getAfter(/databases/$(database)/documents/users/$(request.auth.uid)).data.username == username;
+        
+        return isOwner && isValidLength && isValidUserDoc;     
+      }
+
+      allow read, write: if request.time < timestamp.date(2023, 10, 24);
     }
   }
 }
