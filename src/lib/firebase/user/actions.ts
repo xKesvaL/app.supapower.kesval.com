@@ -1,4 +1,4 @@
-import { collection, doc, getDocs, query, setDoc, where } from 'firebase/firestore';
+import { writeBatch, doc, getDoc } from 'firebase/firestore';
 import { firestore } from '../config';
 import type { UserData, UserDataWorkout } from './types';
 import type { Locale } from '$lib/typings/standard';
@@ -17,13 +17,7 @@ const defaultUserData: Omit<UserData, 'uid' | 'username' | 'lang' | 'workout'> =
 };
 
 const isUsernameUnique = async (username: string): Promise<boolean> => {
-	return (
-		(
-			await getDocs(
-				query(collection(firestore, 'users'), where('username', '==', username.toLowerCase()))
-			)
-		).docs.length === 0
-	);
+	return !(await getDoc(doc(firestore, 'usernames', username))).exists();
 };
 
 interface SetUserDataFunctionData {
@@ -34,10 +28,19 @@ interface SetUserDataFunctionData {
 }
 
 const setUserData = async (data: SetUserDataFunctionData) => {
-	setDoc(doc(firestore, 'users', data.uid), {
+	const userDoc = doc(firestore, 'users', data.uid);
+	const usernameDoc = doc(firestore, 'usernames', data.username);
+
+	const batch = writeBatch(firestore);
+	batch.set(userDoc, {
 		...defaultUserData,
 		...data
 	});
+	batch.set(usernameDoc, {
+		uid: data.uid
+	});
+
+	await batch.commit();
 };
 
 export { isUsernameUnique, setUserData };

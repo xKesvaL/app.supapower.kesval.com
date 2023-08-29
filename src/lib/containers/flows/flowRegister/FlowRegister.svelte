@@ -85,7 +85,7 @@
 
 		// Check if username is unique
 		userTimer = setTimeout(async () => {
-			if (await isUsernameUnique(username.value)) {
+			if (await isUsernameUnique(username.value.toLowerCase())) {
 				canGoNext = true;
 				username.unique = true;
 				username.loading = false;
