@@ -17,8 +17,6 @@
 	import { locales } from 'svelte-i18n';
 
 	import Navigation from '$lib/components/layout/Navigation.svelte';
-	import Footer from '$lib/components/layout/Footer.svelte';
-	import BackToTopButton from '$lib/components/layout/BackToTopButton.svelte';
 	import Loading from '$lib/containers/layout/Loading.svelte';
 
 	import nprogress from 'nprogress';
@@ -67,9 +65,6 @@
 				<Navigation />
 
 				<slot />
-
-				<BackToTopButton />
-				<Footer />
 			{:else if $userData === undefined}
 				<!-- User logged-in & Basic informations loading -->
 				<Loading />
