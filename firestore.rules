@@ -13,23 +13,24 @@ service cloud.firestore {
     // all client requests to your Firestore database will be denied until you Update
     // your rules
     match /{document=**} {
-      match /users/{userId} {
-        allow read;
-        allow create: if isValidUser(userId);
+      
+
+      function isSignedIn() {
+        return request.auth != null;
+      }
+
+      function isOwner(userId) {
+        return request.auth.uid == userId
       }
 
       function isValidUser(userId) {
-        let isOwner = request.auth.uid == userId;
       	let username = request.resource.data.username;
         let createdValidUsername = existsAfter(/databases/$(database)/documents/usernames/$(username));
         
-        return isOwner && createdValidUsername;
+        return isOwner(userId) && createdValidUsername;
       }
 
-      match /usernames/{username} {
-        allow read;
-        allow create: if isValidUsername(username);
-      }
+      
 
        function isValidUsername(username) {
         let isOwner = request.auth.uid == request.resource.data.uid;
@@ -38,6 +39,21 @@ service cloud.firestore {
         
         return isOwner && isValidLength && isValidUserDoc;     
       }
+
+      match /users/{userId} {
+        allow read;
+        allow create: 
+          if isValidUser(userId);
+        allow update:
+          if isSignedIn() && isOwner(userId);
+      }
+
+      match /usernames/{username} {
+        allow read;
+        allow create: if isValidUsername(username);
+      }
+
+      // TEST MODE
 
       allow read, write: if request.time < timestamp.date(2023, 10, 24);
     }
