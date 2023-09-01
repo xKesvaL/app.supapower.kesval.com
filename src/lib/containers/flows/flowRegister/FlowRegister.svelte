@@ -133,7 +133,7 @@
 					<header>
 						<h1>{$t(steps[currentStep]?.name || '')}</h1>
 					</header>
-					<form>
+					<form on:submit|preventDefault={nextStep}>
 						{#if currentStep === 0}
 							<label>
 								<span>{$t('flows.register.steps.0.inputs.username.label')}</span>
@@ -175,6 +175,7 @@
 									class:active={workout.type === 'bodybuilding'}
 									on:click={switchToWorkoutType}
 									data-workout-type="bodybuilding"
+									type="button"
 								>
 									<span> {$t('workouts.types.bodybuilding.name')} </span>
 									<div class="img">
@@ -189,6 +190,7 @@
 									class:active={workout.type === 'powerbuilding'}
 									on:click={switchToWorkoutType}
 									data-workout-type="powerbuilding"
+									type="button"
 								>
 									<span> {$t('workouts.types.powerbuilding.name')} </span>
 									<div class="img">
@@ -203,6 +205,7 @@
 									class:active={workout.type === 'powerlifting'}
 									on:click={switchToWorkoutType}
 									data-workout-type="powerlifting"
+									type="button"
 								>
 									<span> {$t('workouts.types.powerlifting.name')} </span>
 									<div class="img">
