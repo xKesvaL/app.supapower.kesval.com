@@ -26,6 +26,7 @@
 	import type { Readable } from 'svelte/store';
 
 	import FlowRegister from '$lib/containers/flows/flowRegister/FlowRegister.svelte';
+	import { onNavigate } from '$app/navigation';
 
 	nprogress.configure({ minimum: 0.2, easing: 'ease', speed: 600 });
 	$: $navigating ? nprogress.start() : nprogress.done();
@@ -42,6 +43,18 @@
 
 	$: setContext('user', user);
 	$: setContext('userData', userData);
+
+
+	onNavigate((navigation) => {
+    if (!document.startViewTransition) return;
+
+    return new Promise((resolve) => {
+        document.startViewTransition(async () => {
+            resolve();
+            await navigation.complete;
+        });
+    });
+});
 </script>
 
 <svelte:head>
