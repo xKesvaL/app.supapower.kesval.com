@@ -44,17 +44,16 @@
 	$: setContext('user', user);
 	$: setContext('userData', userData);
 
-
 	onNavigate((navigation) => {
-    if (!document.startViewTransition) return;
+		if (!document.startViewTransition) return;
 
-    return new Promise((resolve) => {
-        document.startViewTransition(async () => {
-            resolve();
-            await navigation.complete;
-        });
-    });
-});
+		return new Promise((resolve) => {
+			document.startViewTransition(async () => {
+				resolve();
+				await navigation.complete;
+			});
+		});
+	});
 </script>
 
 <svelte:head>
@@ -69,28 +68,26 @@
 	{/each}
 </svelte:head>
 
-{#key data.url.pathname}
-	<main in:fly={{ y: 100, duration: 300, delay: 300 }} out:fly={{ y: -100, duration: 300 }}>
-		{#if $user}
-			<!-- System loaded & User logged in -->
-			{#if $userData && $userData.workout.frequency !== undefined}
-				<!-- User logged-in & Basic informations entered & loaded -->
-				<Navigation />
+<main>
+	{#if $user}
+		<!-- System loaded & User logged in -->
+		{#if $userData && $userData.workout.frequency !== undefined}
+			<!-- User logged-in & Basic informations entered & loaded -->
+			<Navigation />
 
-				<slot />
-			{:else if $userData === undefined}
-				<!-- User logged-in & Basic informations loading -->
-				<Loading />
-			{:else}
-				<!-- User logged-in & Basic informations not entered -->
-				<FlowRegister />
-			{/if}
-		{:else if $user === undefined}
-			<!-- Auth System loading -->
+			<slot />
+		{:else if $userData === undefined}
+			<!-- User logged-in & Basic informations loading -->
 			<Loading />
 		{:else}
-			<!-- Authentication -->
-			<Auth />
+			<!-- User logged-in & Basic informations not entered -->
+			<FlowRegister />
 		{/if}
-	</main>
-{/key}
+	{:else if $user === undefined}
+		<!-- Auth System loading -->
+		<Loading />
+	{:else}
+		<!-- Authentication -->
+		<Auth />
+	{/if}
+</main>
