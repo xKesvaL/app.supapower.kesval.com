@@ -102,5 +102,16 @@
 				"name": "Powerlifting"
 			}
 		}
+	},
+	"pages": {
+		"home": {
+			"label": "Home"
+		},
+		"workout": {
+			"label": "Workout"
+		},
+		"profile": {
+			"label": "Profile"
+		}
 	}
 }

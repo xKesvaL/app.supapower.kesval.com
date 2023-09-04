@@ -28,7 +28,7 @@
 	import FlowRegister from '$lib/containers/flows/flowRegister/FlowRegister.svelte';
 	import { onNavigate } from '$app/navigation';
 
-	nprogress.configure({ minimum: 0.2, easing: 'ease', speed: 600 });
+	nprogress.configure({ minimum: 0.2, easing: 'ease', speed: 250 });
 	$: $navigating ? nprogress.start() : nprogress.done();
 
 	export let data: LayoutData;
