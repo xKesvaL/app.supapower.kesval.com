@@ -36,7 +36,7 @@
 		left: 0;
 		right: 0;
 		height: 3rem;
-		background: rgba(var(--base-200-rgb), 0.75);
+		background: rgba(var(--base-200-rgb), 1);
 		box-shadow: 0 -1px 4px rgba(var(--base-200-rgb), 0.4);
 
 		display: flex;
