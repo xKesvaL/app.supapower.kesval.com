@@ -96,6 +96,7 @@
 	main {
 		@include mq(lg) {
 			display: flex;
+			align-items: flex-start;
 		}
 	}
 </style>

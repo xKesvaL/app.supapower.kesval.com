@@ -88,7 +88,8 @@
 		"next": "Next",
 		"previous": "Previous",
 		"scrollTo": "scroll to",
-		"top": "top"
+		"top": "top",
+		"back": "Back"
 	},
 	"workouts": {
 		"types": {
@@ -111,7 +112,13 @@
 			"label": "Workout"
 		},
 		"profile": {
-			"label": "Profile"
+			"label": "Profile",
+			"header": {
+				"self": {
+					"edit": "Edit",
+					"settings": "Settings"
+				}
+			}
 		}
 	}
 }
