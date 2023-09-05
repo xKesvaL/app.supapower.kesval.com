@@ -118,6 +118,21 @@
 					"edit": "Edit",
 					"settings": "Settings"
 				}
+			},
+			"dashboard": {
+				"label": "Dashboard",
+				"statistics": {
+					"label": "Statistics"
+				},
+				"exercises": {
+					"label": "Exercises"
+				},
+				"measures": {
+					"label": "Measures"
+				},
+				"calendar": {
+					"label": "Calendar"
+				}
 			}
 		}
 	}

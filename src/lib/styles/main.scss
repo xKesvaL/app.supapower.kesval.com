@@ -91,3 +91,7 @@
 .wrapper {
 	flex: 1;
 }
+
+section {
+	--ct-max-width: 100% !important;
+}

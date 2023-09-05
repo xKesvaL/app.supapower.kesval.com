@@ -1,14 +1,10 @@
 <script lang="ts">
 	import type { UserData } from '$lib/firebase/user/types';
 	import IconSettings from '$lib/icons/IconSettings.svelte';
-	import type { User } from 'firebase/auth';
 	import { getContext } from 'svelte';
 	import { t } from 'svelte-i18n';
 	import type { Readable } from 'svelte/store';
 
-	export let returnPath: string = '/';
-
-	const user: Readable<User> = getContext('user');
 	const userData: Readable<UserData> = getContext('userData');
 </script>
 

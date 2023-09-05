@@ -12,6 +12,5 @@
 		);
 
 		min-height: 90vh;
-		margin-left: 0;
 	}
 </style>

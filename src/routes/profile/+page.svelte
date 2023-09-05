@@ -1,5 +1,9 @@
 <script>
-	import ProfileHero from '$lib/containers/profile/ProfileSelf.svelte';
+	import ProfileSelfHeader from '$lib/containers/profile/ProfileSelfHeader.svelte';
+	import ProfileSelfDashboard from '$lib/containers/profile/ProfileSelfDashboard.svelte';
 </script>
 
-<ProfileHero />
+<div class="wrapper">
+	<ProfileSelfHeader />
+	<ProfileSelfDashboard />
+</div>
