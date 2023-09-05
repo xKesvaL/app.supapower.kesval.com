@@ -11,16 +11,16 @@
 <header>
 	<div class="start">
 		<a href="/profile">
-			{$t('pages.profile.header.self.edit')}
+			{$t('std.edit')}
 		</a>
 	</div>
 	<div class="center">
 		{$userData.username}
 	</div>
 	<div class="end">
-		<a class="icon" href="/profile">
+		<a class="icon" href="/settings">
 			<IconSettings />
-			<span class="visually-hidden">{$t('pages.profile.header.self.settings')}</span>
+			<span class="visually-hidden">{$t('pages.settings.label')}</span>
 		</a>
 	</div>
 </header>
