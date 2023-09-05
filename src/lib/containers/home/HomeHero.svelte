@@ -1,4 +1,4 @@
-<section class="section container container-wide">
+<section class="container container-wide">
 	<h1>Welcome to SvelteKit</h1>
 	<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
 </section>
@@ -12,5 +12,6 @@
 		);
 
 		min-height: 90vh;
+		margin-left: 0;
 	}
 </style>

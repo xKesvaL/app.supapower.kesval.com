@@ -91,3 +91,11 @@
 		<Auth />
 	{/if}
 </main>
+
+<style lang="scss">
+	main {
+		@include mq(lg) {
+			display: flex;
+		}
+	}
+</style>
