@@ -9,11 +9,7 @@ const defaultUserData: Omit<UserData, 'uid' | 'username' | 'lang' | 'workout'> =
 		distance: 'km',
 		weight: 'kg'
 	},
-	privateData: {
-		birthdate: null,
-		sex: null
-	},
-	profile: { biography: '' }
+	profile: { biography: '', public: false }
 };
 
 const isUsernameUnique = async (username: string): Promise<boolean> => {

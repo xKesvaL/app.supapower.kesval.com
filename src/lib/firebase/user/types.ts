@@ -7,7 +7,6 @@ export interface UserData {
 	workout: UserDataWorkout;
 	units: UserDataUnits;
 	profile: UserDataProfile;
-	privateData: UserDataPrivate;
 }
 
 export interface UserDataWorkout {
@@ -27,6 +26,7 @@ export interface UserDataUnits {
 
 export interface UserDataProfile {
 	biography: string;
+	public: boolean;
 }
 
 export interface UserDataPrivate {
