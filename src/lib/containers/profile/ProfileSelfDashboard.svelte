@@ -69,10 +69,12 @@
 				width: 100%;
 				gap: 0.75rem;
 				font-size: var(--fs-500);
+				margin: -0.25rem;
 
 				.icon {
 					width: 28px;
 					height: 28px;
+					flex: 0 0 28px;
 				}
 			}
 		}
