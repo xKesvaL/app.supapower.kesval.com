@@ -54,50 +54,53 @@
 </section>
 
 <style lang="scss">
-	nav {
-		display: grid;
-		gap: 0.75rem;
+	section {
+		view-transition-name: settings-list;
+		nav {
+			display: grid;
+			gap: 0.75rem;
 
-		& > div {
-			background: rgba(var(--base-200-rgb), 0.3);
-			padding: 0 1rem;
+			& > div {
+				background: rgba(var(--base-200-rgb), 0.3);
+				padding: 0 1rem;
 
-			h2 {
-				font-size: var(--fs-200);
-				color: rgba(var(--base-900-rgb), 0.7);
-				font-family: var(--ft-sans);
-				font-weight: 300;
-				margin-bottom: 0.25rem;
-				padding-top: 1rem;
-			}
-			a {
-				display: flex;
-				align-items: center;
-				justify-content: flex-start;
-				width: 100%;
-				font-size: var(--fs-400);
-				padding: 1rem 0;
-				border-bottom: 1px solid rgba(var(--base-200-rgb), 1);
-				gap: 0.5rem;
-
-				.icon {
+				h2 {
+					font-size: var(--fs-200);
+					color: rgba(var(--base-900-rgb), 0.7);
+					font-family: var(--ft-sans);
+					font-weight: 300;
+					margin-bottom: 0.25rem;
+					padding-top: 1rem;
+				}
+				a {
 					display: flex;
 					align-items: center;
-					justify-content: center;
-					width: 32px;
-					height: 32px;
+					justify-content: flex-start;
+					width: 100%;
+					font-size: var(--fs-400);
+					padding: 1rem 0;
+					border-bottom: 1px solid rgba(var(--base-200-rgb), 1);
+					gap: 0.5rem;
+
+					.icon {
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						width: 32px;
+						height: 32px;
+					}
+
+					span.icon {
+						margin-left: auto;
+						color: var(--base-600);
+						width: 26px;
+						height: 26px;
+					}
 				}
 
-				span.icon {
-					margin-left: auto;
-					color: var(--base-600);
-					width: 26px;
-					height: 26px;
+				a:last-child {
+					border-bottom: none;
 				}
-			}
-
-			a:last-child {
-				border-bottom: none;
 			}
 		}
 	}
