@@ -51,6 +51,19 @@
 
 		.end {
 			justify-content: end;
+
+			button {
+				padding: 0;
+				background: none;
+				transition: 0.2s ease;
+				color: var(--primary-700);
+				height: auto;
+				width: auto;
+
+				&:disabled {
+					color: var(--primary-900);
+				}
+			}
 		}
 
 		.icon {

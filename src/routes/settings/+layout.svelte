@@ -1,19 +1,23 @@
 <script lang="ts">
+	import type { LayoutData } from './$types';
+
 	import SettingsList from '$lib/containers/settings/SettingsList.svelte';
 	import SettingsListHeader from '$lib/containers/settings/SettingsListHeader.svelte';
-	import type { LayoutData } from './$types';
+	import { page } from '$app/stores';
 
 	export let data: LayoutData;
 
-	const { url, fRel } = data;
+	$: isRoot = $page.url.pathname === '/settings';
+
+	const { fRel } = data;
 </script>
 
 <section>
-	<div class="list" class:root={url.pathname !== '/settings'}>
+	<div class="list" class:root={!isRoot}>
 		<SettingsListHeader {fRel} />
 		<SettingsList />
 	</div>
-	<div class="wrapper" class:root={url.pathname !== '/settings'}>
+	<div class="wrapper" class:root={!isRoot}>
 		<slot />
 	</div>
 </section>
