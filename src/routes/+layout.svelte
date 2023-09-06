@@ -75,7 +75,9 @@
 			<!-- User logged-in & Basic informations entered & loaded -->
 			<Navigation />
 
-			<slot />
+			<div class="wrapper">
+				<slot />
+			</div>
 		{:else if $userData === undefined}
 			<!-- User logged-in & Basic informations loading -->
 			<Loading />

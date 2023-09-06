@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { LayoutData } from './$types';
+	import type { LayoutData } from '../$types';
 
 	import SettingsHeader from '$lib/containers/settings/SettingsHeader.svelte';
 
@@ -8,6 +8,6 @@
 	const { fRel } = data;
 </script>
 
-<SettingsHeader {fRel} saveButton={false} />
+<SettingsHeader {fRel} />
 
-ok ca c laccueil
+profil

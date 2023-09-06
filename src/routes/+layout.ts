@@ -5,7 +5,10 @@ import type { LayoutLoad } from './$types';
 export const load: LayoutLoad = async ({ url }) => {
 	await waitLocale();
 
+	const fRel = url.searchParams.get('frel') || '/';
+
 	return {
-		url
+		url,
+		fRel
 	};
 };

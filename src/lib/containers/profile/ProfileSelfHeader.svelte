@@ -18,7 +18,7 @@
 		{$userData.username}
 	</div>
 	<div class="end">
-		<a class="icon" href="/settings">
+		<a class="icon" href="/settings?frel=/profile">
 			<IconSettings />
 			<span class="visually-hidden">{$t('pages.settings.label')}</span>
 		</a>

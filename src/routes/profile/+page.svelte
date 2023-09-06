@@ -3,7 +3,5 @@
 	import ProfileSelfDashboard from '$lib/containers/profile/ProfileSelfDashboard.svelte';
 </script>
 
-<div class="wrapper">
-	<ProfileSelfHeader />
-	<ProfileSelfDashboard />
-</div>
+<ProfileSelfHeader />
+<ProfileSelfDashboard />
