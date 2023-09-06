@@ -56,6 +56,15 @@
 <style lang="scss">
 	section {
 		view-transition-name: settings-list;
+
+		:root::view-transition-old(settings-list) {
+			animation: 100ms cubic-bezier(0.4, 0, 1, 1) both fade-out;
+		}
+
+		:root::view-transition-new(settings-list) {
+			animation: 100ms cubic-bezier(0, 0, 0.2, 1) both fade-in;
+		}
+
 		nav {
 			display: grid;
 			gap: 0.75rem;
