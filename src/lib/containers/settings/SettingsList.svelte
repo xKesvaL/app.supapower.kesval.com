@@ -1,6 +1,11 @@
 <script lang="ts">
+	import IconBarbell from '$lib/icons/IconBarbell.svelte';
 	import IconChevronRight from '$lib/icons/IconChevronRight.svelte';
+	import IconLanguage from '$lib/icons/IconLanguage.svelte';
+	import IconLock from '$lib/icons/IconLock.svelte';
+	import IconRuler2 from '$lib/icons/IconRuler2.svelte';
 	import IconUserCircle from '$lib/icons/IconUserCircle.svelte';
+	import { t } from 'svelte-i18n';
 
 	const suffix = '?frel=/settings';
 </script>
@@ -8,21 +13,21 @@
 <section>
 	<nav>
 		<div>
-			<h2>votre compte</h2>
+			<h2>{$t('pages.settings.list.yourAccount')}</h2>
 			<a href="/settings/profile{suffix}">
 				<div class="icon">
 					<IconUserCircle />
 				</div>
-				lien profil
+				{$t('pages.settings.list.profile.label')}
 				<span class="icon">
 					<IconChevronRight />
 				</span>
 			</a>
-			<a href="/settings/profile{suffix}">
+			<a href="/settings/account{suffix}">
 				<div class="icon">
-					<IconUserCircle />
+					<IconLock />
 				</div>
-				lien profil
+				{$t('pages.settings.list.account.label')}
 				<span class="icon">
 					<IconChevronRight />
 				</span></a
@@ -30,21 +35,30 @@
 		</div>
 
 		<div>
-			<h2>votre compte</h2>
-			<a href="/settings/profile{suffix}">
+			<h2>{$t('pages.settings.list.preferences')}</h2>
+			<a href="/settings/workouts{suffix}">
 				<div class="icon">
-					<IconUserCircle />
+					<IconBarbell />
 				</div>
-				lien profil
+				{$t('pages.settings.list.workouts.label')}
+				<span class="icon">
+					<IconChevronRight />
+				</span>
+			</a>
+			<a href="/settings/units{suffix}">
+				<div class="icon">
+					<IconRuler2 />
+				</div>
+				{$t('pages.settings.list.units.label')}
 				<span class="icon">
 					<IconChevronRight />
 				</span></a
 			>
-			<a href="/settings/profile{suffix}">
+			<a href="/settings/language{suffix}">
 				<div class="icon">
-					<IconUserCircle />
+					<IconLanguage />
 				</div>
-				lien profil
+				{$t('pages.settings.list.language.label')}
 				<span class="icon">
 					<IconChevronRight />
 				</span></a
@@ -55,14 +69,8 @@
 
 <style lang="scss">
 	section {
-		view-transition-name: settings-list;
-
-		:root::view-transition-old(settings-list) {
-			animation: 100ms cubic-bezier(0.4, 0, 1, 1) both fade-out;
-		}
-
-		:root::view-transition-new(settings-list) {
-			animation: 100ms cubic-bezier(0, 0, 0.2, 1) both fade-in;
+		@include mq(lg) {
+			view-transition-name: settings-list;
 		}
 
 		nav {
@@ -89,7 +97,7 @@
 					font-size: var(--fs-400);
 					padding: 1rem 0;
 					border-bottom: 1px solid rgba(var(--base-200-rgb), 1);
-					gap: 0.5rem;
+					gap: 0.75rem;
 
 					.icon {
 						display: flex;
