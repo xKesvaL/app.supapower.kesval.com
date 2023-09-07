@@ -131,7 +131,26 @@
 			}
 		},
 		"settings": {
-			"label": "Settings"
+			"label": "Settings",
+			"list": {
+				"yourAccount": "Your account",
+				"profile": {
+					"label": "Profile"
+				},
+				"account": {
+					"label": "Account"
+				},
+				"preferences": "Preferences",
+				"workouts": {
+					"label": "Workouts"
+				},
+				"units": {
+					"label": "Units"
+				},
+				"language": {
+					"label": "Language"
+				}
+			}
 		}
 	}
 }

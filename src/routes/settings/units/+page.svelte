@@ -10,12 +10,7 @@
 
 <SettingsHeader {fRel} />
 
-<section>
-	<p>
-		Sorry, further customization will be added later on for profiles. Right now, we're focusing on
-		making the app work great.
-	</p>
-</section>
+<section>unités ici parametres</section>
 
 <style lang="scss">
 	section {
