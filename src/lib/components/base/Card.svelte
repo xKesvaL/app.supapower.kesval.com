@@ -3,9 +3,9 @@
 	import type { MouseEventHandler } from 'svelte/elements';
 
 	export let href: string | undefined = undefined;
-	export let classes = '';
 	export let scale = false;
 	export let color: ThemeColor = 'primary';
+	export let colorOpacity = 0.3;
 	export let rounding: ThemeSize = 'md';
 	export let vertical = true;
 	export let justify: 'start' | 'center' | 'end' = 'center';
@@ -14,10 +14,12 @@
 	export let maxWidth = true;
 
 	export let customCardStyle = '';
+	export let customCardBgStyle = '';
 
 	let el: HTMLElement;
 
-	$: el?.style.setProperty('--card-drop-color', `rgba(var(--${color}-300-rgb), 0.3)`);
+	$: el?.style.setProperty('--card-drop-color', `rgba(var(--${color}-300-rgb), ${colorOpacity})`);
+	$: el?.style.setProperty('--card-hover-color', `rgba(var(--base-200-rgb), ${colorOpacity})`);
 
 	const onHover: MouseEventHandler<HTMLElement> = (ev) => {
 		const target = ev.currentTarget;
@@ -43,7 +45,8 @@
 	role="region"
 >
 	<div
-		class="card-bg-img justify-{justify} align-{align} gap-{gap} {classes} "
+		class="card-bg-img justify-{justify} align-{align} gap-{gap}"
+		style={customCardBgStyle}
 		class:horizontal={!vertical}
 	>
 		<slot />
@@ -56,6 +59,7 @@
 		--card-drop-y: 0;
 
 		--card-drop-color: rgba(var(--primary-300-rgb), 0.3);
+		--card-hover-color: rgba(var(--base-200-rgb), 0.3);
 
 		display: inline-flex;
 		flex-direction: column;
@@ -144,7 +148,7 @@
 			}
 
 			&:hover {
-				background-color: rgba(var(--base-200-rgb), 0.3);
+				background-color: var(--card-hover-color);
 				background-image: radial-gradient(
 					circle at var(--card-drop-x) var(--card-drop-y),
 					var(--card-drop-color),
