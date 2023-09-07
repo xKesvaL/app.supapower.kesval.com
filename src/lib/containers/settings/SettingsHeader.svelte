@@ -31,6 +31,10 @@
 
 <style lang="scss">
 	header {
+		@include mq(lg) {
+			view-transition-name: settings-header;
+		}
+
 		display: grid;
 		grid-template-columns: 1fr auto 1fr;
 		padding: 0.75rem 1rem 0.75rem 0.5rem;
