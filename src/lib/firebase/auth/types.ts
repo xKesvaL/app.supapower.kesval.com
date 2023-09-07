@@ -1,3 +1,6 @@
+import type { User } from 'firebase/auth';
+import type { Readable } from 'svelte/store';
+
 export interface AuthResponse {
 	success: boolean;
 	error?: AuthError;
@@ -41,3 +44,5 @@ export type AuthErrorCodeReauth =
 	| 'auth/wrong-password'
 	| 'auth/invalid-verification-code'
 	| 'auth/invalid-verification-id';
+
+export type UserStore = Readable<User | undefined | null>;

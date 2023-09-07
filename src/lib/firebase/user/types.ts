@@ -1,4 +1,5 @@
 import type { Locale } from '$lib/typings/standard';
+import type { Readable } from 'svelte/store';
 
 export interface UserData {
 	uid: string;
@@ -11,12 +12,14 @@ export interface UserData {
 
 export interface UserDataWorkout {
 	type: WorkoutType;
-	frequency: 2 | 3 | 4 | 5 | 6;
+	frequency: WorkoutFrequency;
 }
 
 export const workoutTypes = ['powerlifting', 'powerbuilding', 'bodybuilding'] as const;
 
 export type WorkoutType = (typeof workoutTypes)[number];
+
+export type WorkoutFrequency = 2 | 3 | 4 | 5 | 6;
 
 export interface UserDataUnits {
 	weight: 'kg' | 'lb';
@@ -33,3 +36,5 @@ export interface UserDataPrivate {
 	sex: 'male' | 'female' | 'other' | null;
 	birthdate: string | null;
 }
+
+export type UserDataStore = Readable<UserData | undefined | null>;
