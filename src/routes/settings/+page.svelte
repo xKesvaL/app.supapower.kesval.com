@@ -5,7 +5,7 @@
 
 	export let data: LayoutData;
 
-	const { fRel } = data;
+	$: ({ fRel } = data);
 </script>
 
 <SettingsHeader {fRel} saveButton={false} />

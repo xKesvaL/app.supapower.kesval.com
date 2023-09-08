@@ -7,7 +7,7 @@
 
 	export let data: LayoutData;
 
-	const { fRel } = data;
+	$: ({ fRel } = data);
 
 	const userData: UserDataStore = getContext('userData');
 
