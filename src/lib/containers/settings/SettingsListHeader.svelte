@@ -16,6 +16,12 @@
 </header>
 
 <style lang="scss">
+	:global(html)::view-transition-old(settings-list-header),
+	:global(html)::view-transition-new(settings-list-header) {
+		width: 100%;
+		height: 100%;
+	}
+
 	header {
 		@include mq(lg) {
 			view-transition-name: settings-list-header;

@@ -68,6 +68,12 @@
 </section>
 
 <style lang="scss">
+	:global(html)::view-transition-old(settings-list),
+	:global(html)::view-transition-new(settings-list) {
+		width: 100%;
+		height: 100%;
+	}
+
 	section {
 		@include mq(lg) {
 			view-transition-name: settings-list;
