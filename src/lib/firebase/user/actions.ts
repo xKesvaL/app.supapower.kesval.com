@@ -1,4 +1,4 @@
-import { writeBatch, doc, getDoc } from 'firebase/firestore';
+import { writeBatch, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { firestore } from '../config';
 import type { UserData, UserDataWorkout } from './types';
 import type { Locale } from '$lib/typings/standard';
@@ -39,4 +39,10 @@ const createUserData = async (data: CreateUserDataFunctionData) => {
 	await batch.commit();
 };
 
-export { isUsernameUnique, createUserData };
+const updateUserDataWorkout = async (uid: string, workout: UserDataWorkout) => {
+	await updateDoc(doc(firestore, 'users', uid), {
+		workout
+	});
+};
+
+export { isUsernameUnique, createUserData, updateUserDataWorkout };

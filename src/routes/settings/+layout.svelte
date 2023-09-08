@@ -16,7 +16,7 @@
 <section class="container">
 	<Card
 		customCardStyle="min-width: none; max-width: auto; width: 100%; view-transition-name: settings-list-card;"
-		customCardBgStyle="padding: 0;"
+		customCardBgStyle="padding: 0; gap: 0;"
 		vertical={false}
 		color="primary"
 		colorOpacity={0.05}
