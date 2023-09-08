@@ -38,3 +38,5 @@ export interface UserDataPrivate {
 }
 
 export type UserDataStore = Readable<UserData | undefined | null>;
+
+export type UserDataStoreContext = Readable<UserData>;

@@ -84,16 +84,18 @@
 	"std": {
 		"bottom": "bottom",
 		"days": "days",
-		"finish": "Finish",
-		"next": "Next",
-		"previous": "Previous",
+		"finish": "finish",
+		"next": "next",
+		"previous": "previous",
 		"scrollTo": "scroll to",
 		"top": "top",
-		"back": "Back",
-		"edit": "Edit"
+		"back": "back",
+		"edit": "edit",
+		"save": "save"
 	},
 	"workouts": {
 		"types": {
+			"label": "Workout Type",
 			"bodybuilding": {
 				"name": "Bodybuilding"
 			},
