@@ -5,8 +5,10 @@
 	export let fRel: string;
 	export let saveButton: boolean = true;
 	export let saveButtonEnabled: boolean = false;
+	export let loading: boolean = false;
 
 	import { createEventDispatcher } from 'svelte';
+	import { capitalizeFirstLetter } from '$lib/utils/functions';
 
 	const dispatch = createEventDispatcher();
 
@@ -24,7 +26,13 @@
 	<div class="center">{$t('pages.settings.label')}</div>
 	<div class="end">
 		{#if saveButton}
-			<button class="primary" on:click={onSave} disabled={!saveButtonEnabled}> save </button>
+			<button class="primary" on:click={onSave} disabled={!saveButtonEnabled}>
+				{#if loading}
+					<span class="loading" />
+				{:else}
+					{capitalizeFirstLetter($t('std.save'))}
+				{/if}
+			</button>
 		{/if}
 	</div>
 </header>
@@ -57,15 +65,14 @@
 			justify-content: end;
 
 			button {
-				padding: 0;
-				background: none;
+				padding: 0.4rem 1rem;
 				transition: 0.2s ease;
-				color: var(--primary-700);
+				color: var(--primary-950);
 				height: auto;
 				width: auto;
 
 				&:disabled {
-					color: var(--primary-900);
+					opacity: 0.3;
 				}
 			}
 		}
