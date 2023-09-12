@@ -17,7 +17,6 @@
 	$: ({ fRel } = data);
 
 	const userData: UserDataStoreContext = getContext('userData');
-	let hasChanged = false;
 	let loading = false;
 
 	const workout: UserDataWorkout = {
@@ -31,17 +30,23 @@
 		updateUserDataWorkout($userData?.uid, workout);
 
 		loading = false;
-		hasChanged = false;
 	};
 
 	const switchToWorkoutType = (e: MouseEvent) => {
 		const target = e.currentTarget as HTMLButtonElement;
 		workout.type = target.dataset.workoutType as WorkoutType;
-		hasChanged = true;
 	};
+
+	$: hasChangedWorkoutFrequency = workout.frequency !== $userData?.workout.frequency;
+	$: hasChangedWorkoutType = workout.type !== $userData?.workout.type;
 </script>
 
-<SettingsHeader {fRel} on:save={handleSave} saveButtonEnabled={hasChanged} {loading} />
+<SettingsHeader
+	{fRel}
+	on:save={handleSave}
+	saveButtonEnabled={hasChangedWorkoutType || hasChangedWorkoutFrequency}
+	{loading}
+/>
 
 <section>
 	<form>
@@ -93,6 +98,24 @@
 				</div>
 			</button>
 		</div>
+		<h2>{$t('workouts.frequencies.label')}</h2>
+		<div>
+			<input
+				type="range"
+				name="frequency"
+				min="2"
+				max="6"
+				class="primary"
+				bind:value={workout.frequency}
+			/>
+			<div class="frequencies">
+				<span>2 {$t('std.days')}</span>
+				<span>3 {$t('std.days')}</span>
+				<span>4 {$t('std.days')}</span>
+				<span>5 {$t('std.days')}</span>
+				<span>6 {$t('std.days')}</span>
+			</div>
+		</div>
 	</form>
 </section>
 
@@ -137,6 +160,30 @@
 					width: 100%;
 					max-height: 110px;
 					flex: 1 0 auto;
+				}
+			}
+		}
+
+		.frequencies {
+			display: flex;
+			justify-content: space-between;
+			gap: 0.5rem;
+			font-size: var(--fs-400);
+			font-weight: 700;
+			color: var(--base-800);
+			text-align: center;
+			margin-top: 1rem;
+
+			span {
+				position: relative;
+
+				&::before {
+					content: '';
+					display: block;
+					width: 1px;
+					height: 1rem;
+					background: var(--base-600);
+					margin: 0 auto 0.5rem;
 				}
 			}
 		}
