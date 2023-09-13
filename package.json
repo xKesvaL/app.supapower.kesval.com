@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"npm:dev:*\" --restart-tries 1",
+    "dev": "concurrently \"bun:dev:*\" --restart-tries 1",
     "dev:svelte": "vite dev --host",
     "dev:storybook": "storybook dev -p 6006",
     "preview": "vite preview",
