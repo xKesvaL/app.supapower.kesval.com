@@ -5,7 +5,7 @@
 	export let fRel: string;
 </script>
 
-<header>
+<header class="page-header">
 	<div class="start">
 		<a href={fRel} class="icon">
 			<IconArrowLeft />
@@ -25,12 +25,11 @@
 	header {
 		@include mq(lg) {
 			view-transition-name: settings-list-header;
-		}
 
-		display: grid;
-		grid-template-columns: 1fr auto 1fr;
-		padding: 0.75rem 1rem 0.75rem 0.5rem;
-		gap: 0.5rem;
+			.start {
+				display: flex;
+			}
+		}
 
 		div {
 			display: flex;

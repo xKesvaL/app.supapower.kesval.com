@@ -8,7 +8,7 @@
 	const userData: Readable<UserData> = getContext('userData');
 </script>
 
-<header>
+<header class="page-header">
 	<div class="start">
 		<a href="/profile">
 			{$t('std.edit')}
