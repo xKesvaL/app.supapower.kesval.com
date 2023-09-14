@@ -3,6 +3,8 @@
 	import { t } from 'svelte-i18n';
 
 	export let fRel: string;
+
+	$: fRel = fRel == '/' ? '/profile' : fRel;
 </script>
 
 <header class="page-header">
