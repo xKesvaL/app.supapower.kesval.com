@@ -3,15 +3,42 @@
 
 	import SettingsHeader from '$lib/containers/settings/SettingsHeader.svelte';
 	import { t } from 'svelte-i18n';
+	import { theme } from '$lib/stores/theme';
 
 	export let data: LayoutData;
 
 	$: ({ fRel } = data);
+
+	const onChangeTheme = (e: Event) => {
+		theme.set((e.target as HTMLInputElement).value as 'light' | 'dark');
+	};
 </script>
 
-<SettingsHeader {fRel} />
+<SettingsHeader {fRel} saveButton={false} />
 
 <section>
+	<form>
+		<label>
+			<input
+				type="radio"
+				name="theme"
+				value="light"
+				checked={$theme === 'light'}
+				on:change={onChangeTheme}
+			/>
+			{$t('pages.settings.list.theme.light')}
+		</label>
+		<label>
+			<input
+				type="radio"
+				name="theme"
+				value="dark"
+				checked={$theme === 'dark'}
+				on:change={onChangeTheme}
+			/>
+			{$t('pages.settings.list.theme.dark')}
+		</label>
+	</form>
 	<p>
 		{$t('pages.settings.list.theme.prevention')}
 	</p>
@@ -26,6 +53,16 @@
 <style lang="scss">
 	section {
 		padding: 1rem;
+
+		form {
+			margin-bottom: 1rem;
+
+			label {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+			}
+		}
 
 		a.special-link {
 			color: var(--primary-800);
