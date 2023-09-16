@@ -92,7 +92,9 @@
 		"back": "back",
 		"edit": "edit",
 		"save": "save",
-		"exercises": "exercises"
+		"exercises": "exercises",
+		"all": "all",
+		"more": "more"
 	},
 	"workouts": {
 		"types": {
@@ -149,7 +151,7 @@
 				"label": "Your Programs"
 			},
 			"community": {
-				"label": "Community Programs"
+				"label": "Community"
 			}
 		},
 		"profile": {

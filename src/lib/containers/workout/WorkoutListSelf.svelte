@@ -1,41 +1,34 @@
 <script>
-	import IconPlus from '$lib/icons/IconPlus.svelte';
+	import { capitalizeFirstLetter } from '$lib/utils/functions';
 	import { t } from 'svelte-i18n';
 </script>
 
 <section class="container">
 	<div class="self">
-		<h2>
-			{$t('pages.workout.self.label')}
-		</h2>
+		<header>
+			<h2>
+				{$t('pages.workout.self.label')}
+			</h2>
+			<a class="button primary" href="/workout/self">
+				{capitalizeFirstLetter($t('std.all'))}
+			</a>
+		</header>
 		...
 	</div>
 </section>
 
 <style lang="scss">
 	section {
-		h2 {
-			font-size: var(--fs-600);
-		}
+		header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			h2 {
+				font-size: var(--fs-600);
+			}
 
-		.quick {
-			display: grid;
-			gap: 1rem;
-
-			button {
-				justify-content: flex-start;
-				background: var(--base-200);
-				gap: 0.75rem;
-				align-items: center;
-				height: auto;
-				padding: 0.75rem 1rem;
-
-				.icon {
-					width: 24px;
-					height: 24px;
-					color: var(--primary-700);
-					margin-bottom: 0.125rem;
-				}
+			a {
+				min-width: 4.25rem;
 			}
 		}
 	}
