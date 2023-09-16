@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<!-- Charset -->
@@ -40,7 +40,7 @@
 
 		<!-- Theming -->
 		<script>
-			const theme = localStorage.getItem('theme') || 'auto';
+			const theme = localStorage.getItem('theme') || 'dark';
 			document.firstElementChild?.setAttribute('data-theme', theme);
 		</script>
 		%sveltekit.head%
