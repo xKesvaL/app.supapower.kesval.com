@@ -10,7 +10,7 @@
 
 <SettingsHeader {fRel} />
 
-<section>compte ici parametres</section>
+<section>theme ici parametres</section>
 
 <style lang="scss">
 	section {

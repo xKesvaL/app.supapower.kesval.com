@@ -94,7 +94,8 @@
 		"save": "save",
 		"exercises": "exercises",
 		"all": "all",
-		"more": "more"
+		"more": "more",
+		"reportIssue": "Found an issue? Report it here."
 	},
 	"workouts": {
 		"types": {
@@ -191,6 +192,10 @@
 				},
 				"language": {
 					"label": "Language"
+				},
+				"theme": {
+					"label": "Theme",
+					"prevention": "This app is meant to be used in dark mode, light mode might have some issues. If any, please report them."
 				}
 			}
 		}

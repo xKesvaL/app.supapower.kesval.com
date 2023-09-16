@@ -3,6 +3,7 @@
 	import IconChevronRight from '$lib/icons/IconChevronRight.svelte';
 	import IconLanguage from '$lib/icons/IconLanguage.svelte';
 	import IconLock from '$lib/icons/IconLock.svelte';
+	import IconMoon from '$lib/icons/IconMoon.svelte';
 	import IconRuler2 from '$lib/icons/IconRuler2.svelte';
 	import IconUserCircle from '$lib/icons/IconUserCircle.svelte';
 	import { t } from 'svelte-i18n';
@@ -59,6 +60,15 @@
 					<IconLanguage />
 				</div>
 				{$t('pages.settings.list.language.label')}
+				<span class="icon">
+					<IconChevronRight />
+				</span></a
+			>
+			<a href="/settings/theme{suffix}">
+				<div class="icon">
+					<IconMoon />
+				</div>
+				{$t('pages.settings.list.theme.label')}
 				<span class="icon">
 					<IconChevronRight />
 				</span></a
