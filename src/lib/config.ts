@@ -4,7 +4,7 @@ export const DEFAULT_LOCALE: Locale = 'en';
 
 export const BRAND = {
 	name: 'SupaPower',
-	url: 'https://supapower.kesval.com',
+	url: 'https://app.supapower.kesval.com',
 	author: {
 		name: 'Kesval',
 		url: 'https://kesval.com'
