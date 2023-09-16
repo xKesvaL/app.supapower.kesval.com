@@ -34,7 +34,7 @@
 	section {
 		display: flex;
 		--ct-max-width: 1280px !important;
-		--ct-padding: 0.25rem;
+		--ct-padding: 0.1rem 0;
 
 		@include mq(lg) {
 			--ct-padding: 1rem;
