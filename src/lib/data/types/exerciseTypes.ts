@@ -2,7 +2,7 @@ import type { Equipment } from './equipmentTypes';
 import type { MuscleExercise } from './muscleTypes';
 
 export interface Exercise {
-	name: string;
+	name: ExerciseName;
 	primaryMuscle: MuscleExercise;
 	otherMuscles: MuscleExercise[];
 	equipment: Equipment;
@@ -19,4 +19,8 @@ export const exerciseTypes = [
 	'duration-distance'
 ] as const;
 
+export const exerciseNames = ['squat', 'bench', 'deadlift'] as const;
+
 export type ExerciseType = (typeof exerciseTypes)[keyof typeof exerciseTypes];
+
+export type ExerciseName = (typeof exerciseNames)[keyof typeof exerciseNames];

@@ -2,7 +2,7 @@ import type { Exercise } from './types/exerciseTypes';
 
 export const exerciseList: Exercise[] = [
 	{
-		name: 'Squat',
+		name: 'squat',
 		primaryMuscle: { name: 'quadriceps', activation: 78 },
 		otherMuscles: [
 			{ name: 'abductors', activation: 60 },
@@ -15,7 +15,7 @@ export const exerciseList: Exercise[] = [
 		type: 'weight-reps'
 	},
 	{
-		name: 'Bench Press',
+		name: 'bench',
 		primaryMuscle: { name: 'chest', activation: 90 },
 		otherMuscles: [
 			{ name: 'shoulders-anterior', activation: 56 },
@@ -25,7 +25,7 @@ export const exerciseList: Exercise[] = [
 		type: 'weight-reps'
 	},
 	{
-		name: 'Deadlift',
+		name: 'deadlift',
 		primaryMuscle: { name: 'lowerback', activation: 95 },
 		otherMuscles: [
 			{ name: 'hamstrings', activation: 80 },

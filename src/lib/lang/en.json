@@ -91,7 +91,8 @@
 		"top": "top",
 		"back": "back",
 		"edit": "edit",
-		"save": "save"
+		"save": "save",
+		"exercises": "exercises"
 	},
 	"workouts": {
 		"types": {
@@ -115,7 +116,41 @@
 			"label": "Home"
 		},
 		"workout": {
-			"label": "Workout"
+			"label": "Workout",
+			"quick": {
+				"label": "Quick Workout",
+				"start": "Start Empty Workout"
+			},
+			"predefinedList": {
+				"label": "Supa Programs",
+				"ppl": {
+					"label": "Push Pull Legs",
+					"push": {
+						"label": "Push Day"
+					},
+					"pull": {
+						"label": "Pull Day"
+					},
+					"legs": {
+						"label": "Leg Day"
+					}
+				},
+				"upperLower": {
+					"label": "Upper Lower",
+					"upper": {
+						"label": "Upper Body"
+					},
+					"lower": {
+						"label": "Lower Body"
+					}
+				}
+			},
+			"self": {
+				"label": "Your Programs"
+			},
+			"community": {
+				"label": "Community Programs"
+			}
 		},
 		"profile": {
 			"label": "Profile",

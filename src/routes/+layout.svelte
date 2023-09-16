@@ -1,8 +1,6 @@
 <script lang="ts">
-	import type { LayoutData } from './$types';
 	import { navigating } from '$app/stores';
 
-	import { fly } from 'svelte/transition';
 	import { setContext } from 'svelte';
 
 	import { createDocStore, createUserStore } from 'firebase-svelte';
@@ -30,8 +28,6 @@
 
 	nprogress.configure({ minimum: 0.2, easing: 'ease', speed: 250 });
 	$: $navigating ? nprogress.start() : nprogress.done();
-
-	export let data: LayoutData;
 
 	const user = createUserStore(auth);
 
