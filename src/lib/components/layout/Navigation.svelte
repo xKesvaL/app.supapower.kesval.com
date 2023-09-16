@@ -38,6 +38,7 @@
 		height: 3rem;
 		background: rgba(var(--base-200-rgb), 1);
 		box-shadow: 0 -1px 4px rgba(var(--base-200-rgb), 0.4);
+		z-index: 10;
 
 		display: flex;
 		align-items: center;
