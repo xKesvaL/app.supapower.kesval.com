@@ -9,8 +9,7 @@
 	export let data: LayoutData;
 
 	$: isRoot = $page.url.pathname === '/settings';
-
-	const { fRel } = data;
+	$: ({ fRel } = data);
 </script>
 
 <section class="container">

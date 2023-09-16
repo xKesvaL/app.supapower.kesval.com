@@ -6,6 +6,7 @@
 	export let saveButton: boolean = true;
 	export let saveButtonEnabled: boolean = false;
 	export let loading: boolean = false;
+	export let title = $t('pages.settings.label');
 
 	import { createEventDispatcher } from 'svelte';
 	import { capitalizeFirstLetter } from '$lib/utils/functions';
@@ -17,13 +18,13 @@
 	};
 </script>
 
-<header>
+<header class="page-header">
 	<div class="start">
 		<a href={fRel} class="icon">
 			<IconArrowLeft />
 		</a>
 	</div>
-	<div class="center">{$t('pages.settings.label')}</div>
+	<div class="center">{title}</div>
 	<div class="end">
 		{#if saveButton}
 			<button class="primary" on:click={onSave} disabled={!saveButtonEnabled}>
@@ -41,12 +42,12 @@
 	header {
 		@include mq(lg) {
 			view-transition-name: settings-header;
-		}
 
-		display: grid;
-		grid-template-columns: 1fr auto 1fr;
-		padding: 0.75rem 1rem 0.75rem 0.5rem;
-		gap: 0.5rem;
+			.start {
+				opacity: 0;
+				pointer-events: none;
+			}
+		}
 
 		div {
 			display: flex;

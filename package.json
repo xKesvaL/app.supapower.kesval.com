@@ -52,6 +52,8 @@
 		"postcss": "^8.4.29",
 		"prettier": "^2.8.8",
 		"prettier-plugin-svelte": "^2.10.1",
+		"react": "^18.2.0",
+    "react-dom": "^18.2.0",
 		"sass": "^1.66.1",
 		"storybook": "^7.4.0",
 		"svelte": "^4.2.0",

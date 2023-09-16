@@ -3,9 +3,11 @@
 	import { t } from 'svelte-i18n';
 
 	export let fRel: string;
+
+	$: fRel = fRel == '/' ? '/profile' : fRel;
 </script>
 
-<header>
+<header class="page-header">
 	<div class="start">
 		<a href={fRel} class="icon">
 			<IconArrowLeft />
@@ -16,21 +18,14 @@
 </header>
 
 <style lang="scss">
-	:global(html)::view-transition-old(settings-list-header),
-	:global(html)::view-transition-new(settings-list-header) {
-		width: 100%;
-		height: 100%;
-	}
-
 	header {
 		@include mq(lg) {
 			view-transition-name: settings-list-header;
-		}
 
-		display: grid;
-		grid-template-columns: 1fr auto 1fr;
-		padding: 0.75rem 1rem 0.75rem 0.5rem;
-		gap: 0.5rem;
+			.start {
+				display: flex;
+			}
+		}
 
 		div {
 			display: flex;

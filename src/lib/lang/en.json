@@ -105,6 +105,9 @@
 			"powerlifting": {
 				"name": "Powerlifting"
 			}
+		},
+		"frequencies": {
+			"label": "Workout Frequency"
 		}
 	},
 	"pages": {
