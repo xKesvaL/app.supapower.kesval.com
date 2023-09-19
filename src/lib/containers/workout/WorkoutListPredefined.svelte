@@ -101,6 +101,7 @@
 
 			&.opened {
 				padding-bottom: 1rem;
+				padding-top: 0.5rem;
 				grid-template-rows: 1fr;
 			}
 
