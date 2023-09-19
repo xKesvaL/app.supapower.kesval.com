@@ -8,12 +8,12 @@
 		<h2>
 			{$t('pages.workout.quick.label')}
 		</h2>
-		<button>
+		<a class="button" href="/workout/start">
 			<div class="icon">
 				<IconPlus />
 			</div>
 			{$t('pages.workout.quick.start')}
-		</button>
+		</a>
 	</div>
 </section>
 
@@ -27,7 +27,7 @@
 			display: grid;
 			gap: 1rem;
 
-			button {
+			a {
 				justify-content: flex-start;
 				background: var(--base-200);
 				gap: 0.75rem;
