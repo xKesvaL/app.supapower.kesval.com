@@ -8,7 +8,7 @@
 		<h2>
 			{$t('pages.workout.quick.label')}
 		</h2>
-		<a class="button" href="/workout/start">
+		<a class="button" href="/workout/start?frel=/workout">
 			<div class="icon">
 				<IconPlus />
 			</div>
