@@ -97,7 +97,7 @@
 					right: 0;
 					background: var(--primary-500);
 
-					@include mq(md) {
+					@include mq(lg) {
 						right: auto;
 						bottom: 0;
 						height: 100%;
