@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { navigating } from '$app/stores';
+	import { navigating, page } from '$app/stores';
 
 	import { setContext } from 'svelte';
 
@@ -79,7 +79,9 @@
 				<slot />
 			</main>
 
-			<WorkoutInProgress />
+			{#if $page.url.pathname !== '/workout/start' && !$page.url.pathname.startsWith('/settings')}
+				<WorkoutInProgress />
+			{/if}
 		{:else if $userData === undefined}
 			<!-- User logged-in & Basic informations loading -->
 			<main>
