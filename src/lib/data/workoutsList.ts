@@ -1,6 +1,7 @@
 // These are the defaults workouts provided by the app.
 // More workouts can be added by the user or found in the community.
 
+import type { Readable } from 'svelte/store';
 import type { ExerciseName } from './types/exerciseTypes';
 
 export interface WorkoutExerciseSet {
@@ -17,6 +18,10 @@ export interface WorkoutExercise {
 }
 
 export type Workout = WorkoutExercise[];
+
+export type WorkoutStore = Readable<Workout | undefined | null>;
+
+export type WorkoutStoreContext = Readable<Workout>;
 
 export interface WorkoutList {
 	[key: string]: Workout;
