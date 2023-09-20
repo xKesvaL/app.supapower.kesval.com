@@ -1,6 +1,7 @@
 <script>
 	import IconPlayerPlay from '$lib/icons/IconPlayerPlay.svelte';
 	import IconX from '$lib/icons/IconX.svelte';
+	import { capitalizeFirstLetter } from '$lib/utils/functions';
 	import { t } from 'svelte-i18n';
 </script>
 
@@ -11,13 +12,13 @@
 			<div class="icon">
 				<IconPlayerPlay />
 			</div>
-			Resume
+			{capitalizeFirstLetter($t('std.resume'))}
 		</button>
 		<button class="discard">
 			<div class="icon">
 				<IconX />
 			</div>
-			Discard
+			{capitalizeFirstLetter($t('std.discard'))}
 		</button>
 	</div>
 </footer>

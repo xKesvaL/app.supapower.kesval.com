@@ -95,7 +95,10 @@
 		"exercises": "exercises",
 		"all": "all",
 		"more": "more",
-		"reportIssue": "Found an issue? Report it here."
+		"reportIssue": "Found an issue? Report it here.",
+		"workoutInProgress": "Workout in progress",
+		"resume": "resume",
+		"discard": "discard"
 	},
 	"workouts": {
 		"types": {
