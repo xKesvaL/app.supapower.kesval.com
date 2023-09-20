@@ -1,4 +1,5 @@
 <script>
+	import { page } from '$app/stores';
 	import IconPlayerPlay from '$lib/icons/IconPlayerPlay.svelte';
 	import IconX from '$lib/icons/IconX.svelte';
 	import { capitalizeFirstLetter } from '$lib/utils/functions';
@@ -8,18 +9,18 @@
 <footer>
 	<div class="in-progress">{$t('std.workoutInProgress')}</div>
 	<div class="actions">
-		<button class="resume">
+		<a href="/workout/start?frel={$page.url.pathname}" class="button resume">
 			<div class="icon">
 				<IconPlayerPlay />
 			</div>
 			{capitalizeFirstLetter($t('std.resume'))}
-		</button>
-		<button class="discard">
+		</a>
+		<a href="/" class="button discard">
 			<div class="icon">
 				<IconX />
 			</div>
 			{capitalizeFirstLetter($t('std.discard'))}
-		</button>
+		</a>
 	</div>
 </footer>
 
@@ -43,6 +44,7 @@
 		gap: 0.5rem;
 
 		@include mq(lg) {
+			left: 12rem;
 			bottom: 0;
 		}
 
@@ -60,7 +62,7 @@
 			margin: 0 auto;
 			padding: 0 2rem;
 
-			button {
+			a {
 				height: auto;
 				padding: 0;
 				background: none;
