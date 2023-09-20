@@ -123,9 +123,14 @@
 		},
 		"workout": {
 			"label": "Workout",
+			"log": {
+				"duration": "duration",
+				"volume": "volume",
+				"sets": "sets"
+			},
 			"quick": {
 				"label": "Quick Workout",
-				"start": "Start Empty Workout"
+				"log": "Start Empty Workout"
 			},
 			"predefinedList": {
 				"label": "Supa Programs",

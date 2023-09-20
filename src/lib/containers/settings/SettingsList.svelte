@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { ROUTES } from '$lib/config';
 	import IconBarbell from '$lib/icons/IconBarbell.svelte';
 	import IconChevronRight from '$lib/icons/IconChevronRight.svelte';
 	import IconLanguage from '$lib/icons/IconLanguage.svelte';
@@ -8,14 +9,14 @@
 	import IconUserCircle from '$lib/icons/IconUserCircle.svelte';
 	import { t } from 'svelte-i18n';
 
-	const suffix = '?frel=/settings';
+	const suffix = `?frel=${ROUTES.settings}`;
 </script>
 
 <section>
 	<nav>
 		<div>
 			<h2>{$t('pages.settings.list.yourAccount')}</h2>
-			<a href="/settings/profile{suffix}">
+			<a href="{ROUTES.settingsProfile}{suffix}">
 				<div class="icon">
 					<IconUserCircle />
 				</div>
@@ -24,7 +25,7 @@
 					<IconChevronRight />
 				</span>
 			</a>
-			<a href="/settings/account{suffix}">
+			<a href="{ROUTES.settingsAccount}{suffix}">
 				<div class="icon">
 					<IconLock />
 				</div>
@@ -34,10 +35,9 @@
 				</span></a
 			>
 		</div>
-
 		<div>
 			<h2>{$t('pages.settings.list.preferences')}</h2>
-			<a href="/settings/workouts{suffix}">
+			<a href="{ROUTES.settingsWorkouts}{suffix}">
 				<div class="icon">
 					<IconBarbell />
 				</div>
@@ -46,7 +46,7 @@
 					<IconChevronRight />
 				</span>
 			</a>
-			<a href="/settings/units{suffix}">
+			<a href="{ROUTES.settingsUnits}{suffix}">
 				<div class="icon">
 					<IconRuler2 />
 				</div>
@@ -55,7 +55,7 @@
 					<IconChevronRight />
 				</span></a
 			>
-			<a href="/settings/language{suffix}">
+			<a href="{ROUTES.settingsLanguage}{suffix}">
 				<div class="icon">
 					<IconLanguage />
 				</div>
@@ -64,7 +64,7 @@
 					<IconChevronRight />
 				</span></a
 			>
-			<a href="/settings/theme{suffix}">
+			<a href="{ROUTES.settingsTheme}{suffix}">
 				<div class="icon">
 					<IconMoon />
 				</div>

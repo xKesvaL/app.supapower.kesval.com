@@ -14,6 +14,7 @@
 	import { createEventDispatcher } from 'svelte';
 	import IconEyeOff from '$lib/icons/IconEyeOff.svelte';
 	import IconEye from '$lib/icons/IconEye.svelte';
+	import { ROUTES } from '$lib/config';
 
 	let fieldErrors: FormattedZodError = {};
 	let authError: AuthError | null = null;
@@ -79,7 +80,7 @@
 					{$t('auth.fields.password.label')}
 				</span>
 				<span class="text-right"
-					><a href="/forgot-password">{$t('auth.login.forgotPassword')}</a></span
+					><a href={ROUTES.forgotpassword}>{$t('auth.login.forgotPassword')}</a></span
 				>
 			</div>
 			<div class="input-w-icon">

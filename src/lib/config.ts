@@ -1,4 +1,4 @@
-import type { Locale, Brand } from './typings/standard';
+import type { Locale, Brand, Routes } from './typings/standard';
 
 export const DEFAULT_LOCALE: Locale = 'en';
 
@@ -21,3 +21,20 @@ export const BRAND = {
 		success: ''
 	}
 } as const satisfies Brand;
+
+export const ROUTES = {
+	home: '/',
+	profile: '/profile',
+	settings: '/settings',
+	settingsAccount: '/settings/account',
+	settingsLanguage: '/settings/language',
+	settingsProfile: '/settings/profile',
+	settingsTheme: '/settings/theme',
+	settingsUnits: '/settings/units',
+	settingsWorkouts: '/settings/workouts',
+	workout: '/workout',
+	workoutSelf: '/workout/self',
+	workoutCommunity: '/workout/community',
+	workoutLog: '/workout/log',
+	forgotpassword: '/forgot-password'
+} as const satisfies Routes;

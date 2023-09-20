@@ -43,6 +43,7 @@
 
 	$: setContext('user', user);
 	$: setContext('userData', userData);
+	$: setContext('currentWorkout', currentWorkout);
 
 	onNavigate((navigation) => {
 		if (!document.startViewTransition) return;
@@ -79,8 +80,10 @@
 				<slot />
 			</main>
 
-			{#if $page.url.pathname !== '/workout/start' && !$page.url.pathname.startsWith('/settings')}
+			{#if $page.url.pathname !== '/workout/log' && !$page.url.pathname.startsWith('/settings') && $currentWorkout}
 				<WorkoutInProgress />
+			{:else if $currentWorkout === undefined || $currentWorkout}
+				<WorkoutInProgress shown={false} />
 			{/if}
 		{:else if $userData === undefined}
 			<!-- User logged-in & Basic informations loading -->
@@ -111,6 +114,10 @@
 		@include mq(lg) {
 			display: flex;
 			align-items: flex-start;
+		}
+
+		main {
+			flex: 1;
 		}
 	}
 </style>

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { ROUTES } from '$lib/config';
 	import type { UserData } from '$lib/firebase/user/types';
 	import IconSettings from '$lib/icons/IconSettings.svelte';
 	import { getContext } from 'svelte';
@@ -10,7 +11,7 @@
 
 <header class="page-header">
 	<div class="start">
-		<a href="/profile">
+		<a href={ROUTES.profile}>
 			{$t('std.edit')}
 		</a>
 	</div>
@@ -18,7 +19,7 @@
 		{$userData.username}
 	</div>
 	<div class="end">
-		<a class="icon" href="/settings?frel=/profile">
+		<a class="icon" href="{ROUTES.settings}?frel={ROUTES.profile}">
 			<IconSettings />
 			<span class="visually-hidden">{$t('pages.settings.label')}</span>
 		</a>

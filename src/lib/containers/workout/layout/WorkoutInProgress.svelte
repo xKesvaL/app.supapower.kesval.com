@@ -1,21 +1,24 @@
 <script>
 	import { page } from '$app/stores';
+	import { ROUTES } from '$lib/config';
 	import IconPlayerPlay from '$lib/icons/IconPlayerPlay.svelte';
 	import IconX from '$lib/icons/IconX.svelte';
 	import { capitalizeFirstLetter } from '$lib/utils/functions';
 	import { t } from 'svelte-i18n';
+
+	export let shown = true;
 </script>
 
-<footer>
+<footer class:hidden={!shown}>
 	<div class="in-progress">{$t('std.workoutInProgress')}</div>
 	<div class="actions">
-		<a href="/workout/start?frel={$page.url.pathname}" class="button resume">
+		<a href="{ROUTES.workoutLog}?frel={$page.url.pathname}" class="button resume">
 			<div class="icon">
 				<IconPlayerPlay />
 			</div>
 			{capitalizeFirstLetter($t('std.resume'))}
 		</a>
-		<a href="/" class="button discard">
+		<a href={ROUTES.home} class="button discard">
 			<div class="icon">
 				<IconX />
 			</div>
@@ -32,7 +35,7 @@
 		left: 0;
 		bottom: 3rem;
 		right: 0;
-		z-index: 1000;
+		z-index: 5;
 
 		background: var(--base-200);
 		border-radius: 1rem 1rem 0 0;
@@ -42,6 +45,10 @@
 		flex-direction: column;
 
 		gap: 0.5rem;
+
+		&.hidden {
+			transform: translateY(200%);
+		}
 
 		@include mq(lg) {
 			left: 12rem;

@@ -1,4 +1,5 @@
 <script>
+	import { ROUTES } from '$lib/config';
 	import { capitalizeFirstLetter } from '$lib/utils/functions';
 	import { t } from 'svelte-i18n';
 </script>
@@ -9,7 +10,7 @@
 			<h2>
 				{$t('pages.workout.community.label')}
 			</h2>
-			<a class="button secondary" href="/workout/community">
+			<a class="button secondary" href={ROUTES.workoutCommunity}>
 				{capitalizeFirstLetter($t('std.more'))}</a
 			>
 		</header>

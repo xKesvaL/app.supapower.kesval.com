@@ -1,5 +1,6 @@
 <script>
 	import Card from '$lib/components/base/Card.svelte';
+	import { ROUTES } from '$lib/config';
 	import IconBarbell from '$lib/icons/IconBarbell.svelte';
 	import IconCalendarEvent from '$lib/icons/IconCalendarEvent.svelte';
 	import IconMan from '$lib/icons/IconMan.svelte';
@@ -10,7 +11,7 @@
 <section class="container">
 	<h2>{$t('pages.profile.dashboard.label')}</h2>
 	<div class="dashboard">
-		<Card customCardStyle="min-width: 0;" href="/profile">
+		<Card customCardStyle="min-width: 0;" href={ROUTES.profile}>
 			<div class="dashboard-link">
 				<div class="icon">
 					<IconTimeline />
@@ -18,7 +19,7 @@
 				<span> {$t('pages.profile.dashboard.statistics.label')} </span>
 			</div>
 		</Card>
-		<Card customCardStyle="min-width: 0;" href="/profile">
+		<Card customCardStyle="min-width: 0;" href={ROUTES.profile}>
 			<div class="dashboard-link">
 				<div class="icon">
 					<IconBarbell />
@@ -26,7 +27,7 @@
 				<span> {$t('pages.profile.dashboard.exercises.label')} </span>
 			</div>
 		</Card>
-		<Card customCardStyle="min-width: 0;" href="/profile">
+		<Card customCardStyle="min-width: 0;" href={ROUTES.profile}>
 			<div class="dashboard-link">
 				<div class="icon">
 					<IconMan />
@@ -34,7 +35,7 @@
 				<span> {$t('pages.profile.dashboard.measures.label')} </span>
 			</div>
 		</Card>
-		<Card customCardStyle="min-width: 0;" href="/profile">
+		<Card customCardStyle="min-width: 0;" href={ROUTES.profile}>
 			<div class="dashboard-link">
 				<div class="icon">
 					<IconCalendarEvent />

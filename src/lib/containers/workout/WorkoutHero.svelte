@@ -1,4 +1,5 @@
 <script>
+	import { ROUTES } from '$lib/config';
 	import IconPlus from '$lib/icons/IconPlus.svelte';
 	import { t } from 'svelte-i18n';
 </script>
@@ -8,11 +9,11 @@
 		<h2>
 			{$t('pages.workout.quick.label')}
 		</h2>
-		<a class="button" href="/workout/start?frel=/workout">
+		<a class="button" href="{ROUTES.workoutLog}?frel={ROUTES.workout}">
 			<div class="icon">
 				<IconPlus />
 			</div>
-			{$t('pages.workout.quick.start')}
+			{$t('pages.workout.quick.log')}
 		</a>
 	</div>
 </section>

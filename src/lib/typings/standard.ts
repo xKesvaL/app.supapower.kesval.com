@@ -20,6 +20,10 @@ export interface BrandAuthor {
 	url: string;
 }
 
+export type Routes = {
+	[key: string]: string;
+};
+
 export type ThemeColor = 'primary' | 'secondary' | 'info' | 'danger' | 'success';
 
 export type ThemeSize = 'sm' | 'md' | 'lg';

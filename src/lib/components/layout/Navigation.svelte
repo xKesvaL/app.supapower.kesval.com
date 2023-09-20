@@ -5,22 +5,23 @@
 	import { t } from 'svelte-i18n';
 	import IconUser from '$lib/icons/IconUser.svelte';
 	import IconBarbell from '$lib/icons/IconBarbell.svelte';
+	import { ROUTES } from '$lib/config';
 </script>
 
 <nav>
-	<a href="/" class:active={$page.url.pathname === '/'}>
+	<a href={ROUTES.home} class:active={$page.url.pathname === '/'}>
 		<div class="icon">
 			<IconHouse />
 		</div>
 		<span>{$t('pages.home.label')}</span>
 	</a>
-	<a href="/workout" class:active={$page.url.pathname.startsWith('/workout')}>
+	<a href={ROUTES.workout} class:active={$page.url.pathname.startsWith('/workout')}>
 		<div class="icon">
 			<IconBarbell />
 		</div>
 		<span>{$t('pages.workout.label')}</span>
 	</a>
-	<a href="/profile" class:active={$page.url.pathname.startsWith('/profile')}>
+	<a href={ROUTES.profile} class:active={$page.url.pathname.startsWith('/profile')}>
 		<div class="icon">
 			<IconUser />
 		</div>
