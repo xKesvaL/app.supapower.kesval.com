@@ -20,21 +20,25 @@
 	import nprogress from 'nprogress';
 
 	import Auth from '$lib/containers/auth/Auth.svelte';
-	import type { UserData } from '$lib/firebase/user/types';
-	import type { Readable } from 'svelte/store';
+	import type { UserDataStore } from '$lib/firebase/user/types';
 
 	import FlowRegister from '$lib/containers/flows/flowRegister/FlowRegister.svelte';
 	import { onNavigate } from '$app/navigation';
+
+	import type { WorkoutStore } from '$lib/data/workoutsList';
+	import WorkoutInProgress from '$lib/containers/workout/layout/WorkoutInProgress.svelte';
 
 	nprogress.configure({ minimum: 0.2, easing: 'ease', speed: 250 });
 	$: $navigating ? nprogress.start() : nprogress.done();
 
 	const user = createUserStore(auth);
 
-	let userData: Readable<UserData>;
+	let userData: UserDataStore;
+	let currentWorkout: WorkoutStore;
 
 	$: if ($user) {
-		userData = createDocStore(firestore, doc(firestore, 'users', $user.uid)) as Readable<UserData>;
+		userData = createDocStore(firestore, doc(firestore, 'users', $user.uid));
+		currentWorkout = createDocStore(firestore, doc(firestore, 'workout', $user.uid));
 	}
 
 	$: setContext('user', user);
@@ -64,34 +68,44 @@
 	{/each}
 </svelte:head>
 
-<main>
+<div class="root">
 	{#if $user}
 		<!-- System loaded & User logged in -->
 		{#if $userData && $userData.workout.frequency !== undefined}
 			<!-- User logged-in & Basic informations entered & loaded -->
 			<Navigation />
 
-			<div class="wrapper">
+			<main class="wrapper">
 				<slot />
-			</div>
+			</main>
+
+			<WorkoutInProgress />
 		{:else if $userData === undefined}
 			<!-- User logged-in & Basic informations loading -->
-			<Loading />
+			<main>
+				<Loading />
+			</main>
 		{:else}
 			<!-- User logged-in & Basic informations not entered -->
-			<FlowRegister />
+			<main>
+				<FlowRegister />
+			</main>
 		{/if}
 	{:else if $user === undefined}
 		<!-- Auth System loading -->
-		<Loading />
+		<main>
+			<Loading />
+		</main>
 	{:else}
-		<!-- Authentication -->
-		<Auth />
+		<main>
+			<!-- Authentication -->
+			<Auth />
+		</main>
 	{/if}
-</main>
+</div>
 
 <style lang="scss">
-	main {
+	.root {
 		@include mq(lg) {
 			display: flex;
 			align-items: flex-start;
