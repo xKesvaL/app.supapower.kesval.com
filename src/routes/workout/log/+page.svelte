@@ -16,16 +16,14 @@
 	const user: UserStoreContext = getContext('user');
 	const currentWorkout: WorkoutStore = getContext('currentWorkout');
 
-	$: if ($currentWorkout) {
-		console.log($currentWorkout);
-	} else if ($currentWorkout === null) {
+	$: if (!$currentWorkout) {
 		createCurrentWorkout($user.uid);
 	}
 </script>
 
 <WorkoutLogHeader {fRel} />
 <WorkoutLogStats {currentWorkout} />
-{#if $currentWorkout === undefined || null}
+{#if !$currentWorkout}
 	<section class="container load">
 		<span class="loading" />
 	</section>
