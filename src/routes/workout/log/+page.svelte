@@ -1,9 +1,11 @@
 <script lang="ts">
-	import WorkoutLogHeader from '$lib/containers/workout/log/WorkoutLogHeader.svelte';
 	import type { LayoutData } from '../../$types';
-	import WorkoutLogStats from '$lib/containers/workout/log/WorkoutLogStats.svelte';
 	import { getContext } from 'svelte';
-	import type { WorkoutStore } from '$lib/data/workoutsList';
+
+	import WorkoutLogHeader from '$lib/containers/workout/log/WorkoutLogHeader.svelte';
+	import WorkoutLogStats from '$lib/containers/workout/log/WorkoutLogStats.svelte';
+
+	import type { WorkoutStore } from '$lib/firebase/workout/types';
 
 	export let data: LayoutData;
 
@@ -13,13 +15,34 @@
 
 	$: if ($currentWorkout) {
 		console.log($currentWorkout);
-	} else if ($currentWorkout === undefined) {
-		console.log('Loading workout');
-	} else {
+	} else if ($currentWorkout === null) {
 		console.log('No workout, create one');
 	}
 </script>
 
 <WorkoutLogHeader {fRel} />
 <WorkoutLogStats {currentWorkout} />
-<section class="container">ok</section>
+{#if $currentWorkout === undefined || null}
+	<section class="container load">
+		<span class="loading" />
+	</section>
+{:else}
+	<section class="container">ok</section>
+{/if}
+
+<style lang="scss">
+	.container {
+		&.load {
+			display: flex;
+			min-height: 70vh;
+			width: 100%;
+			align-items: center;
+			justify-content: center;
+
+			span {
+				width: 4rem;
+				height: 4rem;
+			}
+		}
+	}
+</style>

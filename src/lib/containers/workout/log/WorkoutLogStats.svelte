@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { WorkoutStore } from '$lib/data/workoutsList';
 	import type { UserDataStoreContext } from '$lib/firebase/user/types';
+	import type { WorkoutStore } from '$lib/firebase/workout/types';
 	import { capitalizeFirstLetter } from '$lib/utils/functions';
 	import { getContext } from 'svelte';
 	import { t } from 'svelte-i18n';

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Card from '$lib/components/base/Card.svelte';
-	import { programsList } from '$lib/data/programsList';
+	import { predefinedPrograms } from '$lib/data/predefinedPrograms';
 	import { t } from 'svelte-i18n';
 
 	const openedPrograms: Record<string, boolean> = {};
@@ -14,7 +14,7 @@
 	<h2>
 		{$t('pages.workout.predefinedList.label')}
 	</h2>
-	{#each Object.entries(programsList) as [programName, programWorkouts]}
+	{#each Object.entries(predefinedPrograms) as [programName, programWorkouts]}
 		<Card
 			customCardStyle="max-width: auto; width: 100%; min-width: none;"
 			customCardBgStyle="padding: 0;"
@@ -28,14 +28,14 @@
 			</button>
 			<section class:opened={openedPrograms[programName]}>
 				<div class="workouts">
-					{#each Object.entries(programWorkouts) as [workoutName, workoutExercises]}
+					{#each Object.entries(programWorkouts) as [workoutName, workout]}
 						<div class="workout">
 							<div class="content">
 								<h4>
 									{$t(`pages.workout.predefinedList.${programName}.${workoutName}.label`)}
 								</h4>
 								<p>
-									{workoutExercises.length}
+									{workout.exercises.length}
 									{$t('std.exercises')}
 								</p>
 							</div>

@@ -25,7 +25,7 @@
 	import FlowRegister from '$lib/containers/flows/flowRegister/FlowRegister.svelte';
 	import { onNavigate } from '$app/navigation';
 
-	import type { WorkoutStore } from '$lib/data/workoutsList';
+	import type { WorkoutStore } from '$lib/firebase/workout/types';
 	import WorkoutInProgress from '$lib/containers/workout/layout/WorkoutInProgress.svelte';
 
 	nprogress.configure({ minimum: 0.2, easing: 'ease', speed: 250 });
@@ -80,6 +80,7 @@
 				<slot />
 			</main>
 
+			<!-- Workout in Progress reminder -->
 			{#if $page.url.pathname !== '/workout/log' && !$page.url.pathname.startsWith('/settings') && $currentWorkout}
 				<WorkoutInProgress />
 			{:else if $currentWorkout === undefined || $currentWorkout}
