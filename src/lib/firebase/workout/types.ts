@@ -16,6 +16,8 @@ export interface WorkoutExercise {
 
 export interface Workout {
 	exercises: WorkoutExercise[];
+	startDate: string;
+	endDate: string | null;
 }
 
 export type WorkoutStore = Readable<Workout | undefined | null>;

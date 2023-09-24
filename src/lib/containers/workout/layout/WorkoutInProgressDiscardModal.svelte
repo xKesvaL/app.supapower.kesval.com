@@ -1,14 +1,17 @@
 <script lang="ts">
 	import Overlay from '$lib/components/layout/Overlay.svelte';
+	import type { UserStoreContext } from '$lib/firebase/auth/types';
 	import { deleteCurrentWorkout } from '$lib/firebase/workout/actions';
 	import IconX from '$lib/icons/IconX.svelte';
 	import { capitalizeFirstLetter } from '$lib/utils/functions';
-	import { createEventDispatcher } from 'svelte';
+	import { createEventDispatcher, getContext } from 'svelte';
 	import { t } from 'svelte-i18n';
 	import { blur } from 'svelte/transition';
 
 	export let shown = false;
 	let loading = false;
+
+	const user: UserStoreContext = getContext('user');
 
 	const dispatcher = createEventDispatcher();
 
@@ -19,7 +22,7 @@
 	const discard = async () => {
 		loading = true;
 
-		await deleteCurrentWorkout();
+		await deleteCurrentWorkout($user.uid);
 
 		loading = false;
 		dispatcher('close');

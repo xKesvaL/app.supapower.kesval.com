@@ -6,17 +6,20 @@
 	import WorkoutLogStats from '$lib/containers/workout/log/WorkoutLogStats.svelte';
 
 	import type { WorkoutStore } from '$lib/firebase/workout/types';
+	import { createCurrentWorkout } from '$lib/firebase/workout/actions';
+	import type { UserStoreContext } from '$lib/firebase/auth/types';
 
 	export let data: LayoutData;
 
 	$: ({ fRel } = data);
 
+	const user: UserStoreContext = getContext('user');
 	const currentWorkout: WorkoutStore = getContext('currentWorkout');
 
 	$: if ($currentWorkout) {
 		console.log($currentWorkout);
 	} else if ($currentWorkout === null) {
-		console.log('No workout, create one');
+		createCurrentWorkout($user.uid);
 	}
 </script>
 
