@@ -46,3 +46,5 @@ export type AuthErrorCodeReauth =
 	| 'auth/invalid-verification-id';
 
 export type UserStore = Readable<User | undefined | null>;
+
+export type UserStoreContext = Readable<User>;
