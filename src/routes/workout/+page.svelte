@@ -1,11 +1,11 @@
 <script lang="ts">
-	import WorkoutHero from '$lib/containers/workout/WorkoutHero.svelte';
-	import WorkoutListCommunity from '$lib/containers/workout/community/WorkoutListCommunity.svelte';
-	import WorkoutListPredefined from '$lib/containers/workout/WorkoutListPredefined.svelte';
-	import WorkoutListSelf from '$lib/containers/workout/self/WorkoutListSelf.svelte';
+	import WorkoutHero from '$lib/containers/workout/hero/WorkoutHero.svelte';
+	import WorkoutHeroCommunity from '$lib/containers/workout/hero/WorkoutHeroCommunity.svelte';
+	import WorkoutHeroPredefined from '$lib/containers/workout/hero/WorkoutHeroPredefined.svelte';
+	import WorkoutHeroSelf from '$lib/containers/workout/hero/WorkoutHeroSelf.svelte';
 </script>
 
 <WorkoutHero />
-<WorkoutListSelf />
-<WorkoutListCommunity />
-<WorkoutListPredefined />
+<WorkoutHeroSelf />
+<WorkoutHeroCommunity />
+<WorkoutHeroPredefined />
