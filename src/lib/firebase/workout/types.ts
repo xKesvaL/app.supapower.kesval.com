@@ -14,8 +14,11 @@ export interface WorkoutExercise {
 	sets: WorkoutExerciseSet[];
 }
 
-export interface Workout {
+export interface PredefinedWorkout {
 	exercises: WorkoutExercise[];
+}
+
+export interface Workout extends PredefinedWorkout {
 	startDate: string;
 	endDate: string | null;
 }

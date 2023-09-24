@@ -1,6 +1,8 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import type { AuthResponse } from './types';
+
 import { auth } from '../config';
+
+import type { AuthResponse } from './types';
 
 const authLoginWithPassword = async (email: string, password: string): Promise<AuthResponse> => {
 	let res: AuthResponse = {
