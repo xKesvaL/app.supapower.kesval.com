@@ -5,10 +5,22 @@
 	import IconX from '$lib/icons/IconX.svelte';
 	import { capitalizeFirstLetter } from '$lib/utils/functions';
 	import { t } from 'svelte-i18n';
+	import WorkoutInProgressDiscardModal from './WorkoutInProgressDiscardModal.svelte';
 
 	export let shown = true;
+
+	let discardModalShown = false;
+
+	const showDiscardModal = () => {
+		discardModalShown = true;
+	};
+
+	const closeDiscardModal = () => {
+		discardModalShown = false;
+	};
 </script>
 
+<WorkoutInProgressDiscardModal shown={discardModalShown} on:close={closeDiscardModal} />
 <footer class:hidden={!shown}>
 	<div class="in-progress">{$t('std.workoutInProgress')}</div>
 	<div class="actions">
@@ -18,12 +30,12 @@
 			</div>
 			{capitalizeFirstLetter($t('std.resume'))}
 		</a>
-		<a href={ROUTES.home} class="button discard">
+		<button class="button discard" on:click={showDiscardModal}>
 			<div class="icon">
 				<IconX />
 			</div>
 			{capitalizeFirstLetter($t('std.discard'))}
-		</a>
+		</button>
 	</div>
 </footer>
 
@@ -69,7 +81,7 @@
 			margin: 0 auto;
 			padding: 0 2rem;
 
-			a {
+			:where(a, button) {
 				height: auto;
 				padding: 0;
 				background: none;
