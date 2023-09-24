@@ -51,7 +51,7 @@
 </section>
 
 <style lang="scss">
-	section {
+	section.container {
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;

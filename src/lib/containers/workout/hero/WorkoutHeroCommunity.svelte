@@ -10,7 +10,7 @@
 			<h2>
 				{$t('pages.workout.community.label')}
 			</h2>
-			<a class="button secondary" href={ROUTES.workoutCommunity}>
+			<a class="button primary" href={ROUTES.workoutCommunity}>
 				{capitalizeFirstLetter($t('std.more'))}</a
 			>
 		</header>
