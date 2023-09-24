@@ -189,6 +189,8 @@
     "edit": "edit",
     "exercises": "exercises",
     "finish": "finish",
+    "hoursMin": "h",
+    "minutesMin": "min",
     "more": "more",
     "next": "next",
     "previous": "previous",
@@ -196,6 +198,7 @@
     "resume": "resume",
     "save": "save",
     "scrollTo": "scroll to",
+    "secondsMin": "s",
     "top": "top",
     "workout": "workout",
     "workoutInProgress": "Workout in progress"

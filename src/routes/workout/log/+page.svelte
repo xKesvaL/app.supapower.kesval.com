@@ -6,19 +6,13 @@
 	import WorkoutLogStats from '$lib/containers/workout/log/WorkoutLogStats.svelte';
 
 	import type { WorkoutStore } from '$lib/firebase/workout/types';
-	import { createCurrentWorkout } from '$lib/firebase/workout/actions';
-	import type { UserStoreContext } from '$lib/firebase/auth/types';
+	import WorkoutLogFooter from '$lib/containers/workout/log/WorkoutLogFooter.svelte';
 
 	export let data: LayoutData;
 
 	$: ({ fRel } = data);
 
-	const user: UserStoreContext = getContext('user');
-	const currentWorkout: WorkoutStore = getContext('currentWorkout');
-
-	$: if (!$currentWorkout) {
-		createCurrentWorkout($user.uid);
-	}
+	const currentWorkout: WorkoutStore = getContext('currentWorkout') || null;
 </script>
 
 <WorkoutLogHeader {fRel} />
@@ -30,6 +24,7 @@
 {:else}
 	<section class="container">ok</section>
 {/if}
+<WorkoutLogFooter />
 
 <style lang="scss">
 	.container {
