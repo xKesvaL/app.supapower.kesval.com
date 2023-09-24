@@ -4,19 +4,33 @@
 	import { capitalizeFirstLetter } from '$lib/utils/functions';
 	import { getContext } from 'svelte';
 	import { t } from 'svelte-i18n';
+	import dayjs from 'dayjs';
+	import duration, { type Duration } from 'dayjs/plugin/duration';
 
 	export let currentWorkout: WorkoutStore;
 
 	const userData: UserDataStoreContext = getContext('userData');
+
+	dayjs.extend(duration);
+
+	let durationDate: Duration = dayjs.duration(-dayjs($currentWorkout?.startDate).diff(new Date()));
+
+	setInterval(() => {
+		durationDate = dayjs.duration(-dayjs($currentWorkout?.startDate).diff(new Date()));
+	}, 1000);
 </script>
 
-{#if currentWorkout}
+{#if $currentWorkout}
 	<section class="container">
 		<div>
 			<span>
 				{capitalizeFirstLetter($t('pages.workout.log.duration'))}
 			</span>
-			4h 20m 69s
+			{durationDate.format(
+				durationDate.asHours() >= 1
+					? `HH[${$t('std.hoursMin')}] mm[${$t('std.minutesMin')}] ss[${$t('std.secondsMin')}]`
+					: `mm[${$t('std.minutesMin')}] ss[${$t('std.secondsMin')}]`
+			)}
 		</div>
 		<div>
 			<span>
