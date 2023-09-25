@@ -21,6 +21,7 @@
 	import type { UserDataWorkout, WorkoutType } from '$lib/firebase/user/types';
 
 	import type { User } from 'firebase/auth';
+	import { capitalizeFirstLetter } from '$lib/utils/functions';
 
 	const user = getContext<Readable<User>>('user');
 
@@ -238,7 +239,7 @@
 				{/key}
 				<footer>
 					<Button color="secondary" disabled={currentStep === 0} on:click={previousStep}>
-						<span>{$t('std.previous')}</span>
+						<span>{capitalizeFirstLetter($t('std.previous'))}</span>
 					</Button>
 					<Button
 						color={steps.length - 1 === currentStep ? 'success' : 'primary'}
@@ -246,7 +247,9 @@
 						on:click={nextStep}
 					>
 						<span>
-							{steps.length - 1 === currentStep ? $t('std.finish') : $t('std.next')}
+							{steps.length - 1 === currentStep
+								? capitalizeFirstLetter($t('std.finish'))
+								: capitalizeFirstLetter($t('std.next'))}
 						</span>
 					</Button>
 				</footer>
@@ -340,6 +343,7 @@
 
 						span {
 							position: relative;
+							font-weight: 400;
 
 							&::before {
 								content: '';

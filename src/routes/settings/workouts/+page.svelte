@@ -176,6 +176,7 @@
 
 			span {
 				position: relative;
+				font-weight: 400;
 
 				&::before {
 					content: '';
