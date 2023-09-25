@@ -36,5 +36,6 @@ export const ROUTES = {
 	workoutSelf: '/workout/self',
 	workoutCommunity: '/workout/community',
 	workoutLog: '/workout/log',
+	workoutLogAddexercise: "/workout/log/add-exercise",
 	forgotpassword: '/forgot-password'
 } as const satisfies Routes;
