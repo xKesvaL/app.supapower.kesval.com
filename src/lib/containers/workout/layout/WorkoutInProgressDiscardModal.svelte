@@ -1,22 +1,22 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import Overlay from '$lib/components/layout/Overlay.svelte';
+	import { ROUTES } from '$lib/config';
 	import type { UserStoreContext } from '$lib/firebase/auth/types';
 	import { deleteCurrentWorkout } from '$lib/firebase/workout/actions';
 	import IconX from '$lib/icons/IconX.svelte';
+	import { currentWorkoutDiscardModalState } from '$lib/stores/currentWorkoutDiscardModal';
 	import { capitalizeFirstLetter } from '$lib/utils/functions';
-	import { createEventDispatcher, getContext } from 'svelte';
+	import { getContext } from 'svelte';
 	import { t } from 'svelte-i18n';
 	import { blur } from 'svelte/transition';
 
-	export let shown = false;
 	let loading = false;
 
 	const user: UserStoreContext = getContext('user');
 
-	const dispatcher = createEventDispatcher();
-
 	const closeDiscardModal = () => {
-		dispatcher('close');
+		currentWorkoutDiscardModalState.set(false);
 	};
 
 	const discard = async () => {
@@ -25,11 +25,12 @@
 		await deleteCurrentWorkout($user.uid);
 
 		loading = false;
-		dispatcher('close');
+		currentWorkoutDiscardModalState.set(false);
+		await goto(ROUTES.home);
 	};
 </script>
 
-{#if shown}
+{#if $currentWorkoutDiscardModalState}
 	<Overlay />
 	<div class="modal" transition:blur={{ amount: 1, duration: 300 }}>
 		<header>

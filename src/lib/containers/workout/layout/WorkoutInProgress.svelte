@@ -6,21 +6,16 @@
 	import { capitalizeFirstLetter } from '$lib/utils/functions';
 	import { t } from 'svelte-i18n';
 	import WorkoutInProgressDiscardModal from './WorkoutInProgressDiscardModal.svelte';
+	import { currentWorkoutDiscardModalState } from '$lib/stores/currentWorkoutDiscardModal';
 
 	export let shown = true;
 
-	let discardModalShown = false;
-
 	const showDiscardModal = () => {
-		discardModalShown = true;
-	};
-
-	const closeDiscardModal = () => {
-		discardModalShown = false;
+		currentWorkoutDiscardModalState.set(true);
 	};
 </script>
 
-<WorkoutInProgressDiscardModal shown={discardModalShown} on:close={closeDiscardModal} />
+<WorkoutInProgressDiscardModal />
 <footer class:hidden={!shown}>
 	<div class="in-progress">{$t('std.workoutInProgress')}</div>
 	<div class="actions">
