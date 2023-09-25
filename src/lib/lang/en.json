@@ -82,6 +82,15 @@
     }
   },
   "pages": {
+    "admin": {
+      "label": "Admin",
+      "users": {
+        "label": "Users List"
+      }
+    },
+    "food": {
+      "label": "Food"
+    },
     "home": {
       "label": "Home"
     },

@@ -1,11 +1,17 @@
-<script>
+<script lang="ts">
 	import IconHouse from '$lib/icons/IconHouse.svelte';
 
 	import { page } from '$app/stores';
 	import { t } from 'svelte-i18n';
 	import IconUser from '$lib/icons/IconUser.svelte';
 	import IconBarbell from '$lib/icons/IconBarbell.svelte';
+	import IconTool from '$lib/icons/IconTool.svelte';
+	import IconMeat from '$lib/icons/IconMeat.svelte';
 	import { ROUTES } from '$lib/config';
+	import { getContext } from 'svelte';
+	import type { UserDataStoreContext } from '$lib/firebase/user/types';
+
+	const userData: UserDataStoreContext = getContext('userData');
 </script>
 
 <nav>
@@ -14,6 +20,12 @@
 			<IconHouse />
 		</div>
 		<span>{$t('pages.home.label')}</span>
+	</a>
+	<a href={ROUTES.food} class:active={$page.url.pathname.startsWith('/food')}>
+		<div class="icon">
+			<IconMeat />
+		</div>
+		<span>{$t('pages.food.label')}</span>
 	</a>
 	<a href={ROUTES.workout} class:active={$page.url.pathname.startsWith('/workout')}>
 		<div class="icon">
@@ -27,6 +39,14 @@
 		</div>
 		<span>{$t('pages.profile.label')}</span>
 	</a>
+	{#if $userData.type === 'admin'}
+		<a href={ROUTES.admin} class:active={$page.url.pathname.startsWith('/admin')}>
+			<div class="icon">
+				<IconTool />
+			</div>
+			<span>{$t('pages.admin.label')}</span>
+		</a>
+	{/if}
 </nav>
 
 <style lang="scss">

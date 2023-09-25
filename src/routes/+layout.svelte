@@ -83,7 +83,7 @@
 
 			<!-- Workout in Progress reminder -->
 			<!-- Shown if not in /workout/log[/...] or /settings[/...] -->
-			{#if !$page.url.pathname.startsWith('/workout/log') && !$page.url.pathname.startsWith('/settings') && $currentWorkout}
+			{#if !$page.url.pathname.startsWith('/workout/log') && !$page.url.pathname.startsWith('/settings') && !$page.url.pathname.startsWith('/admin') && $currentWorkout}
 				<WorkoutInProgress />
 			{:else if $currentWorkout === undefined || $currentWorkout}
 				<!-- 
