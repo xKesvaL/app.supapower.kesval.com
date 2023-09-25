@@ -139,8 +139,7 @@
       "log": {
         "discardModal": {
           "content": "You're about the discard the workout in progress. Are you sure?",
-          "discard": "Discard Workout",
-          "title": "Discard Workout"
+          "discard": "Discard Workout"
         },
         "duration": "duration",
         "sets": "sets",
