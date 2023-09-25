@@ -73,6 +73,7 @@
 
 			h3 {
 				font-size: var(--fs-500);
+				font-weight: 900;
 			}
 
 			&::after {
