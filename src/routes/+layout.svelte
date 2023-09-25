@@ -81,9 +81,14 @@
 			</main>
 
 			<!-- Workout in Progress reminder -->
-			{#if $page.url.pathname !== '/workout/log' && !$page.url.pathname.startsWith('/settings') && $currentWorkout}
+			<!-- Shown if not in /workout/log[/...] or /settings[/...] -->
+			{#if !$page.url.pathname.startsWith('/workout/log') && !$page.url.pathname.startsWith('/settings') && $currentWorkout}
 				<WorkoutInProgress />
 			{:else if $currentWorkout === undefined || $currentWorkout}
+				<!-- 
+					If current workout is loading or exists but is in the pages cited before,
+					we leave it in the DOM to provide a smooth animation and let the discard modal work
+				-->
 				<WorkoutInProgress shown={false} />
 			{/if}
 		{:else if $userData === undefined}

@@ -17,12 +17,12 @@
 
 <WorkoutLogHeader {fRel} />
 <WorkoutLogStats {currentWorkout} />
-{#if !$currentWorkout}
+{#if $currentWorkout === undefined}
 	<section class="container load">
 		<span class="loading" />
 	</section>
 {:else}
-	<section class="container">ok</section>
+	<section class="container">...</section>
 {/if}
 <WorkoutLogFooter />
 
