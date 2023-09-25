@@ -18,7 +18,8 @@ export const predefinedWorkouts: WorkoutList = {
 						reps: 8,
 						rpe: 5,
 						weight: 40,
-						weightType: 'percentage'
+						weightType: 'percentage',
+						done: false
 					}
 				]
 			}
@@ -34,7 +35,8 @@ export const predefinedWorkouts: WorkoutList = {
 						reps: 8,
 						rpe: 5,
 						weight: 40,
-						weightType: 'percentage'
+						weightType: 'percentage',
+						done: false
 					}
 				]
 			}
@@ -50,7 +52,8 @@ export const predefinedWorkouts: WorkoutList = {
 						reps: 8,
 						rpe: 5,
 						weight: 40,
-						weightType: 'percentage'
+						weightType: 'percentage',
+						done: false
 					}
 				]
 			}
@@ -66,7 +69,8 @@ export const predefinedWorkouts: WorkoutList = {
 						reps: 8,
 						rpe: 5,
 						weight: 40,
-						weightType: 'percentage'
+						weightType: 'percentage',
+						done: false
 					}
 				]
 			}
@@ -82,7 +86,8 @@ export const predefinedWorkouts: WorkoutList = {
 						reps: 8,
 						rpe: 5,
 						weight: 40,
-						weightType: 'percentage'
+						weightType: 'percentage',
+						done: false
 					}
 				]
 			}

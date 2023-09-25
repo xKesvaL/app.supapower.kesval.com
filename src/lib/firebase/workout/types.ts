@@ -7,6 +7,7 @@ export interface WorkoutExerciseSet {
 	weightType: 'static' | 'percentage';
 	reps: number;
 	rpe: number;
+	done: boolean;
 }
 
 export interface WorkoutExercise {

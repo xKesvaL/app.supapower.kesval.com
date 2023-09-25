@@ -18,6 +18,18 @@
 	setInterval(() => {
 		durationDate = dayjs.duration(-dayjs($currentWorkout?.startDate).diff(new Date()));
 	}, 1000);
+
+	let volume = 0;
+	let sets = 0;
+
+	$: if ($currentWorkout) {
+		volume = 0;
+		sets = 0;
+		$currentWorkout.exercises.forEach((exercise) => {
+			sets += exercise.sets.filter((set) => set.done).length;
+			volume += exercise.sets.reduce((acc, set) => acc + (set.done ? set.weight * set.reps : 0), 0);
+		});
+	}
 </script>
 
 {#if $currentWorkout}
@@ -28,21 +40,25 @@
 			</span>
 			{durationDate.format(
 				durationDate.asHours() >= 1
-					? `HH[${$t('std.hoursMin')}] mm[${$t('std.minutesMin')}] ss[${$t('std.secondsMin')}]`
-					: `mm[${$t('std.minutesMin')}] ss[${$t('std.secondsMin')}]`
+					? `H[${$t('std.hoursMin')}] m[${$t('std.minutesMin')}] s[${$t('std.secondsMin')}]`
+					: durationDate.asMinutes() >= 1
+					? `m[${$t('std.minutesMin')}] s[${$t('std.secondsMin')}]`
+					: `s[${$t('std.secondsMin')}]`
 			)}
 		</div>
 		<div>
 			<span>
 				{capitalizeFirstLetter($t('pages.workout.log.volume'))}
 			</span>
-			420 {$userData.units.weight}
+			{volume}
+			{$userData.units.weight}
 		</div>
 		<div>
 			<span>
 				{capitalizeFirstLetter($t('pages.workout.log.sets'))}
 			</span>
-			69 {$t('pages.workout.log.sets')}
+			{sets}
+			{$t('pages.workout.log.sets')}
 		</div>
 	</section>
 {/if}
