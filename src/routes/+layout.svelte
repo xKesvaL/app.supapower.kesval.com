@@ -28,6 +28,8 @@
 
 	import type { WorkoutStore } from '$lib/firebase/workout/types';
 	import WorkoutInProgress from '$lib/containers/workout/layout/WorkoutInProgress.svelte';
+	import Overlay from '$lib/components/layout/Overlay.svelte';
+	import { overlayShown } from '$lib/stores/overlay';
 
 	nprogress.configure({ minimum: 0.2, easing: 'ease', speed: 250 });
 	$: $navigating ? nprogress.start() : nprogress.done();
@@ -71,6 +73,9 @@
 </svelte:head>
 
 <div class="root">
+	{#if $overlayShown}
+		<Overlay />
+	{/if}
 	{#if $user}
 		<!-- System loaded & User logged in -->
 		{#if $userData && $userData.workout.frequency !== undefined}

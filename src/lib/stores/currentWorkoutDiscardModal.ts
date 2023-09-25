@@ -1,12 +1,16 @@
 import { writable } from 'svelte/store';
+import { overlayShown } from './overlay';
 
 const createCurrentWorkoutDiscardModalState = () => {
-  const { subscribe, set } = writable<boolean>(false);
+	const { subscribe, set } = writable<boolean>(false);
 
-  return {
-    subscribe,
-    set
-  };
-}
+	return {
+		subscribe,
+		set: (value: boolean) => {
+			overlayShown.set(value);
+			set(value);
+		}
+	};
+};
 
 export const currentWorkoutDiscardModalState = createCurrentWorkoutDiscardModalState();

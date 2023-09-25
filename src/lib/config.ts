@@ -40,5 +40,6 @@ export const ROUTES = {
 	forgotpassword: '/forgot-password',
 	admin: '/admin',
 	adminUsers: '/admin/users',
+	adminUsersUsername: '/admin/users/{username}',
 	food: '/food'
 } as const satisfies Routes;

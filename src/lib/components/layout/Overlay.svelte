@@ -1,10 +1,13 @@
 <script>
+	import { overlayStrength } from '$lib/stores/overlay';
 	import { blur } from 'svelte/transition';
-
-	export let strength = 0.8;
 </script>
 
-<div class="overlay" transition:blur={{ amount: 5, duration: 300 }} style="--ov-str: {strength}" />
+<div
+	class="overlay"
+	transition:blur={{ amount: 5, duration: 300 }}
+	style="--ov-str: {$overlayStrength}"
+/>
 
 <style lang="scss">
 	.overlay {

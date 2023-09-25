@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import Overlay from '$lib/components/layout/Overlay.svelte';
 	import { ROUTES } from '$lib/config';
 	import type { UserStoreContext } from '$lib/firebase/auth/types';
 	import { deleteCurrentWorkout } from '$lib/firebase/workout/actions';
@@ -31,7 +30,6 @@
 </script>
 
 {#if $currentWorkoutDiscardModalState}
-	<Overlay />
 	<div class="modal" transition:blur={{ amount: 1, duration: 300 }}>
 		<header>
 			<h2>{$t('pages.workout.log.discardModal.discard')}</h2>
