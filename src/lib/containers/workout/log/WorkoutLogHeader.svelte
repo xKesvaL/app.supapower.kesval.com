@@ -30,9 +30,10 @@
 		left: 0;
 		right: 0;
 		padding: 0;
+		z-index: 20;
 
 		header {
-			background: rgba(var(--base-200-rgb), 1);
+			background: var(--base-100);
 
 			.start {
 				.icon {

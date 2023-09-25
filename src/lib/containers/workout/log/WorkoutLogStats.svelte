@@ -6,6 +6,7 @@
 	import { t } from 'svelte-i18n';
 	import dayjs from 'dayjs';
 	import duration, { type Duration } from 'dayjs/plugin/duration';
+	import { fly } from 'svelte/transition';
 
 	export let currentWorkout: WorkoutStore;
 
@@ -33,7 +34,7 @@
 </script>
 
 {#if $currentWorkout}
-	<section class="container">
+	<section class="container" transition:fly={{ opacity: 0, y: -80, duration: 300 }}>
 		<div>
 			<span>
 				{capitalizeFirstLetter($t('pages.workout.log.duration'))}
@@ -69,6 +70,8 @@
 		border-bottom: 1px solid rgba(var(--base-500-rgb), 0.5);
 		display: grid;
 		grid-template-columns: 3fr 2fr 2fr;
+		position: relative;
+		z-index: 10;
 
 		div {
 			display: flex;

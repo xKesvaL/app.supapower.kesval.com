@@ -81,6 +81,7 @@
 				right: 1rem;
 				font-size: var(--fs-700);
 				transition: 0.3s ease;
+				transform-origin: 60% 60%;
 			}
 
 			&.opened {

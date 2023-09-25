@@ -30,11 +30,17 @@
 
 			a {
 				justify-content: flex-start;
-				background: var(--base-200);
+				background: rgba(var(--base-200-rgb), 0.25);
+				border: 1px solid rgba(var(--base-200-rgb), 0.5);
 				gap: 0.75rem;
 				align-items: center;
 				height: auto;
 				padding: 0.75rem 1rem;
+
+				&:hover {
+					background: rgba(var(--base-200-rgb), 0.5);
+					border: 1px solid rgba(var(--base-200-rgb), 0.75);
+				}
 
 				.icon {
 					width: 24px;

@@ -42,9 +42,10 @@
 		left: 0;
 		bottom: 3rem;
 		right: 0;
-		z-index: 5;
+		z-index: 15;
 
-		background: var(--base-200);
+		box-shadow: 0 -1px 4px var(--base-200);
+		background: var(--base-100);
 		border-radius: 1rem 1rem 0 0;
 		padding: 0.5rem 1rem 1rem 1rem;
 

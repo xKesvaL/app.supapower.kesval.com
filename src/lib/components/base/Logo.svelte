@@ -16,14 +16,7 @@
 	It's roughly 5px per 20px of the svg width that you should change the tspan x value by
 -->
 <div class="logo {scaleOrigin}" style="transform: scale({size})" class:animated class:repeat>
-	<svg
-		class="flex h-full max-h-7 w-auto justify-center text-center"
-		width="480"
-		height="70"
-		viewBox="0 0 200 70"
-		fill="none"
-		xmlns="http://www.w3.org/2000/svg"
-	>
+	<svg width="480" height="70" viewBox="0 0 200 70" fill="none" xmlns="http://www.w3.org/2000/svg">
 		<text class="text"
 			><tspan x="-135" y="55"
 				><tspan class="tspan">
@@ -56,7 +49,7 @@
 				transition: 0.3s ease-in-out;
 
 				.tspan {
-					font-family: var(--ft-title);
+					font-family: var(--ft-special);
 					font-size: 4rem;
 					font-weight: 900;
 				}
