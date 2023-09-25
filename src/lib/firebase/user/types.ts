@@ -22,7 +22,9 @@ export type WorkoutType = (typeof workoutTypes)[number];
 
 export type WorkoutFrequency = 2 | 3 | 4 | 5 | 6;
 
-export type UserType = 'regular' | 'beta' | 'trainer' | 'creator' | 'admin';
+export type UserType = (typeof userTypes)[number];
+
+export const userTypes = ['regular', 'beta', 'trainer', 'creator', 'admin'] as const;
 
 export interface UserDataUnits {
 	weight: 'kg' | 'lb';
