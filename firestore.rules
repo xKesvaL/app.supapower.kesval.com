@@ -26,8 +26,9 @@ service cloud.firestore {
       let isOwner = request.auth.uid == request.resource.data.uid;
       let isValidLength = username.size() >= 3 && username.size() <= 24;
       let isValidUserDoc = getAfter(/databases/$(database)/documents/users/$(request.auth.uid)).data.username == username;
+      let matchesRegex = username.matches('^[a-z][a-z0-9(_)]{4,20}$');
       
-      return isOwner && isValidLength && isValidUserDoc;     
+      return isOwner && isValidLength && isValidUserDoc && matchesRegex;
     }
 
     match /users/{userId} {
