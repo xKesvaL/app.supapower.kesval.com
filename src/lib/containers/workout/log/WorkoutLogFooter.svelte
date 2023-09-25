@@ -25,9 +25,9 @@
 </script>
 
 <footer class="container">
-	<button on:click={addExercise} class="primary">Add exercise</button>
+	<button on:click={addExercise} class="primary">{$t('pages.workout.log.addExercise')}</button>
 	<div class="flex">
-		<button class="settings"> Settings </button>
+		<button class="settings"> {$t('pages.settings.label')} </button>
 		<button class="discard" on:click={showDiscardModal}>
 			{$t('pages.workout.log.discardModal.discard')}
 		</button>
