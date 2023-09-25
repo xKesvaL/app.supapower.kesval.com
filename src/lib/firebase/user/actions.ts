@@ -9,6 +9,7 @@ const defaultUserData: Omit<UserData, 'uid' | 'username' | 'lang' | 'workout'> =
 		distance: 'km',
 		weight: 'kg'
 	},
+	type: 'regular',
 	profile: { biography: '', public: false }
 };
 

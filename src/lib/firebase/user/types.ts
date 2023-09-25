@@ -4,6 +4,7 @@ import type { Readable } from 'svelte/store';
 export interface UserData {
 	uid: string;
 	username: string;
+	type: UserType;
 	lang: Locale;
 	workout: UserDataWorkout;
 	units: UserDataUnits;
@@ -20,6 +21,8 @@ export const workoutTypes = ['powerlifting', 'powerbuilding', 'bodybuilding'] as
 export type WorkoutType = (typeof workoutTypes)[number];
 
 export type WorkoutFrequency = 2 | 3 | 4 | 5 | 6;
+
+export type UserType = 'regular' | 'beta' | 'trainer' | 'creator' | 'admin';
 
 export interface UserDataUnits {
 	weight: 'kg' | 'lb';
