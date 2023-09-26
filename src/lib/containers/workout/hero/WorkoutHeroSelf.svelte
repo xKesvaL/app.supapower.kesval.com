@@ -2,6 +2,7 @@
 	import { ROUTES } from '$lib/config';
 	import { capitalizeFirstLetter } from '$lib/utils/functions';
 	import { t } from 'svelte-i18n';
+	import WorkoutSelfCard from '../self/WorkoutSelfCard.svelte';
 </script>
 
 <section class="container">
@@ -14,12 +15,16 @@
 				{capitalizeFirstLetter($t('std.all'))}
 			</a>
 		</header>
-		...
+		<section class="list">
+			{#each Array(5) as _}
+				<WorkoutSelfCard />
+			{/each}
+		</section>
 	</div>
 </section>
 
 <style lang="scss">
-	section {
+	section.container {
 		header {
 			display: flex;
 			justify-content: space-between;
@@ -30,6 +35,18 @@
 
 			a {
 				min-width: 4.25rem;
+			}
+		}
+
+		.list {
+			display: flex;
+			gap: 0.5rem;
+			margin-top: 1rem;
+			overflow-x: auto;
+			padding-block: 0.5rem;
+
+			&::-webkit-scrollbar {
+				height: 0.125rem;
 			}
 		}
 	}

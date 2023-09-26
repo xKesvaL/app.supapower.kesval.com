@@ -8,16 +8,6 @@
 	font-weight: 700;
 }
 
-// @font-face {
-// 	font-family: 'Inter';
-// 	src:
-// 		local('Inter'),
-// 		url('/fonts/Inter.woff') format('woff'),
-// 		url('/fonts/Inter.woff2') format('woff2');
-// 	font-display: swap;
-// 	font-style: normal;
-// }
-
 :root {
 	--ft-special: 'Benzin', sans-serif;
 	--ft-title: 'Inter', sans-serif;
@@ -163,4 +153,9 @@ header.page-header {
 h1,
 h2 {
 	font-weight: 900;
+}
+
+button,
+.button {
+	font-weight: 700;
 }

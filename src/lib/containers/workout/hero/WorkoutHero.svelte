@@ -30,7 +30,7 @@
 
 			a {
 				justify-content: flex-start;
-				background: rgba(var(--base-200-rgb), 0.25);
+				background: rgba(var(--base-200-rgb), 0.4);
 				border: 1px solid rgba(var(--base-200-rgb), 0.5);
 				gap: 0.75rem;
 				align-items: center;
@@ -38,7 +38,7 @@
 				padding: 0.75rem 1rem;
 
 				&:hover {
-					background: rgba(var(--base-200-rgb), 0.5);
+					background: rgba(var(--base-200-rgb), 0.65);
 					border: 1px solid rgba(var(--base-200-rgb), 0.75);
 				}
 
