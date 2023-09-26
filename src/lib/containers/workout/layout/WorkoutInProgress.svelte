@@ -15,6 +15,9 @@
 	};
 </script>
 
+<div class="padding">
+	<!-- This is just to avoid content being under the workout in progress indicator -->
+</div>
 <WorkoutInProgressDiscardModal />
 <footer class:hidden={!shown}>
 	<div class="in-progress">{$t('std.workoutInProgress')}</div>
@@ -35,6 +38,11 @@
 </footer>
 
 <style lang="scss">
+	.padding {
+		height: 5rem;
+		width: 100%;
+	}
+
 	footer {
 		view-transition-name: workout-in-progress;
 
