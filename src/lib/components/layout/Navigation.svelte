@@ -59,7 +59,7 @@
 		height: 3rem;
 		background: var(--base-100);
 		box-shadow: 0 -1px 4px var(--base-200);
-		z-index: 10;
+		z-index: 100;
 
 		display: flex;
 		align-items: center;

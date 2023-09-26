@@ -35,6 +35,7 @@
 
 		.start {
 			justify-content: start;
+			gap: 0.5rem;
 		}
 
 		.center {

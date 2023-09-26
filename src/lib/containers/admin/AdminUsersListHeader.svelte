@@ -12,8 +12,8 @@
 		</a>
 	</div>
 	<div class="center">
-    {$t('pages.admin.users.label')}
-  </div>
+		{$t('pages.admin.users.label')}
+	</div>
 	<div class="end"></div>
 </header>
 
@@ -21,9 +21,8 @@
 	header {
 		.start {
 			a {
-				width: 36px;
-				height: 36px;
-				padding: 4px;
+				width: 32px;
+				height: 32px;
 			}
 		}
 	}
