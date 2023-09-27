@@ -15,32 +15,32 @@
 </script>
 
 <nav>
-	<a href={ROUTES.home} class:active={$page.url.pathname === '/'}>
+	<a href={ROUTES.home} class:active={$page.url.pathname === ROUTES.home}>
 		<div class="icon">
 			<IconHouse />
 		</div>
 		<span>{$t('pages.home.label')}</span>
 	</a>
-	<a href={ROUTES.food} class:active={$page.url.pathname.startsWith('/food')}>
+	<a href={ROUTES.food} class:active={$page.url.pathname.startsWith(ROUTES.food)}>
 		<div class="icon">
 			<IconMeat />
 		</div>
 		<span>{$t('pages.food.label')}</span>
 	</a>
-	<a href={ROUTES.workout} class:active={$page.url.pathname.startsWith('/workout')}>
+	<a href={ROUTES.workout} class:active={$page.url.pathname.startsWith(ROUTES.workout)}>
 		<div class="icon">
 			<IconBarbell />
 		</div>
 		<span>{$t('pages.workout.label')}</span>
 	</a>
-	<a href={ROUTES.profile} class:active={$page.url.pathname.startsWith('/profile')}>
+	<a href={ROUTES.profile} class:active={$page.url.pathname.startsWith(ROUTES.profile)}>
 		<div class="icon">
 			<IconUser />
 		</div>
 		<span>{$t('pages.profile.label')}</span>
 	</a>
 	{#if $userData.type === 'admin'}
-		<a href={ROUTES.admin} class:active={$page.url.pathname.startsWith('/admin')}>
+		<a href={ROUTES.admin} class:active={$page.url.pathname.startsWith(ROUTES.admin)}>
 			<div class="icon">
 				<IconTool />
 			</div>
