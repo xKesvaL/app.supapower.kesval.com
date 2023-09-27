@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { page } from '$app/stores';
 	import { ROUTES } from '$lib/config';
 	import type { UserStoreContext } from '$lib/firebase/auth/types';
 	import { deleteCurrentWorkout } from '$lib/firebase/workout/actions';
@@ -25,7 +26,9 @@
 
 		loading = false;
 		currentWorkoutDiscardModalState.set(false);
-		await goto(ROUTES.home);
+		if ($page.url.pathname.startsWith(ROUTES.workout)) {
+			await goto(ROUTES.home);
+		}
 	};
 </script>
 
