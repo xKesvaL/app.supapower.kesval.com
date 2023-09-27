@@ -40,7 +40,7 @@ service cloud.firestore {
         (
           isSignedIn() && 
           isOwner(userId) &&
-          !request.resource.data.diff(resource.data).affectedKeys().hasAny(['type', 'uid'])
+          !request.resource.data.diff(resource.data).affectedKeys().hasAny(['type', 'uid', 'username'])
         )
         ||
         (
@@ -53,6 +53,11 @@ service cloud.firestore {
       allow create: if isValidUsername(username);
     }
 
+    match /workout/{userId} {
+      allow read;
+      allow write: 
+        if isOwner(userId);
+    }
 
     match /{document=**} {
       // TEST MODE
