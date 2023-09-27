@@ -28,7 +28,10 @@
 		sets = 0;
 		$currentWorkout.exercises.forEach((exercise) => {
 			sets += exercise.sets.filter((set) => set.done).length;
-			volume += exercise.sets.reduce((acc, set) => acc + (set.done ? set.weight * set.reps : 0), 0);
+			volume += exercise.sets.reduce(
+				(acc, set) => acc + (set.done ? (set.weight || 0) * (set.reps || 0) : 0),
+				0
+			);
 		});
 	}
 </script>

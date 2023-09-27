@@ -7,6 +7,7 @@
 
 	import type { WorkoutStore } from '$lib/firebase/workout/types';
 	import WorkoutLogFooter from '$lib/containers/workout/log/WorkoutLogFooter.svelte';
+	import WorkoutLogExercises from '$lib/containers/workout/log/WorkoutLogExercises.svelte';
 
 	export let data: LayoutData;
 
@@ -21,8 +22,8 @@
 	<section class="container load">
 		<span class="loading" />
 	</section>
-{:else}
-	<section class="container">...</section>
+{:else if $currentWorkout !== null}
+	<WorkoutLogExercises />
 {/if}
 <WorkoutLogFooter />
 

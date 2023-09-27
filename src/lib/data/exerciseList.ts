@@ -26,9 +26,9 @@ export const exerciseList: Exercise[] = [
 	},
 	{
 		name: 'deadlift',
-		primaryMuscle: { name: 'lowerback', activation: 95 },
+		primaryMuscle: { name: 'hamstrings', activation: 80 },
 		otherMuscles: [
-			{ name: 'hamstrings', activation: 80 },
+			{ name: 'lowerback', activation: 90 },
 			{ name: 'glutes', activation: 64 },
 			{ name: 'quadriceps', activation: 43 },
 			{ name: 'forearms', activation: 34 },

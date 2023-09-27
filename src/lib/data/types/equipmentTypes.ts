@@ -11,4 +11,4 @@ export const equipments = [
 	'other'
 ] as const;
 
-export type Equipment = (typeof equipments)[keyof typeof equipments];
+export type Equipment = (typeof equipments)[number];

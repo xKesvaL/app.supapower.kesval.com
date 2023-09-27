@@ -21,6 +21,6 @@ export const exerciseTypes = [
 
 export const exerciseNames = ['squat', 'bench', 'deadlift'] as const;
 
-export type ExerciseType = (typeof exerciseTypes)[keyof typeof exerciseTypes];
+export type ExerciseType = (typeof exerciseTypes)[number];
 
-export type ExerciseName = (typeof exerciseNames)[keyof typeof exerciseNames];
+export type ExerciseName = (typeof exerciseNames)[number];

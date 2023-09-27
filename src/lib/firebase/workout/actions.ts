@@ -1,6 +1,6 @@
-import { deleteDoc, doc, setDoc } from 'firebase/firestore';
+import { deleteDoc, doc, setDoc, updateDoc } from 'firebase/firestore';
 import { firestore } from '../config';
-import type { Workout } from './types';
+import type { Workout, WorkoutExercise } from './types';
 
 export const createCurrentWorkout = async (
 	uid: string,
@@ -11,4 +11,8 @@ export const createCurrentWorkout = async (
 
 export const deleteCurrentWorkout = async (uid: string) => {
 	await deleteDoc(doc(firestore, 'workout', uid));
+};
+
+export const updateCurrentWorkoutExercises = async (uid: string, exercises: WorkoutExercise[]) => {
+	await updateDoc(doc(firestore, 'workout', uid), { exercises });
 };

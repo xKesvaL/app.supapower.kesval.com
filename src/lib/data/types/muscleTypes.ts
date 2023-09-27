@@ -23,7 +23,7 @@ export const muscles = [
 	'upperback'
 ] as const;
 
-export type Muscle = (typeof muscles)[keyof typeof muscles];
+export type Muscle = (typeof muscles)[number];
 
 export interface MuscleExercise {
 	name: Muscle;

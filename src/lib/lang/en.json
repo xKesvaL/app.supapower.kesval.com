@@ -141,6 +141,10 @@
 			}
 		},
 		"workout": {
+			"addExercise": {
+				"add": "Add {count} exercise",
+				"adds": "Add {count} exercises"
+			},
 			"community": {
 				"label": "Community"
 			},
@@ -237,5 +241,10 @@
 				"name": "Powerlifting"
 			}
 		}
+	},
+	"muscles": {
+		"quadriceps": "Quadriceps",
+		"hamstrings": "Hamstrings",
+		"chest": "Chest"
 	}
 }

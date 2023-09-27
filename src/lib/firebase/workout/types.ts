@@ -3,12 +3,16 @@ import type { Readable } from 'svelte/store';
 
 export interface WorkoutExerciseSet {
 	type: 'warmup' | 'working';
-	weight: number;
+	weight: number | null;
 	weightType: 'static' | 'percentage';
-	reps: number;
-	rpe: number;
+	reps: number | null;
+	rpe: number | null;
 	done: boolean;
 }
+
+export type WorkoutExerciseSetType = WorkoutExerciseSet['type'];
+
+export type WorkoutExerciseWeightType = WorkoutExerciseSet['weightType'];
 
 export interface WorkoutExercise {
 	exerciseName: ExerciseName;

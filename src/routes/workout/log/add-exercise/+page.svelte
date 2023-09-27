@@ -9,4 +9,4 @@
 </script>
 
 <AddExerciseHeader {fRel} />
-<AddExercise />
+<AddExercise {fRel} />
