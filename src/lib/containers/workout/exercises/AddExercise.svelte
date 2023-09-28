@@ -87,7 +87,7 @@
 	{#each exerciseList as exercise}
 		<button
 			on:click={() => selectExercise(exercise.name)}
-			class="exercise"
+			class="exercise no-anim"
 			use:autoAnimate={{ duration: 200 }}
 		>
 			{#if selectedExercises.includes(exercise.name)}

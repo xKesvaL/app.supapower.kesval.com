@@ -41,6 +41,10 @@
 	.padding {
 		height: 5rem;
 		width: 100%;
+
+		@include mq(md) {
+			display: none;
+		}
 	}
 
 	footer {
