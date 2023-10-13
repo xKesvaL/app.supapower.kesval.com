@@ -6,7 +6,7 @@
 	import { getContext } from 'svelte';
 	import type { Readable } from 'svelte/store';
 
-	import Button from '$lib/components/base/Button.svelte';
+	import { Button } from '$lib/components/ui/button';
 	import Card from '$lib/components/base/Card.svelte';
 
 	import FlowRegisterSteps from './FlowRegisterSteps.svelte';
@@ -18,10 +18,13 @@
 	import Image from '$lib/components/base/Image.svelte';
 
 	import { isUsernameUnique, createUserData } from '$lib/firebase/user/actions';
-	import type { UserDataWorkout, WorkoutType } from '$lib/firebase/user/types';
+	import type { UserDataWorkout, WorkoutFrequency, WorkoutType } from '$lib/firebase/user/types';
 
 	import type { User } from 'firebase/auth';
 	import { capitalizeFirstLetter } from '$lib/utils/functions';
+	import { Label } from '$lib/components/ui/label';
+	import { Input } from '$lib/components/ui/input';
+	import { Slider } from '$lib/components/ui/slider';
 
 	const user = getContext<Readable<User>>('user');
 
@@ -121,6 +124,10 @@
 	//
 	// ─── WORKOUT FREQUENCY ───────────────────────────────────────
 	//
+
+	const onFrequencyChange = (val: unknown) => {
+		workout.frequency = (val as WorkoutFrequency[])[0] as WorkoutFrequency;
+	};
 </script>
 
 <section class="container">
@@ -128,7 +135,7 @@
 		<FlowRegisterSteps {currentStep} {steps} />
 	</div>
 	<div class="custom-card">
-		<Card customCardStyle="width: 100%;">
+		<Card customCardStyle="width: 100%;" colorOpacity={0.1}>
 			<div class="wrapper" use:autoAnimate={{ duration: 150 }}>
 				{#key currentStep}
 					<header>
@@ -136,10 +143,10 @@
 					</header>
 					<form on:submit|preventDefault={nextStep}>
 						{#if currentStep === 0}
-							<label>
+							<Label class="flex flex-col gap-2">
 								<span>{$t('flows.register.steps.0.inputs.username.label')}</span>
-								<div class="input-w-icon">
-									<input
+								<div class="flex relative items-center">
+									<Input
 										type="text"
 										placeholder={$t('flows.register.steps.0.inputs.username.placeholder')}
 										name="username"
@@ -148,19 +155,19 @@
 										bind:value={username.value}
 										on:input={checkUsername}
 									/>
-									{#if username.loading}
-										<div class="icon">
+									<div class="w-6 h-6 absolute right-2">
+										{#if username.loading}
 											<span class="loading" />
-										</div>
-									{:else if username.unique}
-										<div class="icon check">
-											<IconCheck />
-										</div>
-									{:else}
-										<div class="icon x">
-											<IconX />
-										</div>
-									{/if}
+										{:else if username.unique}
+											<span class="text-success">
+												<IconCheck />
+											</span>
+										{:else}
+											<span class="text-destructive">
+												<IconX />
+											</span>
+										{/if}
+									</div>
 								</div>
 								{#if !username.unique && !username.loading && username.error === ''}
 									<span class="error">
@@ -169,7 +176,7 @@
 								{:else if username.error}
 									<span class="error">{$t(username.error)}</span>
 								{/if}
-							</label>
+							</Label>
 						{:else if currentStep === 1}
 							<div class="workoutTypes">
 								<button
@@ -219,14 +226,15 @@
 								</button>
 							</div>
 						{:else if currentStep === 2}
-							<input
-								type="range"
-								name="frequency"
-								min="2"
-								max="6"
-								class="primary"
-								bind:value={workout.frequency}
-							/>
+							<div class="mx-10 mb-4">
+								<Slider
+									onValueChange={onFrequencyChange}
+									min={2}
+									max={6}
+									value={[workout.frequency]}
+									class="hover:cursor-pointer cursor-pointer"
+								/>
+							</div>
 							<div class="frequencies">
 								<span>2 {$t('std.days')}</span>
 								<span>3 {$t('std.days')}</span>
@@ -237,15 +245,11 @@
 						{/if}
 					</form>
 				{/key}
-				<footer>
-					<Button color="secondary" disabled={currentStep === 0} on:click={previousStep}>
+				<footer class="w-full justify-end gap-2 flex">
+					<Button variant="outline" disabled={currentStep === 0} on:click={previousStep}>
 						<span>{capitalizeFirstLetter($t('std.previous'))}</span>
 					</Button>
-					<Button
-						color={steps.length - 1 === currentStep ? 'success' : 'primary'}
-						disabled={!canGoNext}
-						on:click={nextStep}
-					>
+					<Button disabled={!canGoNext} on:click={nextStep}>
 						<span>
 							{steps.length - 1 === currentStep
 								? capitalizeFirstLetter($t('std.finish'))
@@ -279,6 +283,7 @@
 				display: flex;
 				flex-direction: column;
 				gap: 0.75rem;
+				padding-bottom: 0;
 
 				header {
 					h1 {
@@ -308,13 +313,10 @@
 							border-radius: 0.5rem;
 							flex: 1;
 							gap: 1rem;
-							background: radial-gradient(
-								rgba(var(--base-200-rgb), 0.3),
-								rgba(var(--base-200-rgb), 0.7)
-							);
+							background: radial-gradient(hsl(var(--base-200) / 0.3), hsl(var(--base-200) / 0.7));
 
 							&.active {
-								border-color: var(--primary-500);
+								border-color: hsl(var(--primary-500));
 							}
 
 							span {
@@ -338,7 +340,7 @@
 						padding: 0 1.1rem;
 						font-size: var(--fs-400);
 						font-weight: 700;
-						color: var(--base-800);
+						color: hsl(var(--base-800));
 						text-align: center;
 
 						span {
@@ -350,7 +352,7 @@
 								display: block;
 								width: 1px;
 								height: 1rem;
-								background: var(--base-600);
+								background: hsl(var(--base-600));
 								margin: 0 auto 0.5rem;
 							}
 						}
@@ -359,34 +361,6 @@
 					.error {
 						text-align: right;
 					}
-
-					.input-w-icon {
-						position: relative;
-						display: flex;
-						align-items: center;
-
-						.icon {
-							position: absolute;
-							width: 24px;
-							height: 24px;
-							right: 0.5rem;
-
-							&.check {
-								color: var(--success-600);
-							}
-
-							&.x {
-								color: var(--danger-600);
-							}
-						}
-					}
-				}
-
-				footer {
-					width: 100%;
-					display: flex;
-					justify-content: flex-end;
-					gap: 1rem;
 				}
 			}
 		}

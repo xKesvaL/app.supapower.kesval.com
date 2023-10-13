@@ -50,4 +50,14 @@ const updateUserDataType = async (uid: string, type: UserType) => {
 	await updateDoc(doc(firestore, 'users', uid), { type });
 };
 
-export { isUsernameUnique, createUserData, updateUserDataWorkout, updateUserDataType };
+const updateUserData = async (uid: string, data: Partial<UserData>) => {
+	await updateDoc(doc(firestore, 'users', uid), data);
+};
+
+export {
+	isUsernameUnique,
+	createUserData,
+	updateUserDataWorkout,
+	updateUserDataType,
+	updateUserData
+};

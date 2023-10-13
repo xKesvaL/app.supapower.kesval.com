@@ -21,7 +21,11 @@
 
 <header class="page-header">
 	<div class="start">
-		<Button size="icon" href={fRel} class="icon p-1 bg-transparent hover:bg-transparent">
+		<Button
+			size="icon"
+			href={fRel}
+			class="icon p-1 bg-transparent hover:bg-transparent text-foreground"
+		>
 			<IconArrowLeft />
 		</Button>
 	</div>

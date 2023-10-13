@@ -13,7 +13,7 @@
 	export let color: ThemeColor = 'primary';
 </script>
 
-<div class="steps {direction}" style="--color: rgba(var(--{color}-500-rgb), 1)">
+<div class="steps {direction}" style="--color: hsl(var(--{color}-500))">
 	{#each steps as step, i}
 		<div class="step {i <= currentStep ? 'active' : ''}">
 			<div class="number">
@@ -31,8 +31,8 @@
 
 <style lang="scss">
 	.steps {
-		--default-color: rgba(var(--base-500-rgb), 1);
-		--color: rgba(var(--primary-500-rgb), 1);
+		--default-color: hsl(var(--base-500));
+		--color: hsl(var(--primary-500));
 		display: flex;
 		align-items: center;
 
@@ -44,6 +44,7 @@
 			flex-direction: column;
 			align-items: center;
 			justify-content: center;
+			transition: 0.3s ease;
 
 			.number {
 				border-radius: 50%;
@@ -56,6 +57,7 @@
 				align-items: center;
 				justify-content: center;
 				transition: 0.3s ease;
+				color: hsl(var(--foreground));
 			}
 
 			.label {
@@ -66,6 +68,7 @@
 				.number {
 					border-color: var(--color);
 					background-color: var(--color);
+					color: hsl(var(--primary-foreground));
 				}
 			}
 		}

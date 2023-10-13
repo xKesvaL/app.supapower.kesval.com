@@ -39,7 +39,7 @@
 			<h2>{$t('pages.workout.log.discardModal.discard')}</h2>
 			<Button
 				size="icon"
-				class="p-2 bg-transparent hover:bg-transparent"
+				class="p-2 bg-transparent hover:bg-transparent text-foreground"
 				on:click={closeDiscardModal}
 			>
 				<IconX />

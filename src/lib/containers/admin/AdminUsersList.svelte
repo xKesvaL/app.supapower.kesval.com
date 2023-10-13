@@ -70,7 +70,7 @@
 								user.username
 							)}?frel={ROUTES.adminUsers}"
 							size="icon"
-							class="p-2 bg-transparent hover:bg-transparent"
+							class="p-2 bg-transparent hover:bg-transparent text-foreground"
 						>
 							<IconInfoCircle />
 						</Button>

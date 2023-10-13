@@ -11,18 +11,14 @@
 </script>
 
 <header class="page-header">
-	<div class="start">
-		<Button variant="link" class="text-base text-foreground p-2" href={ROUTES.profile}>
-			{$t('std.edit')}
-		</Button>
-	</div>
+	<div class="start"></div>
 	<div class="center">
 		{$userData.username}
 	</div>
 	<div class="end">
 		<Button
 			size="icon"
-			class="p-1 bg-transparent hover:bg-transparent"
+			class="p-1 bg-transparent hover:bg-transparent text-foreground"
 			href="{ROUTES.settings}?frel={ROUTES.profile}"
 		>
 			<IconSettings />
@@ -55,11 +51,6 @@
 			&.end {
 				justify-content: flex-end;
 			}
-		}
-
-		.icon {
-			height: 28px;
-			width: 28px;
 		}
 	}
 </style>
