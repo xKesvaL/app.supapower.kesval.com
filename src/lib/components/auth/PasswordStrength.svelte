@@ -60,7 +60,7 @@
 			}
 
 			&.fair {
-				color: #f3e7ca;
+				color: hsl(var(--base-800));
 			}
 
 			&.strong {
@@ -75,7 +75,7 @@
 			.strength {
 				min-width: 2.5rem;
 				height: 0.25rem;
-				background: rgba(var(--base-300-rgb), 0.75);
+				background: hsl(var(--base-300) / 0.75);
 				flex: 1;
 				border-radius: 0.25rem;
 

@@ -98,7 +98,7 @@
 				/>
 				<Button
 					type="button"
-					class="icon absolute right-0 p-2 bg-transparent hover:bg-transparent"
+					class="icon absolute right-0 p-2 bg-transparent hover:bg-transparent text-foreground"
 					variant="default"
 					size="icon"
 					on:click={() => toggleShowPassword()}
@@ -117,7 +117,7 @@
 			{/if}
 		</Label>
 	</section>
-	<footer>
+	<footer class="flex flex-col gap-2 w-full">
 		<Button type="submit">
 			{#if loading}
 				<span class="loading" />
@@ -140,14 +140,3 @@
 		{/if}
 	</footer>
 </form>
-
-<style lang="scss">
-	form {
-		footer {
-			display: flex;
-			flex-direction: column;
-			gap: 0.5rem;
-			width: 100%;
-		}
-	}
-</style>

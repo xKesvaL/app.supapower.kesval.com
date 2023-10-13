@@ -12,6 +12,7 @@
 	import { overlayShown, overlayStrength } from '$lib/stores/overlay';
 	import { t } from 'svelte-i18n';
 	import { capitalizeFirstLetter } from '$lib/utils/functions';
+	import { Button } from '$lib/components/ui/button';
 
 	const usersStore: Readable<UserData[] | null | undefined> = createCollectionStore(
 		firestore,
@@ -49,26 +50,30 @@
 							{user.username}
 						</span>
 						<div class="type">
-							<button class="primary" on:click={() => showTypeList(user.username)}>
+							<Button on:click={() => showTypeList(user.username)}>
 								{capitalizeFirstLetter($t(`std.user.type.${user.type}`))}
-							</button>
+							</Button>
 							<div
 								class="type-list {currentShownUser === user.username ? 'show' : ''}"
 								style="--type-list-h: {userTypes.indexOf(user.type) * 3}rem"
 							>
 								{#each userTypes as type (type)}
-									<button class="primary" on:click={() => setUserType(user.uid, type)}>
+									<Button on:click={() => setUserType(user.uid, type)}>
 										{capitalizeFirstLetter($t(`std.user.type.${type}`))}
-									</button>
+									</Button>
 								{/each}
 							</div>
 						</div>
-						<a
-							href={ROUTES.adminUsersUsername.replace('{username}', user.username)}
-							class="icon button"
+						<Button
+							href="{ROUTES.adminUsersUsername.replace(
+								'{username}',
+								user.username
+							)}?frel={ROUTES.adminUsers}"
+							size="icon"
+							class="p-2 bg-transparent hover:bg-transparent"
 						>
 							<IconInfoCircle />
-						</a>
+						</Button>
 					</div>
 				{/each}
 			</div>
@@ -100,10 +105,10 @@
 				border-radius: 0.5rem;
 				background: radial-gradient(
 						65.31% 70.71% at 50% 50%,
-						rgba(var(--primary-500-rgb), 0.1),
-						rgba(var(--primary-300-rgb), 0.1)
+						hsl(var(--primary-500) / 0.05),
+						hsl(var(--primary-300) / 0.05)
 					),
-					var(--primary-50);
+					hsl(var(--primary-50));
 
 				.type {
 					margin-left: auto;
@@ -131,16 +136,6 @@
 							pointer-events: all;
 						}
 					}
-				}
-
-				.icon {
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					width: 48px;
-					height: 48px;
-					padding: 12px;
-					background: none;
 				}
 			}
 		}

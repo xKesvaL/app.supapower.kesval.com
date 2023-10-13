@@ -18,7 +18,7 @@
 		z-index: 1000;
 		height: auto;
 
-		background: rgba(var(--base-100-rgb), var(--ov-str, 0.8)) !important;
+		background: hsl(var(--base-100) / var(--ov-str, 0.8)) !important;
 		backdrop-filter: blur(5px);
 	}
 </style>

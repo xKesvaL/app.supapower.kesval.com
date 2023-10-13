@@ -1,8 +1,6 @@
 <script lang="ts">
 	import { t } from 'svelte-i18n';
 
-	import Button from '../base/Button.svelte';
-
 	import { authRegisterWithPassword } from '$lib/firebase/auth/actions';
 	import { AuthRegisterWithPasswordSchema } from '$lib/firebase/auth/schemas';
 	import type { AuthError } from '$lib/firebase/auth/types';
@@ -15,7 +13,9 @@
 	import IconEyeOff from '$lib/icons/IconEyeOff.svelte';
 	import IconEye from '$lib/icons/IconEye.svelte';
 	import PasswordStrength from './PasswordStrength.svelte';
-	import type { FormEventHandler } from 'svelte/elements';
+	import { Label } from '../ui/label';
+	import { Input } from '../ui/input';
+	import { Button } from '../ui/button';
 
 	let fieldErrors: FormattedZodError = {};
 	let authError: AuthError | null = null;
@@ -25,7 +25,7 @@
 
 	const dispatch = createEventDispatcher();
 
-	const login = async (e: SubmitEvent) => {
+	const register = async (e: SubmitEvent) => {
 		loading = true;
 		fieldErrors = {};
 		authError = null;
@@ -60,129 +60,73 @@
 	const toggleShowPassword = () => {
 		showPassword = !showPassword;
 	};
-
-	const setPassword: FormEventHandler<HTMLInputElement> = (e) => {
-		password = (e.currentTarget as HTMLInputElement).value;
-	};
 </script>
 
-<form on:submit|preventDefault={login}>
+<form on:submit|preventDefault={register} class="flex flex-col gap-8 items-center w-full">
 	<header>
-		<h1>{$t('auth.register.label')}</h1>
+		<h1 class="text-5xl">{$t('auth.register.label')}</h1>
 	</header>
-	<section>
-		<label>
+	<section class="w-full flex flex-col gap-4">
+		<Label class="flex flex-col gap-1">
 			<span>{$t('auth.fields.email.label')}</span>
-			<input type="email" autocomplete="email" name="email" />
+			<Input type="email" autocomplete="email" name="email" />
 			{#if fieldErrors.email}
-				<span class="error" transition:blur={{ duration: 200 }}
+				<span class="error" transition:blur={{ duration: 300 }}
 					>{$t(fieldErrors.email.message)}</span
 				>
 			{/if}
-		</label>
-		<label>
-			<span>{$t('auth.fields.password.label')}</span>
-			<div class="input-w-icon">
-				<input
+		</Label>
+		<Label class="flex flex-col gap-1">
+			<span> {$t('auth.fields.password.label')}</span>
+			<div class="relative flex items-center">
+				<Input
 					type={showPassword ? 'text' : 'password'}
 					autocomplete="new-password"
 					name="password"
-					on:input={setPassword}
+					bind:value={password}
 				/>
-				<button type="button" class="icon" on:click={() => toggleShowPassword()}>
+				<Button
+					type="button"
+					class="icon absolute right-0 p-2 bg-transparent hover:bg-transparent text-foreground"
+					variant="default"
+					size="icon"
+					on:click={() => toggleShowPassword()}
+				>
 					{#if showPassword}
 						<IconEyeOff />
 					{:else}
 						<IconEye />
 					{/if}
-				</button>
+				</Button>
 			</div>
 			<PasswordStrength {password} />
 			{#if fieldErrors.password}
-				<span class="error" transition:blur={{ duration: 200 }}
+				<span class="error" transition:blur={{ duration: 300 }}
 					>{$t(fieldErrors.password.message)}</span
 				>
 			{/if}
-		</label>
+		</Label>
 	</section>
-	<footer>
-		<Button customButtonStyles="flex: 1;" type="submit">
+	<footer class="flex flex-col gap-2 w-full">
+		<Button type="submit">
 			{#if loading}
 				<span class="loading" />
 			{:else}
 				{$t('auth.register.action')}
 			{/if}
 		</Button>
-		<span
+		<Button
 			on:click={() => switchTo()}
-			on:keydown|preventDefault={(e) => e.key === 'Enter' && switchTo()}
 			role="button"
-			tabindex="0"
+			class="text-muted-foreground text-sm mx-auto p-0 h-auto"
+			variant="link"
 		>
 			{$t(`auth.switchTo.register`)}
-		</span>
+		</Button>
 		{#if authError}
-			<span class="error" transition:blur={{ duration: 200 }}
+			<span class="error" transition:blur={{ duration: 300 }}
 				>{$t(`auth.errors.register.${authError.code}`)}</span
 			>
 		{/if}
 	</footer>
 </form>
-
-<style lang="scss">
-	form {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		width: 100%;
-		gap: 1rem;
-
-		header {
-			h1 {
-				font-size: var(--fs-800);
-				margin-block: 0;
-			}
-		}
-
-		section {
-			width: 100%;
-			display: flex;
-			flex-direction: column;
-			gap: 1rem;
-
-			label {
-				.input-w-icon {
-					position: relative;
-					display: flex;
-					align-items: center;
-
-					.icon {
-						position: absolute;
-						width: 24px;
-						height: 24px;
-						padding: 0;
-						background: none;
-						right: 0.75rem;
-					}
-				}
-			}
-		}
-
-		footer {
-			display: flex;
-			flex-direction: column;
-			gap: 0.5rem;
-			width: 100%;
-
-			span {
-				text-align: center;
-				font-size: var(--fs-200);
-				margin: 0 auto;
-			}
-
-			span:not(.error) {
-				color: var(--base-700);
-			}
-		}
-	}
-</style>

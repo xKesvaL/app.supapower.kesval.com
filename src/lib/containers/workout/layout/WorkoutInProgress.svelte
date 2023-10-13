@@ -7,6 +7,7 @@
 	import { t } from 'svelte-i18n';
 	import WorkoutInProgressDiscardModal from './WorkoutInProgressDiscardModal.svelte';
 	import { currentWorkoutDiscardModalState } from '$lib/stores/currentWorkoutDiscardModal';
+	import { Button } from '$lib/components/ui/button';
 
 	export let shown = true;
 
@@ -22,18 +23,24 @@
 <footer class:hidden={!shown}>
 	<div class="in-progress">{$t('std.workoutInProgress')}</div>
 	<div class="actions">
-		<a href="{ROUTES.workoutLog}?frel={$page.url.pathname}" class="button resume">
-			<div class="icon">
+		<Button
+			href="{ROUTES.workoutLog}?frel={$page.url.pathname}"
+			class="bg-transparent hover:bg-transparent p-0 gap-2 text-sm h-auto text-info"
+		>
+			<div class="w-6 h-6">
 				<IconPlayerPlay />
 			</div>
 			{capitalizeFirstLetter($t('std.resume'))}
-		</a>
-		<button class="button discard" on:click={showDiscardModal}>
-			<div class="icon">
+		</Button>
+		<Button
+			class="bg-transparent hover:bg-transparent p-0 gap-2 text-sm h-auto text-destructive"
+			on:click={showDiscardModal}
+		>
+			<div class="w-6 h-6">
 				<IconX />
 			</div>
 			{capitalizeFirstLetter($t('std.discard'))}
-		</button>
+		</Button>
 	</div>
 </footer>
 
@@ -42,7 +49,7 @@
 		height: 5rem;
 		width: 100%;
 
-		@include mq(md) {
+		@include mq(lg) {
 			display: none;
 		}
 	}
@@ -56,8 +63,8 @@
 		right: 0;
 		z-index: 15;
 
-		box-shadow: 0 -1px 4px var(--base-200);
-		background: var(--base-100);
+		box-shadow: 0 -1px 4px hsl(var(--base-200));
+		background: hsl(var(--base-100));
 		border-radius: 1rem 1rem 0 0;
 		padding: 0.5rem 1rem 1rem 1rem;
 
@@ -76,7 +83,7 @@
 		}
 
 		.in-progress {
-			color: var(--base-700);
+			color: hsl(var(--base-700));
 			font-size: var(--fs-300);
 			text-align: center;
 		}
@@ -88,27 +95,6 @@
 			width: 100%;
 			margin: 0 auto;
 			padding: 0 2rem;
-
-			:where(a, button) {
-				height: auto;
-				padding: 0;
-				background: none;
-				font-weight: 400;
-				gap: 0.5rem;
-
-				.icon {
-					width: 20px;
-					height: 20px;
-				}
-
-				&.resume {
-					color: var(--info-500);
-				}
-
-				&.discard {
-					color: var(--danger-500);
-				}
-			}
 		}
 	}
 </style>

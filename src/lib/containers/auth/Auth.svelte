@@ -13,8 +13,8 @@
 	};
 </script>
 
-<div class="wrapper">
-	<Card customCardStyle="min-width: 22rem; min-height: 26rem;">
+<div class="wrapper flex items-center justify-center w-full min-h-screen">
+	<Card customCardStyle="min-width: 22rem; min-height: 26rem;" colorOpacity={0.1}>
 		{#if type === 'login'}
 			<AuthLogin on:switchTo={switchTo} />
 		{:else}
@@ -25,12 +25,6 @@
 
 <style lang="scss">
 	.wrapper {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-		min-height: 100vh;
-
 		background: radial-gradient(circle at 28% 37%, hsl(var(--primary-300) / 0.25), transparent 50%),
 			radial-gradient(circle at 70% 66%, hsl(var(--secondary-300) / 0.25), transparent 50%);
 	}

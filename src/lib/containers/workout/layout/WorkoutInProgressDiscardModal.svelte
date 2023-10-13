@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
+	import { Button } from '$lib/components/ui/button';
 	import { ROUTES } from '$lib/config';
 	import type { UserStoreContext } from '$lib/firebase/auth/types';
 	import { deleteCurrentWorkout } from '$lib/firebase/workout/actions';
@@ -33,27 +34,31 @@
 </script>
 
 {#if $currentWorkoutDiscardModalState}
-	<div class="modal" transition:blur={{ amount: 1, duration: 300 }}>
-		<header>
+	<div class="modal p-4 flex flex-col gap-4" transition:blur={{ amount: 1, duration: 300 }}>
+		<header class="-my-2">
 			<h2>{$t('pages.workout.log.discardModal.discard')}</h2>
-			<button class="icon" on:click={closeDiscardModal}>
+			<Button
+				size="icon"
+				class="p-2 bg-transparent hover:bg-transparent"
+				on:click={closeDiscardModal}
+			>
 				<IconX />
-			</button>
+			</Button>
 		</header>
 		<div class="content">
 			{$t('pages.workout.log.discardModal.content')}
 		</div>
-		<footer>
-			<button class="primary" on:click={closeDiscardModal}>
+		<footer class="flex justify-end gap-2">
+			<Button on:click={closeDiscardModal}>
 				{capitalizeFirstLetter($t('std.cancel'))}
-			</button>
-			<button class="danger" on:click={discard}>
+			</Button>
+			<Button variant="destructive" on:click={discard}>
 				{#if loading}
 					<span class="loading" />
 				{:else}
 					{$t('pages.workout.log.discardModal.discard')}
 				{/if}
-			</button>
+			</Button>
 		</footer>
 	</div>
 {/if}
@@ -69,12 +74,12 @@
 
 		transform: translate(-50%, -50%);
 
-		background: var(--base-100);
+		background: hsl(var(--base-100));
 
 		border-radius: 0.5rem;
-		border: 1px solid rgba(var(--base-800-rgb), 0.5);
+		border: 1px solid hsl(var(--base-500) / 0.5);
 
-		box-shadow: 0 0 8px 0 rgba(var(--base-200-rgb), 1);
+		box-shadow: 0 0 8px 0 hsl(var(--base-200) / 1);
 
 		max-width: min(calc(100% - 2rem), 30rem);
 
@@ -87,30 +92,7 @@
 
 			h2 {
 				font-size: var(--fs-600);
-				padding-left: 1rem;
 			}
-
-			.icon {
-				width: 48px;
-				height: 48px;
-				padding: 10px;
-				background: none;
-
-				:global(svg) {
-					stroke-width: 2;
-				}
-			}
-		}
-
-		.content {
-			padding: 0 1rem;
-		}
-
-		footer {
-			padding: 1rem;
-			display: flex;
-			gap: 0.5rem;
-			justify-content: flex-end;
 		}
 	}
 </style>

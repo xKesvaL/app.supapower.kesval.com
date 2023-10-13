@@ -57,8 +57,8 @@
 		left: 0;
 		right: 0;
 		height: 3rem;
-		background: var(--base-100);
-		box-shadow: 0 -1px 4px var(--base-200);
+		background: hsl(var(--base-100));
+		box-shadow: 0 -1px 4px hsl(var(--base-200));
 		z-index: 100;
 
 		display: flex;
@@ -101,10 +101,10 @@
 			}
 
 			&.active {
-				color: var(--primary-700);
+				color: hsl(var(--primary-700));
 
 				:global(svg) {
-					fill: var(--primary-700);
+					fill: hsl(var(--primary-700));
 				}
 
 				&::before {
@@ -116,10 +116,10 @@
 					top: 0;
 					left: 0;
 					right: 0;
-					background: var(--primary-500);
+					background: hsl(var(--primary-500));
 
 					@include mq(lg) {
-						right: auto;
+						left: auto;
 						bottom: 0;
 						height: 100%;
 						width: 2px;
