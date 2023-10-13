@@ -91,17 +91,17 @@
 
 		nav {
 			display: grid;
-			gap: 0.75rem;
+			gap: 1rem;
 
 			& > div {
-				background: rgba(var(--base-200-rgb), 0.3);
+				background: hsl(var(--base-200) / 0.7);
 				padding: 0 1rem;
 
 				h2 {
 					font-size: var(--fs-200);
-					color: rgba(var(--base-900-rgb), 0.7);
+					color: hsl(var(--base-900) / 0.7);
 					font-family: var(--ft-sans);
-					font-weight: 300;
+					font-weight: 300 !important;
 					margin-bottom: 0.25rem;
 					padding-top: 1rem;
 				}

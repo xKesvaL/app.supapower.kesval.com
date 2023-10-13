@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { Button } from '$lib/components/ui/button';
 	import { ROUTES } from '$lib/config';
 	import type { UserData } from '$lib/firebase/user/types';
 	import IconSettings from '$lib/icons/IconSettings.svelte';
@@ -11,18 +12,22 @@
 
 <header class="page-header">
 	<div class="start">
-		<a href={ROUTES.profile}>
+		<Button variant="link" class="text-base text-foreground p-2" href={ROUTES.profile}>
 			{$t('std.edit')}
-		</a>
+		</Button>
 	</div>
 	<div class="center">
 		{$userData.username}
 	</div>
 	<div class="end">
-		<a class="icon" href="{ROUTES.settings}?frel={ROUTES.profile}">
+		<Button
+			size="icon"
+			class="p-1 bg-transparent hover:bg-transparent"
+			href="{ROUTES.settings}?frel={ROUTES.profile}"
+		>
 			<IconSettings />
 			<span class="visually-hidden">{$t('pages.settings.label')}</span>
-		</a>
+		</Button>
 	</div>
 </header>
 

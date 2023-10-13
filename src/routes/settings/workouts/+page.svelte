@@ -3,6 +3,7 @@
 	import type {
 		UserDataStoreContext,
 		UserDataWorkout,
+		WorkoutFrequency,
 		WorkoutType
 	} from '$lib/firebase/user/types';
 
@@ -11,6 +12,7 @@
 	import { t } from 'svelte-i18n';
 	import Image from '$lib/components/base/Image.svelte';
 	import { updateUserDataWorkout } from '$lib/firebase/user/actions';
+	import { Slider } from '$lib/components/ui/slider';
 
 	export let data: LayoutData;
 
@@ -35,6 +37,10 @@
 	const switchToWorkoutType = (e: MouseEvent) => {
 		const target = e.currentTarget as HTMLButtonElement;
 		workout.type = target.dataset.workoutType as WorkoutType;
+	};
+
+	const handleValueChange = async (v: unknown) => {
+		workout.frequency = (v as WorkoutFrequency[])[0] as WorkoutFrequency;
 	};
 
 	$: hasChangedWorkoutFrequency = workout.frequency !== $userData?.workout.frequency;
@@ -100,14 +106,16 @@
 		</div>
 		<h2>{$t('workouts.frequencies.label')}</h2>
 		<div>
-			<input
-				type="range"
-				name="frequency"
-				min="2"
-				max="6"
-				class="primary"
-				bind:value={workout.frequency}
-			/>
+			<div class="mx-6">
+				<Slider
+					value={[workout.frequency]}
+					max={6}
+					min={2}
+					step={1}
+					onValueChange={handleValueChange}
+				/>
+			</div>
+
 			<div class="frequencies">
 				<span>2 {$t('std.days')}</span>
 				<span>3 {$t('std.days')}</span>
@@ -122,6 +130,12 @@
 <style lang="scss">
 	section {
 		padding: 1rem;
+
+		form {
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
+		}
 
 		h2 {
 			font-size: var(--fs-600);
@@ -143,15 +157,16 @@
 				border: 3px solid transparent;
 				border-radius: 0.5rem;
 				flex: 1;
-				gap: 1rem;
-				background: radial-gradient(rgba(var(--base-200-rgb), 0.3), rgba(var(--base-200-rgb), 0.7));
+				gap: 0.5rem;
+				padding: 0.5rem;
+				background: radial-gradient(hsl(var(--base-200) / 0.3), hsl(var(--base-200) / 0.7));
 
 				&.active {
-					border-color: var(--primary-500);
+					border-color: hsl(var(--primary-500));
 				}
 
 				span {
-					font-size: var(--fs-200);
+					font-size: var(--fs-400);
 					text-align: center;
 				}
 
@@ -170,20 +185,21 @@
 			gap: 0.5rem;
 			font-size: var(--fs-400);
 			font-weight: 700;
-			color: var(--base-800);
+			color: hsl(var(--base-800));
 			text-align: center;
 			margin-top: 1rem;
 
 			span {
 				position: relative;
 				font-weight: 400;
+				font-size: var(--fs-300);
 
 				&::before {
 					content: '';
 					display: block;
 					width: 1px;
 					height: 1rem;
-					background: var(--base-600);
+					background: hsl(var(--base-600));
 					margin: 0 auto 0.5rem;
 				}
 			}

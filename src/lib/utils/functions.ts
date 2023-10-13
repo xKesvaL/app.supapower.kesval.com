@@ -18,3 +18,13 @@ export const formatZodError = (error: ZodError): FormattedZodError => {
 		return acc;
 	}, {} as FormattedZodError);
 };
+
+export const transition = async (action: () => Promise<void>) => {
+	if (!document.startViewTransition) {
+		return await action();
+	}
+
+	return document.startViewTransition(async () => {
+		await action();
+	});
+};

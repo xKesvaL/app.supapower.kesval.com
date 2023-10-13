@@ -25,7 +25,7 @@
 	import type { UserDataStore } from '$lib/firebase/user/types';
 
 	import FlowRegister from '$lib/containers/flows/flowRegister/FlowRegister.svelte';
-	import { onNavigate } from '$app/navigation';
+	import { setupViewTransition } from 'sveltekit-view-transition';
 
 	import type { WorkoutStore } from '$lib/firebase/workout/types';
 	import WorkoutInProgress from '$lib/containers/workout/layout/WorkoutInProgress.svelte';
@@ -49,16 +49,7 @@
 	$: setContext('userData', userData);
 	$: setContext('currentWorkout', currentWorkout);
 
-	onNavigate((navigation) => {
-		if (!document.startViewTransition) return;
-
-		return new Promise((resolve) => {
-			document.startViewTransition(async () => {
-				resolve();
-				await navigation.complete;
-			});
-		});
-	});
+	setupViewTransition();
 </script>
 
 <svelte:head>

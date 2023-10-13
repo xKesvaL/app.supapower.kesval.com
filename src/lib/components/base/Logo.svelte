@@ -29,8 +29,8 @@
 
 <style lang="scss">
 	.logo {
-		--logo-text-color: var(--base-600);
-		--logo-text-color-end: var(--base-900);
+		--logo-text-color: hsl(var(--base-600));
+		--logo-text-color-end: hsl(var(--base-900));
 		display: flex;
 		height: 100%;
 		width: auto;

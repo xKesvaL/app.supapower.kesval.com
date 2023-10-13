@@ -142,10 +142,11 @@
           "label": "Profile"
         },
         "theme": {
+          "auto": "Auto",
           "dark": "Dark",
           "label": "Theme",
           "light": "Light",
-          "prevention": "This app is meant to be used in dark mode, light mode might have some issues. If any, please report them."
+          "prevention": "This app was created using dark mode, light mode might have some issues. If any, please report them."
         },
         "units": {
           "label": "Units"

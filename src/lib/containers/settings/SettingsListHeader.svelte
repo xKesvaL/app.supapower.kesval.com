@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { Button } from '$lib/components/ui/button';
 	import { ROUTES } from '$lib/config';
 	import IconArrowLeft from '$lib/icons/IconArrowLeft.svelte';
 	import { t } from 'svelte-i18n';
@@ -10,9 +11,9 @@
 
 <header class="page-header">
 	<div class="start">
-		<a href={fRel} class="icon">
+		<Button href={fRel} size="icon" class="p-1 bg-transparent hover:bg-transparent">
 			<IconArrowLeft />
-		</a>
+		</Button>
 	</div>
 	<div class="center">{$t('pages.settings.label')}</div>
 	<div class="end" />
@@ -44,14 +45,6 @@
 
 		.end {
 			justify-content: end;
-		}
-
-		.icon {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			width: 32px;
-			height: 32px;
 		}
 	}
 </style>

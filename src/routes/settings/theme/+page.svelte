@@ -4,13 +4,14 @@
 	import SettingsHeader from '$lib/containers/settings/SettingsHeader.svelte';
 	import { t } from 'svelte-i18n';
 	import { theme } from '$lib/stores/theme';
+	import { Button } from '$lib/components/ui/button';
 
 	export let data: LayoutData;
 
 	$: ({ fRel } = data);
 
 	const onChangeTheme = (e: Event) => {
-		theme.set((e.target as HTMLInputElement).value as 'light' | 'dark');
+		theme.set((e.target as HTMLInputElement).value as string);
 	};
 </script>
 
@@ -32,6 +33,16 @@
 			<input
 				type="radio"
 				name="theme"
+				value="auto"
+				checked={$theme === 'auto'}
+				on:change={onChangeTheme}
+			/>
+			{$t('pages.settings.list.theme.auto')}
+		</label>
+		<label>
+			<input
+				type="radio"
+				name="theme"
 				value="dark"
 				checked={$theme === 'dark'}
 				on:change={onChangeTheme}
@@ -42,11 +53,12 @@
 	<p>
 		{$t('pages.settings.list.theme.prevention')}
 	</p>
-	<a
-		class="special-link"
+	<Button
+		class="h-0 p-0 text-muted-foreground text-base"
 		href="https://github.com/xKesvaL/app.supapower.kesval.com/issues"
 		target="_blank"
-		rel="noopener noreferrer">{$t('std.reportIssue')}</a
+		variant="link"
+		rel="noopener noreferrer">{$t('std.reportIssue')}</Button
 	>
 </section>
 
@@ -56,38 +68,18 @@
 
 		form {
 			margin-bottom: 1rem;
+			display: flex;
+			flex-direction: column;
+			gap: 0.5rem;
 
 			label {
 				display: flex;
 				align-items: center;
 				gap: 0.5rem;
-			}
-		}
 
-		a.special-link {
-			color: var(--primary-800);
-			transition: 0.3s ease;
-			position: relative;
-			margin-top: 0.5rem;
-			display: inline-block;
-
-			&::after {
-				content: '';
-				position: absolute;
-				bottom: -0.125rem;
-				left: 0;
-				right: 0;
-				height: 1px;
-				background: var(--primary-800);
-				transition: 0.3s ease;
-				transform: scaleX(0);
-			}
-
-			&:hover {
-				color: var(--primary-700);
-
-				&::after {
-					transform: scaleX(1);
+				input {
+					width: 1.25rem;
+					height: 1.25rem;
 				}
 			}
 		}

@@ -40,13 +40,13 @@
 		padding: 0.5rem;
 		background: radial-gradient(
 				65.31% 70.71% at 50% 50%,
-				rgba(var(--primary-500-rgb), 0.1),
-				rgba(var(--primary-300-rgb), 0.1)
+				hsl(var(--primary-500) / 0.1),
+				hsl(var(--primary-300) / 0.1)
 			),
-			var(--primary-50);
+			hsl(var(--primary-50) / 0.1);
 		min-width: 13rem;
 		flex: 1;
-		border: 1px solid rgba(var(--base-500-rgb), 0.25);
+		border: 1px solid hsl(var(--base-500) / 0.25);
 		border-radius: 0.5rem;
 		transition: 0.3s;
 
@@ -56,7 +56,7 @@
 		gap: 0.5rem;
 
 		&:hover {
-			border-color: rgba(var(--base-500-rgb), 0.5);
+			border-color: hsl(var(--base-500) / 0.5);
 		}
 
 		h2 {
@@ -86,7 +86,7 @@
 				width: 12px;
 				height: 12px;
 				align-items: center;
-				color: var(--primary-500);
+				color: hsl(var(--primary-500));
 			}
 		}
 
@@ -100,15 +100,15 @@
 				padding: 0.125rem 0.25rem;
 				background: linear-gradient(
 						var(--wk-cc-tag-rotation),
-						rgba(var(--secondary-300-rgb), 0.2),
-						rgba(var(--secondary-500-rgb), 0.25)
+						hsl(var(--secondary-300) / 0.2),
+						hsl(var(--secondary-500) / 0.25)
 					),
 					linear-gradient(
 						calc(var(--wk-cc-tag-rotation) * -1),
-						rgba(var(--primary-300-rgb), 0.2),
-						rgba(var(--primary-500-rgb), 0.25)
+						hsl(var(--primary-300) / 0.2),
+						hsl(var(--primary-500) / 0.25)
 					),
-					var(--secondary-100);
+					hsl(var(--secondary-100) / 0.1);
 				border-radius: 0.25rem;
 
 				&:first-child {

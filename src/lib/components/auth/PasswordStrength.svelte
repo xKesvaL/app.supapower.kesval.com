@@ -25,8 +25,6 @@
 		return 0;
 	};
 
-	let strength = getPasswordStrength(password);
-
 	$: strength = getPasswordStrength(password);
 </script>
 

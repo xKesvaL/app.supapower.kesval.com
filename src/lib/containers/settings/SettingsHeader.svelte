@@ -10,6 +10,7 @@
 
 	import { createEventDispatcher } from 'svelte';
 	import { capitalizeFirstLetter } from '$lib/utils/functions';
+	import { Button } from '$lib/components/ui/button';
 
 	const dispatch = createEventDispatcher();
 
@@ -20,20 +21,20 @@
 
 <header class="page-header">
 	<div class="start">
-		<a href={fRel} class="icon">
+		<Button size="icon" href={fRel} class="icon p-1 bg-transparent hover:bg-transparent">
 			<IconArrowLeft />
-		</a>
+		</Button>
 	</div>
 	<div class="center">{title}</div>
 	<div class="end">
 		{#if saveButton}
-			<button class="primary" on:click={onSave} disabled={!saveButtonEnabled}>
+			<Button class="transition-all" on:click={onSave} disabled={!saveButtonEnabled}>
 				{#if loading}
 					<span class="loading" />
 				{:else}
 					{capitalizeFirstLetter($t('std.save'))}
 				{/if}
-			</button>
+			</Button>
 		{/if}
 	</div>
 </header>
@@ -64,26 +65,6 @@
 
 		.end {
 			justify-content: end;
-
-			button {
-				padding: 0.4rem 1rem;
-				transition: 0.2s ease;
-				color: var(--primary-950);
-				height: auto;
-				width: auto;
-
-				&:disabled {
-					opacity: 0.3;
-				}
-			}
-		}
-
-		.icon {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			width: 32px;
-			height: 32px;
 		}
 	}
 </style>
