@@ -2,13 +2,12 @@
 	import type { ExerciseName } from '$lib/data/types/exerciseTypes';
 	import { exerciseList } from '$lib/data/exerciseList';
 	import IconInfoCircle from '$lib/icons/IconInfoCircle.svelte';
-	import { capitalizeFirstLetter } from '$lib/utils/functions';
 	import { t } from 'svelte-i18n';
 	import autoAnimate from '@formkit/auto-animate';
 	import { fly } from 'svelte/transition';
 	import type {
+		WorkoutExercise,
 		WorkoutExerciseSetType,
-		WorkoutExerciseWeightType,
 		WorkoutStore
 	} from '$lib/firebase/workout/types';
 	import { getContext } from 'svelte';
@@ -40,17 +39,17 @@
 			await createCurrentWorkout($user.uid, {
 				startDate: new Date().toISOString(),
 				endDate: null,
-				exercises: selectedExercises.map((e) => {
+				exercises: selectedExercises.map((e): WorkoutExercise => {
 					return {
 						exerciseName: e,
 						sets: [
 							{
 								reps: null,
 								weight: null,
-								weightType: 'static',
 								rpe: null,
 								type: 'working',
-								done: false
+								done: false,
+								timer: 120
 							}
 						]
 					};
@@ -61,17 +60,17 @@
 		} else {
 			await updateCurrentWorkoutExercises($user.uid, [
 				...$currentWorkout.exercises,
-				...selectedExercises.map((e) => {
+				...selectedExercises.map((e): WorkoutExercise => {
 					return {
 						exerciseName: e,
 						sets: [
 							{
 								reps: null,
 								weight: null,
-								weightType: 'static' as WorkoutExerciseWeightType,
 								rpe: null,
 								type: 'working' as WorkoutExerciseSetType,
-								done: false
+								done: false,
+								timer: 120
 							}
 						]
 					};
@@ -96,7 +95,7 @@
 			<div class="image">img</div>
 			<div class="description">
 				<h2>
-					{capitalizeFirstLetter(exercise.name)}
+					{$t(`exercises.${exercise.name}.name`)}
 				</h2>
 				<p>
 					{$t(`muscles.${exercise.primaryMuscle.name}`)}

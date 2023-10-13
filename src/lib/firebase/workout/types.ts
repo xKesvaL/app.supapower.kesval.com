@@ -4,15 +4,13 @@ import type { Readable } from 'svelte/store';
 export interface WorkoutExerciseSet {
 	type: 'warmup' | 'working';
 	weight: number | null;
-	weightType: 'static' | 'percentage';
 	reps: number | null;
 	rpe: number | null;
 	done: boolean;
+	timer: number;
 }
 
 export type WorkoutExerciseSetType = WorkoutExerciseSet['type'];
-
-export type WorkoutExerciseWeightType = WorkoutExerciseSet['weightType'];
 
 export interface WorkoutExercise {
 	exerciseName: ExerciseName;
