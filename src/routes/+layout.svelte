@@ -11,6 +11,7 @@
 	import '$lib/styles/inter.scss';
 	import '$lib/styles/main.scss';
 	import '$lib/styles/nprogress.scss';
+	import '../app.postcss';
 
 	import { BRAND } from '$lib/config';
 	import { locales } from 'svelte-i18n';

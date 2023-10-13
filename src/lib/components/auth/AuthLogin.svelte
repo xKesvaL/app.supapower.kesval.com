@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { t } from 'svelte-i18n';
 
-	import Button from '../base/Button.svelte';
+	import { Button } from '$lib/components/ui/button';
+	import { Label } from '$lib/components/ui/label';
+	import { Input } from '$lib/components/ui/input';
 
 	import { authLoginWithPassword } from '$lib/firebase/auth/actions';
 	import { AuthLoginWithPasswordSchema } from '$lib/firebase/auth/schemas';
@@ -60,66 +62,77 @@
 	};
 </script>
 
-<form on:submit|preventDefault={login}>
+<form on:submit|preventDefault={login} class="flex flex-col gap-8 items-center w-full">
 	<header>
-		<h1>{$t('auth.login.label')}</h1>
+		<h1 class="text-5xl">{$t('auth.login.label')}</h1>
 	</header>
-	<section>
-		<label>
+	<section class="w-full flex flex-col gap-4">
+		<Label class="flex flex-col gap-1">
 			<span>{$t('auth.fields.email.label')}</span>
-			<input type="email" autocomplete="email" name="email" />
+			<Input type="email" autocomplete="email" name="email" />
 			{#if fieldErrors.email}
 				<span class="error" transition:blur={{ duration: 300 }}
 					>{$t(fieldErrors.email.message)}</span
 				>
 			{/if}
-		</label>
-		<label>
-			<div class="flex">
-				<span>
-					{$t('auth.fields.password.label')}
+		</Label>
+		<Label class="flex flex-col gap-1">
+			<div class="flex justify-between">
+				<span> {$t('auth.fields.password.label')}</span>
+				<span class="text-right">
+					<Button
+						href={ROUTES.forgotpassword}
+						variant="link"
+						class="p-0 text-muted-foreground h-auto"
+					>
+						{$t('auth.login.forgotPassword')}
+					</Button>
 				</span>
-				<span class="text-right"
-					><a href={ROUTES.forgotpassword}>{$t('auth.login.forgotPassword')}</a></span
-				>
 			</div>
-			<div class="input-w-icon">
-				<input
+
+			<div class="relative flex items-center">
+				<Input
 					type={showPassword ? 'text' : 'password'}
 					autocomplete="current-password"
 					name="password"
 				/>
-				<button type="button" class="icon" on:click={() => toggleShowPassword()}>
+				<Button
+					type="button"
+					class="icon absolute right-0 p-2 bg-transparent hover:bg-transparent"
+					variant="default"
+					size="icon"
+					on:click={() => toggleShowPassword()}
+				>
 					{#if showPassword}
 						<IconEyeOff />
 					{:else}
 						<IconEye />
 					{/if}
-				</button>
+				</Button>
 			</div>
 			{#if fieldErrors.password}
 				<span class="error" transition:blur={{ duration: 300 }}
 					>{$t(fieldErrors.password.message)}</span
 				>
 			{/if}
-		</label>
+		</Label>
 	</section>
 	<footer>
-		<Button customButtonStyles="flex: 1;" type="submit">
+		<Button type="submit">
 			{#if loading}
 				<span class="loading" />
 			{:else}
 				{$t('auth.login.action')}
 			{/if}
 		</Button>
-		<span
+		<Button
 			on:click={() => switchTo()}
-			on:keydown|preventDefault={(e) => e.key === 'Enter' && switchTo()}
 			role="button"
-			tabindex="0"
+			class="text-muted-foreground text-sm mx-auto p-0 h-auto"
+			variant="link"
 		>
 			{$t(`auth.switchTo.login`)}
-		</span>
+		</Button>
 		{#if authError}
 			<span class="error" transition:blur={{ duration: 300 }}
 				>{$t(`auth.errors.login.${authError.code}`)}</span
@@ -130,66 +143,11 @@
 
 <style lang="scss">
 	form {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		width: 100%;
-		gap: 1rem;
-
-		header {
-			h1 {
-				font-size: var(--fs-800);
-				margin-block: 0;
-			}
-		}
-
-		section {
-			width: 100%;
-			display: flex;
-			flex-direction: column;
-			gap: 1rem;
-
-			label {
-				.input-w-icon {
-					position: relative;
-					display: flex;
-					align-items: center;
-
-					.icon {
-						position: absolute;
-						width: 24px;
-						height: 24px;
-						padding: 0;
-						background: none;
-						right: 0.75rem;
-					}
-				}
-				.flex {
-					align-items: center;
-					justify-content: space-between;
-
-					span {
-						margin-top: 0;
-					}
-				}
-			}
-		}
-
 		footer {
 			display: flex;
 			flex-direction: column;
 			gap: 0.5rem;
 			width: 100%;
-
-			span {
-				text-align: center;
-				font-size: var(--fs-200);
-				margin: 0 auto;
-			}
-
-			span:not(.error) {
-				color: hsl(var(--base-700));
-			}
 		}
 	}
 </style>

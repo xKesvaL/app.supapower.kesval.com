@@ -10,12 +10,12 @@
 
 :root {
 	--ft-special: 'Benzin', sans-serif;
-	--ft-title: 'Inter', sans-serif;
+	--ft-title: 'Poppins', sans-serif;
 	--ft-sans: 'Inter', sans-serif;
 }
 
 .error {
-	color: var(--danger-700);
+	color: hsl(var(--danger-700));
 	font-size: var(--fs-200);
 	font-weight: 400;
 }
@@ -152,7 +152,7 @@ header.page-header {
 
 h1,
 h2 {
-	font-weight: 900;
+	font-weight: 900 !important;
 }
 
 button,

@@ -70,7 +70,7 @@
 			0 0.25rem 0.5rem hsl(var(--primary-900) / 0.05);
 
 		background: hsl(var(--base-100) / 1);
-		border: 1px solid hsl(var(--base-300));
+		border: 1px solid hsl(var(--base-400));
 
 		&.maxWidth {
 			max-width: none;

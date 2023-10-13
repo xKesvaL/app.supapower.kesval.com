@@ -52,11 +52,11 @@
 
 		span {
 			font-size: var(--fs-200);
-			color: var(--danger-800);
+			color: hsl(var(--danger-800));
 			text-align: right;
 
 			&.weak {
-				color: var(--danger-800);
+				color: hsl(var(--danger-800));
 			}
 
 			&.fair {
@@ -64,7 +64,7 @@
 			}
 
 			&.strong {
-				color: var(--success-800);
+				color: hsl(var(--success-800));
 			}
 		}
 
@@ -81,7 +81,7 @@
 
 				&.active {
 					&.weak {
-						background: var(--danger-500);
+						background: hsl(var(--danger-500));
 					}
 
 					&.fair {
@@ -89,7 +89,7 @@
 					}
 
 					&.strong {
-						background: var(--success-500);
+						background: hsl(var(--success-500));
 					}
 				}
 			}
