@@ -31,7 +31,7 @@
 		width: 100%;
 		min-height: 100vh;
 
-		background: radial-grad-primary(0.025), linear-grad-primary(135deg, 0.025),
-			linear-grad-secondary(-45deg, 0.025);
+		background: radial-gradient(circle at 28% 37%, hsl(var(--primary-300) / 0.25), transparent 50%),
+			radial-gradient(circle at 70% 66%, hsl(var(--secondary-300) / 0.25), transparent 50%);
 	}
 </style>

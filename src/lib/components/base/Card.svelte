@@ -18,8 +18,8 @@
 
 	let el: HTMLElement;
 
-	$: el?.style.setProperty('--card-drop-color', `rgba(var(--${color}-300-rgb), ${colorOpacity})`);
-	$: el?.style.setProperty('--card-hover-color', `rgba(var(--base-200-rgb), ${colorOpacity})`);
+	$: el?.style.setProperty('--card-drop-color', `hsl(var(--${color}-300) / ${colorOpacity})`);
+	$: el?.style.setProperty('--card-hover-color', `hsl(var(--base-200) / ${colorOpacity})`);
 
 	const onHover: MouseEventHandler<HTMLElement> = (ev) => {
 		const target = ev.currentTarget;
@@ -42,7 +42,7 @@
 	class:scale
 	class:maxWidth
 	style={customCardStyle}
-	role="region"
+	role={href ? 'link' : 'alert'}
 >
 	<div
 		class="card-bg-img justify-{justify} align-{align} gap-{gap}"
@@ -58,15 +58,19 @@
 		--card-drop-x: 0;
 		--card-drop-y: 0;
 
-		--card-drop-color: rgba(var(--primary-300-rgb), 0.3);
-		--card-hover-color: rgba(var(--base-200-rgb), 0.3);
+		--card-drop-color: hsl(var(--primary-300) / 0.3);
+		--card-hover-color: hsl(var(--base-200) / 0.3);
 
 		display: inline-flex;
 		flex-direction: column;
 		transition: 0.2s;
 		padding: 0;
-		box-shadow: 0 0.5rem 1rem rgba(var(--primary-900-rgb), 0.05),
-			0 0.25rem 0.5rem rgba(var(--primary-900-rgb), 0.05);
+		box-shadow:
+			0 0 1rem hsl(var(--primary-900) / 0.05),
+			0 0.25rem 0.5rem hsl(var(--primary-900) / 0.05);
+
+		background: hsl(var(--base-100) / 1);
+		border: 1px solid hsl(var(--base-300));
 
 		&.maxWidth {
 			max-width: none;
@@ -89,7 +93,7 @@
 				transform: scale(1.02);
 			}
 
-			border-color: rgba(var(--base-900-rgb), 0.7);
+			border-color: hsl(var(--base-900) / 0.7);
 		}
 
 		&-bg-img {

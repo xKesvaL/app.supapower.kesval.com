@@ -188,7 +188,7 @@
 			}
 
 			span:not(.error) {
-				color: var(--base-700);
+				color: hsl(var(--base-700));
 			}
 		}
 	}
