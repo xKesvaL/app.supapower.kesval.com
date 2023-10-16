@@ -1,275 +1,297 @@
 {
-	"auth": {
-		"errors": {
-			"email": {
-				"invalid": "Invalid email address",
-				"required": "Email is required"
-			},
-			"login": {
-				"auth/invalid-email": "Invalid email",
-				"auth/user-disabled": "User disabled",
-				"auth/user-not-found": "User not found",
-				"auth/wrong-password": "Wrong password"
-			},
-			"password": {
-				"max": "Password must be at most 32 characters long",
-				"min": "Password must be at least 8 characters long",
-				"required": "Password is required"
-			},
-			"register": {
-				"auth/email-already-in-use": "Email already in use",
-				"auth/invalid-email": "Invalid email",
-				"auth/operation-not-allowed": "Operation not allowed",
-				"auth/weak-password": "Weak password"
-			}
-		},
-		"fields": {
-			"email": {
-				"label": "Email"
-			},
-			"password": {
-				"label": "Password"
-			}
-		},
-		"login": {
-			"action": "Log In",
-			"forgotPassword": "Forgot password?",
-			"label": "Login"
-		},
-		"password": {
-			"strength": {
-				"0": "Very weak password",
-				"1": "Weak password",
-				"2": "Fair password",
-				"3": "Good password"
-			}
-		},
-		"register": {
-			"action": "Register",
-			"label": "Register"
-		},
-		"switchTo": {
-			"login": "Don't have an account? Register.",
-			"register": "Already have an account? Log In."
-		}
-	},
-	"exercises": {
-		"bench": {
-			"name": "Bench Press"
-		},
-		"deadlift": {
-			"name": "Deadlift"
-		},
-		"squat": {
-			"name": "Squat"
-		}
-	},
-	"flows": {
-		"register": {
-			"buttons": {
-				"next": "Next"
-			},
-			"steps": {
-				"0": {
-					"inputs": {
-						"username": {
-							"error": {
-								"short": "Sorry! Your username must be at least 4 characters long.",
-								"taken": "Sorry! Your username already exists, please choose another one."
-							},
-							"label": "How should we call you ?",
-							"placeholder": "Username"
-						}
-					},
-					"label": "Account"
-				},
-				"1": {
-					"label": "Workout Type"
-				},
-				"2": {
-					"label": "Frequency"
-				}
-			}
-		}
-	},
-	"muscles": {
-		"chest": "Chest",
-		"hamstrings": "Hamstrings",
-		"quadriceps": "Quadriceps"
-	},
-	"pages": {
-		"admin": {
-			"label": "Admin",
-			"users": {
-				"label": "Users List"
-			}
-		},
-		"food": {
-			"label": "Food"
-		},
-		"home": {
-			"label": "Home"
-		},
-		"profile": {
-			"dashboard": {
-				"calendar": {
-					"label": "Calendar"
-				},
-				"exercises": {
-					"label": "Exercises"
-				},
-				"label": "Dashboard",
-				"measures": {
-					"label": "Measures"
-				},
-				"statistics": {
-					"label": "Statistics"
-				}
-			},
-			"label": "Profile"
-		},
-		"settings": {
-			"label": "Settings",
-			"list": {
-				"account": {
-					"label": "Account"
-				},
-				"language": {
-					"label": "Language"
-				},
-				"preferences": "Preferences",
-				"profile": {
-					"label": "Profile"
-				},
-				"theme": {
-					"auto": "Auto",
-					"dark": "Dark",
-					"label": "Theme",
-					"light": "Light",
-					"prevention": "This app was created using dark mode, light mode might have some issues. If any, please report them."
-				},
-				"units": {
-					"label": "Units"
-				},
-				"workouts": {
-					"label": "Workouts"
-				},
-				"yourAccount": "Your account"
-			},
-			"profile": {
-				"bio": "Biography",
-				"bioPlaceholder": "I'm a guy that likes powerlifting.",
-				"toggle": "Public profile",
-				"toggle_desc": "When your account is public, everything you publish can be seen by anyone.",
-				"toggle_desc_bis": "By default, you're in private which means only the people you follow will have access to what you publish and show in your account."
-			}
-		},
-		"workout": {
-			"addExercise": {
-				"add": "Add {count} exercise",
-				"adds": "Add {count} exercises"
-			},
-			"community": {
-				"label": "Community"
-			},
-			"label": "Workout",
-			"log": {
-				"addExercise": "Add Exercise",
-				"addSet": "Add Set",
-				"discardModal": {
-					"content": "You're about the discard the workout in progress. Are you sure?",
-					"discard": "Discard Workout"
-				},
-				"duration": "duration",
-				"previous": "previous",
-				"reps": "reps",
-				"rpe": "rpe",
-				"set": "set",
-				"sets": "sets",
-				"volume": "volume",
-				"warmupInitial": "W"
-			},
-			"predefinedList": {
-				"label": "Supa Programs",
-				"ppl": {
-					"label": "Push Pull Legs",
-					"legs": {
-						"label": "Leg Day"
-					},
-					"pull": {
-						"label": "Pull Day"
-					},
-					"push": {
-						"label": "Push Day"
-					}
-				},
-				"upperLower": {
-					"label": "Upper Lower",
-					"lower": {
-						"label": "Lower Body"
-					},
-					"upper": {
-						"label": "Upper Body"
-					}
-				}
-			},
-			"quick": {
-				"label": "Quick Workout",
-				"log": "Start Empty Workout"
-			},
-			"self": {
-				"label": "Your Programs"
-			}
-		}
-	},
-	"std": {
-		"all": "all",
-		"back": "back",
-		"bottom": "bottom",
-		"cancel": "cancel",
-		"days": "days",
-		"discard": "discard",
-		"edit": "edit",
-		"exercises": "exercises",
-		"finish": "finish",
-		"hoursMin": "h",
-		"minutesMin": "min",
-		"more": "more",
-		"next": "next",
-		"previous": "previous",
-		"reportIssue": "Found an issue? Report it here.",
-		"resume": "resume",
-		"save": "save",
-		"scrollTo": "scroll to",
-		"secondsMin": "s",
-		"top": "top",
-		"user": {
-			"type": {
-				"admin": "admin",
-				"beta": "beta",
-				"creator": "creator",
-				"regular": "regular",
-				"trainer": "trainer"
-			}
-		},
-		"workout": "workout",
-		"workoutInProgress": "Workout in progress"
-	},
-	"workouts": {
-		"frequencies": {
-			"label": "Workout Frequency"
-		},
-		"types": {
-			"bodybuilding": {
-				"name": "Bodybuilding"
-			},
-			"label": "Workout Type",
-			"powerbuilding": {
-				"name": "Powerbuilding"
-			},
-			"powerlifting": {
-				"name": "Powerlifting"
-			}
-		}
-	}
+  "auth": {
+    "errors": {
+      "email": {
+        "invalid": "Invalid email address",
+        "required": "Email is required"
+      },
+      "login": {
+        "auth/invalid-email": "Invalid email",
+        "auth/user-disabled": "User disabled",
+        "auth/user-not-found": "User not found",
+        "auth/wrong-password": "Wrong password"
+      },
+      "password": {
+        "max": "Password must be at most 32 characters long",
+        "min": "Password must be at least 8 characters long",
+        "required": "Password is required"
+      },
+      "register": {
+        "auth/email-already-in-use": "Email already in use",
+        "auth/invalid-email": "Invalid email",
+        "auth/operation-not-allowed": "Operation not allowed",
+        "auth/weak-password": "Weak password"
+      }
+    },
+    "fields": {
+      "email": {
+        "label": "Email"
+      },
+      "password": {
+        "label": "Password"
+      }
+    },
+    "login": {
+      "action": "Log In",
+      "forgotPassword": "Forgot password?",
+      "label": "Login"
+    },
+    "password": {
+      "strength": {
+        "0": "Very weak password",
+        "1": "Weak password",
+        "2": "Fair password",
+        "3": "Good password"
+      }
+    },
+    "register": {
+      "action": "Register",
+      "label": "Register"
+    },
+    "switchTo": {
+      "login": "Don't have an account? Register.",
+      "register": "Already have an account? Log In."
+    }
+  },
+  "exercises": {
+    "bench": {
+      "name": "Bench Press"
+    },
+    "deadlift": {
+      "name": "Deadlift"
+    },
+    "squat": {
+      "name": "Squat"
+    }
+  },
+  "flows": {
+    "register": {
+      "buttons": {
+        "next": "Next"
+      },
+      "steps": {
+        "0": {
+          "inputs": {
+            "username": {
+              "error": {
+                "short": "Sorry! Your username must be at least 4 characters long.",
+                "taken": "Sorry! Your username already exists, please choose another one."
+              },
+              "label": "How should we call you ?",
+              "placeholder": "Username"
+            }
+          },
+          "label": "Account"
+        },
+        "1": {
+          "label": "Workout Type"
+        },
+        "2": {
+          "label": "Frequency"
+        }
+      }
+    }
+  },
+  "lang": {
+    "en": "English",
+    "fr": "French"
+  },
+  "muscles": {
+    "chest": "Chest",
+    "hamstrings": "Hamstrings",
+    "quadriceps": "Quadriceps"
+  },
+  "pages": {
+    "admin": {
+      "label": "Admin",
+      "users": {
+        "label": "Users List"
+      }
+    },
+    "food": {
+      "label": "Food"
+    },
+    "home": {
+      "label": "Home"
+    },
+    "profile": {
+      "dashboard": {
+        "calendar": {
+          "label": "Calendar"
+        },
+        "exercises": {
+          "label": "Exercises"
+        },
+        "label": "Dashboard",
+        "measures": {
+          "label": "Measures"
+        },
+        "statistics": {
+          "label": "Statistics"
+        }
+      },
+      "label": "Profile"
+    },
+    "settings": {
+      "account": {
+        "displayName": "Display Name",
+        "displayNameExplanation": "This is your display name, which is shown to other users. It is not unique nor identifies you. It allows you to customize how you are shown to other users.",
+        "displayNamePlaceholder": "My Cool Display Name ✌",
+        "username": "Username",
+        "usernameSoon": "Sorry, but you can't change your username yet. This feature is coming soon!"
+      },
+      "label": "Settings",
+      "language": {
+        "label": "Language",
+        "select": "Select a language"
+      },
+      "list": {
+        "account": {
+          "label": "Account"
+        },
+        "language": {
+          "label": "Language"
+        },
+        "preferences": "Preferences",
+        "profile": {
+          "label": "Profile"
+        },
+        "theme": {
+          "auto": "Auto",
+          "dark": "Dark",
+          "label": "Theme",
+          "light": "Light",
+          "prevention": "This app was created using dark mode, light mode might have some issues. If any, please report them."
+        },
+        "units": {
+          "label": "Units"
+        },
+        "workouts": {
+          "label": "Workouts"
+        },
+        "yourAccount": "Your account"
+      },
+      "profile": {
+        "access": "Access",
+        "bio": "Biography",
+        "bioPlaceholder": "I'm a guy that likes powerlifting.",
+        "toggle": "Public profile",
+        "toggle_desc": "When your account is public, everything you publish can be seen by anyone.",
+        "toggle_desc_bis": "By default, you're in private which means only the people you follow will have access to what you publish and show in your account."
+      },
+      "units": {
+        "distance": "Distance Unit",
+        "measurement": "Measurement Unit",
+        "select": "Select a unit",
+        "weight": "Weight Unit"
+      }
+    },
+    "workout": {
+      "addExercise": {
+        "add": "Add {count} exercise",
+        "adds": "Add {count} exercises"
+      },
+      "community": {
+        "label": "Community"
+      },
+      "label": "Workout",
+      "log": {
+        "addExercise": "Add Exercise",
+        "addSet": "Add Set",
+        "discardModal": {
+          "content": "You're about the discard the workout in progress. Are you sure?",
+          "discard": "Discard Workout"
+        },
+        "duration": "duration",
+        "previous": "previous",
+        "reps": "reps",
+        "rpe": "rpe",
+        "set": "set",
+        "sets": "sets",
+        "volume": "volume",
+        "warmupInitial": "W"
+      },
+      "predefinedList": {
+        "label": "Supa Programs",
+        "ppl": {
+          "label": "Push Pull Legs",
+          "legs": {
+            "label": "Leg Day"
+          },
+          "pull": {
+            "label": "Pull Day"
+          },
+          "push": {
+            "label": "Push Day"
+          }
+        },
+        "upperLower": {
+          "label": "Upper Lower",
+          "lower": {
+            "label": "Lower Body"
+          },
+          "upper": {
+            "label": "Upper Body"
+          }
+        }
+      },
+      "quick": {
+        "label": "Quick Workout",
+        "log": "Start Empty Workout"
+      },
+      "self": {
+        "label": "Your Programs"
+      }
+    }
+  },
+  "std": {
+    "all": "all",
+    "back": "back",
+    "bottom": "bottom",
+    "cancel": "cancel",
+    "days": "days",
+    "discard": "discard",
+    "edit": "edit",
+    "exercises": "exercises",
+    "finish": "finish",
+    "hoursMin": "h",
+    "minutesMin": "min",
+    "more": "more",
+    "next": "next",
+    "previous": "previous",
+    "reportIssue": "Found an issue? Report it here.",
+    "resume": "resume",
+    "save": "save",
+    "scrollTo": "scroll to",
+    "secondsMin": "s",
+    "top": "top",
+    "user": {
+      "type": {
+        "admin": "admin",
+        "beta": "beta",
+        "creator": "creator",
+        "regular": "regular",
+        "trainer": "trainer"
+      }
+    },
+    "workout": "workout",
+    "workoutInProgress": "Workout in progress"
+  },
+  "workouts": {
+    "frequencies": {
+      "label": "Workout Frequency"
+    },
+    "types": {
+      "bodybuilding": {
+        "name": "Bodybuilding"
+      },
+      "label": "Workout Type",
+      "powerbuilding": {
+        "name": "Powerbuilding"
+      },
+      "powerlifting": {
+        "name": "Powerlifting"
+      }
+    }
+  }
 }

@@ -27,10 +27,16 @@ export type UserType = (typeof userTypes)[number];
 export const userTypes = ['regular', 'beta', 'trainer', 'creator', 'admin'] as const;
 
 export interface UserDataUnits {
-	weight: 'kg' | 'lb';
-	distance: 'km' | 'mi';
-	bodyMeasurements: 'cm' | 'in';
+	weight: (typeof weightUnits)[number];
+	distance: (typeof distanceUnits)[number];
+	bodyMeasurements: (typeof measurementUnits)[number];
 }
+
+export const weightUnits = ['kg', 'lb'] as const;
+
+export const distanceUnits = ['km', 'mi'] as const;
+
+export const measurementUnits = ['cm', 'in'] as const;
 
 export interface UserDataProfile {
 	biography: string;

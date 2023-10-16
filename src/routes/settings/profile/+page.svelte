@@ -42,25 +42,28 @@
 
 <SettingsHeader {loading} {fRel} {saveButtonEnabled} on:save={onSave} />
 
-<section class="flex flex-col gap-2">
+<section class="flex flex-col gap-4">
 	<Label class="flex flex-col gap-2">
-		{$t('pages.settings.profile.bio')}
+		<h2 class="text-xl">{$t('pages.settings.profile.bio')}</h2>
 		<Textarea
 			placeholder={$t('pages.settings.profile.bioPlaceholder')}
 			class="placeholder:text-muted-foreground/75"
 			bind:value={biography}
 		/>
 	</Label>
-	<Label class="flex items-center justify-between gap-2 mt-2">
-		<span>{$t('pages.settings.profile.toggle')}</span>
-		<Switch onCheckedChange={onPublicChange} />
-	</Label>
-	<p class="text-muted-foreground text-sm">
-		{$t('pages.settings.profile.toggle_desc')}
-	</p>
-	<p class="text-muted-foreground text-sm">
-		{$t('pages.settings.profile.toggle_desc_bis')}
-	</p>
+	<div class="flex flex-col gap-2">
+		<h2 class="text-xl">{$t('pages.settings.profile.access')}</h2>
+		<Label class="flex items-center justify-between gap-2">
+			<span>{$t('pages.settings.profile.toggle')}</span>
+			<Switch onCheckedChange={onPublicChange} />
+		</Label>
+		<p class="text-muted-foreground text-sm">
+			{$t('pages.settings.profile.toggle_desc')}
+		</p>
+		<p class="text-muted-foreground text-sm">
+			{$t('pages.settings.profile.toggle_desc_bis')}
+		</p>
+	</div>
 </section>
 
 <style lang="scss">

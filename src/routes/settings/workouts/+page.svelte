@@ -13,6 +13,7 @@
 	import Image from '$lib/components/base/Image.svelte';
 	import { updateUserDataWorkout } from '$lib/firebase/user/actions';
 	import { Slider } from '$lib/components/ui/slider';
+	import { theme } from '$lib/stores/theme';
 
 	export let data: LayoutData;
 
@@ -29,7 +30,7 @@
 	const handleSave = async () => {
 		loading = true;
 
-		updateUserDataWorkout($userData?.uid, workout);
+		await updateUserDataWorkout($userData?.uid, workout);
 
 		loading = false;
 	};
@@ -45,6 +46,9 @@
 
 	$: hasChangedWorkoutFrequency = workout.frequency !== $userData?.workout.frequency;
 	$: hasChangedWorkoutType = workout.type !== $userData?.workout.type;
+	$: isLight =
+		$theme === 'light' ||
+		($theme === 'auto' && !window?.matchMedia('(prefers-color-scheme: dark)').matches);
 </script>
 
 <SettingsHeader
@@ -65,7 +69,7 @@
 				type="button"
 			>
 				<span> {$t('workouts.types.bodybuilding.name')} </span>
-				<div class="img">
+				<div class="img" class:light={isLight}>
 					<Image
 						src="/images/flows/register/bodybuilding.png"
 						alt={$t('workouts.types.bodybuilding.name')}
@@ -80,7 +84,7 @@
 				type="button"
 			>
 				<span> {$t('workouts.types.powerbuilding.name')} </span>
-				<div class="img">
+				<div class="img" class:light={isLight}>
 					<Image
 						src="/images/flows/register/powerbuilding.png"
 						alt={$t('workouts.types.powerbuilding.name')}
@@ -95,7 +99,7 @@
 				type="button"
 			>
 				<span> {$t('workouts.types.powerlifting.name')} </span>
-				<div class="img">
+				<div class="img" class:light={isLight}>
 					<Image
 						src="/images/flows/register/powerlifting.png"
 						alt={$t('workouts.types.powerlifting.name')}
@@ -113,6 +117,7 @@
 					min={2}
 					step={1}
 					onValueChange={handleValueChange}
+					class="cursor-pointer"
 				/>
 			</div>
 
@@ -175,6 +180,10 @@
 					width: 100%;
 					max-height: 110px;
 					flex: 1 0 auto;
+
+					&.light {
+						filter: invert(1);
+					}
 				}
 			}
 		}

@@ -50,7 +50,7 @@
 							{user.username}
 						</span>
 						<div class="type">
-							<Button on:click={() => showTypeList(user.username)}>
+							<Button class="w-20" on:click={() => showTypeList(user.username)}>
 								{capitalizeFirstLetter($t(`std.user.type.${user.type}`))}
 							</Button>
 							<div
