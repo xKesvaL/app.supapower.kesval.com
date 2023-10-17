@@ -16,3 +16,12 @@ export const deleteCurrentWorkout = async (uid: string) => {
 export const updateCurrentWorkoutExercises = async (uid: string, exercises: WorkoutExercise[]) => {
 	await updateDoc(doc(firestore, 'workout', uid), { exercises });
 };
+
+export const updateSetsOfCurrentWorkoutExercise = async (
+	uid: string,
+	exercises: WorkoutExercise[]
+) => {
+	await updateDoc(doc(firestore, 'workout', uid), {
+		exercises
+	});
+};
