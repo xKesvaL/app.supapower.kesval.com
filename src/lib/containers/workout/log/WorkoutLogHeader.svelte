@@ -6,7 +6,7 @@
 	export let fRel: string;
 </script>
 
-<div class="wrapper">
+<div class="wrapper container">
 	<header class="page-header">
 		<div class="start">
 			<Button

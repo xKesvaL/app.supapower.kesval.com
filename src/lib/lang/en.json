@@ -196,6 +196,9 @@
       },
       "label": "Workout",
       "log": {
+        "actions": {
+          "open": "Open menu"
+        },
         "addExercise": "Add Exercise",
         "addSet": "Add Set",
         "discardModal": {

@@ -7,7 +7,6 @@ export interface WorkoutExerciseSet {
 	reps: number | null;
 	rpe: number | null;
 	done: boolean;
-	timer: number;
 }
 
 export type WorkoutExerciseSetType = WorkoutExerciseSet['type'];
@@ -15,6 +14,7 @@ export type WorkoutExerciseSetType = WorkoutExerciseSet['type'];
 export interface WorkoutExercise {
 	exerciseName: ExerciseName;
 	sets: WorkoutExerciseSet[];
+	timer: number;
 }
 
 export interface PredefinedWorkout {

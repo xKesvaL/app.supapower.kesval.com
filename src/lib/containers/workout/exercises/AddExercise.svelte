@@ -48,10 +48,10 @@
 								weight: null,
 								rpe: null,
 								type: 'working',
-								done: false,
-								timer: 120
+								done: false
 							}
-						]
+						],
+						timer: 120
 					};
 				})
 			});
@@ -69,10 +69,10 @@
 								weight: null,
 								rpe: null,
 								type: 'working' as WorkoutExerciseSetType,
-								done: false,
-								timer: 120
+								done: false
 							}
-						]
+						],
+						timer: 120
 					};
 				})
 			]);

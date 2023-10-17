@@ -18,11 +18,10 @@ export const predefinedWorkouts: WorkoutList = {
 						reps: 8,
 						rpe: 5,
 						weight: 40,
-						weightType: 'percentage',
-						done: false,
-						timer: 120
+						done: false
 					}
-				]
+				],
+				timer: 120
 			}
 		]
 	},
@@ -36,11 +35,10 @@ export const predefinedWorkouts: WorkoutList = {
 						reps: 8,
 						rpe: 5,
 						weight: 40,
-						weightType: 'percentage',
-						done: false,
-						timer: 120
+						done: false
 					}
-				]
+				],
+				timer: 120
 			}
 		]
 	},
@@ -54,11 +52,10 @@ export const predefinedWorkouts: WorkoutList = {
 						reps: 8,
 						rpe: 5,
 						weight: 40,
-						weightType: 'percentage',
-						done: false,
-						timer: 120
+						done: false
 					}
-				]
+				],
+				timer: 120
 			}
 		]
 	},
@@ -72,11 +69,10 @@ export const predefinedWorkouts: WorkoutList = {
 						reps: 8,
 						rpe: 5,
 						weight: 40,
-						weightType: 'percentage',
-						done: false,
-						timer: 120
+						done: false
 					}
-				]
+				],
+				timer: 120
 			}
 		]
 	},
@@ -90,11 +86,10 @@ export const predefinedWorkouts: WorkoutList = {
 						reps: 8,
 						rpe: 5,
 						weight: 40,
-						weightType: 'percentage',
-						done: false,
-						timer: 120
+						done: false
 					}
-				]
+				],
+				timer: 120
 			}
 		]
 	}
