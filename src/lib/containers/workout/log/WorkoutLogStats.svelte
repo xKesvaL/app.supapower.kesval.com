@@ -39,7 +39,7 @@
 {#if $currentWorkout}
 	<section class="container" transition:fly={{ opacity: 0, y: -80, duration: 300 }}>
 		<div>
-			<span>
+			<span class="text-xs">
 				{capitalizeFirstLetter($t('pages.workout.log.duration'))}
 			</span>
 			{durationDate.format(
@@ -51,14 +51,14 @@
 			)}
 		</div>
 		<div>
-			<span>
+			<span class="text-xs">
 				{capitalizeFirstLetter($t('pages.workout.log.volume'))}
 			</span>
 			{volume}
 			{$userData.units.weight}
 		</div>
 		<div>
-			<span>
+			<span class="text-xs">
 				{capitalizeFirstLetter($t('pages.workout.log.sets'))}
 			</span>
 			{sets}
@@ -70,7 +70,7 @@
 <style lang="scss">
 	section {
 		--ct-padding: 0.5rem 1rem;
-		border-bottom: 1px solid rgba(var(--base-500-rgb), 0.5);
+		border-bottom: 1px solid hsl(var(--muted));
 		display: grid;
 		grid-template-columns: 3fr 2fr 2fr;
 		position: relative;
@@ -79,10 +79,10 @@
 		div {
 			display: flex;
 			flex-direction: column;
+			font-size: var(--fs-300);
 
 			span {
-				font-size: var(--fs-200);
-				color: var(--base-600);
+				color: hsl(var(--base-600));
 			}
 		}
 	}

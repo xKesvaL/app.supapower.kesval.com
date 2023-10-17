@@ -29,3 +29,9 @@ export interface Workout extends PredefinedWorkout {
 export type WorkoutStore = Readable<Workout | undefined | null>;
 
 export type WorkoutStoreContext = Readable<Workout>;
+
+export interface WorkoutStats {
+	sets: number;
+	volume: number;
+	avgRpe: number;
+}

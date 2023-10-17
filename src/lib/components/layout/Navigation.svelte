@@ -71,8 +71,7 @@
 			bottom: auto;
 			top: 0;
 			height: 100vh;
-			width: 12rem;
-
+			min-width: 12rem;
 			flex-direction: column;
 			justify-content: flex-start;
 			align-items: flex-start;

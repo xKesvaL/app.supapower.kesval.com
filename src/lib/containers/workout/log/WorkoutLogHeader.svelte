@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { Button } from '$lib/components/ui/button';
 	import IconChevronDown from '$lib/icons/IconChevronDown.svelte';
 	import { t } from 'svelte-i18n';
 
@@ -8,17 +9,23 @@
 <div class="wrapper">
 	<header class="page-header">
 		<div class="start">
-			<a class="button icon" href={fRel}>
+			<Button
+				size="icon"
+				class="p-2 bg-transparent hover:bg-transparent text-foreground"
+				href={fRel}
+			>
 				<IconChevronDown />
-			</a>
+			</Button>
 			<span>{$t('pages.workout.label')}</span>
 		</div>
 		<div></div>
 		<div class="end">
-			<button class="primary"> Finish </button>
+			<Button>Finish</Button>
 		</div>
 	</header>
-	<progress value="50" max="100" class="primary"></progress>
+	<div class="w-full h-1 bg-muted">
+		<div class="h-full bg-primary" style="width: 50%;"></div>
+	</div>
 </div>
 
 <style lang="scss">
@@ -33,29 +40,7 @@
 		z-index: 20;
 
 		header {
-			background: var(--base-100);
-
-			.start {
-				.icon {
-					width: 40px;
-					height: 40px;
-					padding: 8px;
-					background: none;
-				}
-
-				gap: 0.5rem;
-				font-size: var(--fs-500);
-				font-weight: 600;
-			}
-		}
-
-		progress {
-			width: 100%;
-			height: 0.25rem;
-			border: none;
-			border-radius: 0;
-			max-width: 1280px;
-			margin: 0 auto;
+			background: hsl(var(--base-100));
 		}
 	}
 </style>
