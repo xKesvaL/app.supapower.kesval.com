@@ -17,10 +17,13 @@
 	} from '$lib/firebase/workout/actions';
 	import type { UserStoreContext } from '$lib/firebase/auth/types';
 	import { goto } from '$app/navigation';
+	import { Button } from '$lib/components/ui/button';
+	import { Input } from '$lib/components/ui/input';
 
 	export let fRel: string;
 
 	let selectedExercises: ExerciseName[] = [];
+	let search: string = '';
 
 	const user: UserStoreContext = getContext('user');
 	const currentWorkout: WorkoutStore = getContext('currentWorkout');
@@ -34,12 +37,12 @@
 		selectedExercises = [...selectedExercises, exercise];
 	};
 
-	const addExercisesToWorkout = async () => {
+	const addExercisesToWorkout = async (exercises: ExerciseName[]) => {
 		if (!$currentWorkout) {
 			await createCurrentWorkout($user.uid, {
 				startDate: new Date().toISOString(),
 				endDate: null,
-				exercises: selectedExercises.map((e): WorkoutExercise => {
+				exercises: exercises.map((e) => {
 					return {
 						exerciseName: e,
 						sets: [
@@ -52,11 +55,9 @@
 							}
 						],
 						timer: 120
-					};
+					} satisfies WorkoutExercise;
 				})
 			});
-
-			await goto(fRel);
 		} else {
 			await updateCurrentWorkoutExercises($user.uid, [
 				...$currentWorkout.exercises,
@@ -76,114 +77,50 @@
 					};
 				})
 			]);
-
-			await goto(fRel);
 		}
+
+		await goto(fRel);
 	};
 </script>
 
-<section class="container">
-	{#each exerciseList as exercise}
-		<button
-			on:click={() => selectExercise(exercise.name)}
-			class="exercise no-anim"
-			use:autoAnimate={{ duration: 200 }}
-		>
-			{#if selectedExercises.includes(exercise.name)}
-				<div class="selected" />
-			{/if}
-			<div class="image">img</div>
-			<div class="description">
-				<h2>
-					{$t(`exercises.${exercise.name}.name`)}
-				</h2>
-				<p>
-					{$t(`muscles.${exercise.primaryMuscle.name}`)}
-				</p>
-			</div>
-			<a href="/" class="more">
-				<IconInfoCircle />
-			</a>
-		</button>
-	{/each}
+<section class="container flex flex-col gap-4">
+	<Input name="search" bind:value={search} />
+	<div>
+		{#each exerciseList as exercise}
+			<button
+				on:click={() => selectExercise(exercise.name)}
+				class="w-full px-2 py-3 gap-4 flex border-b last:border-none items-center"
+				use:autoAnimate={{ duration: 200 }}
+			>
+				{#if selectedExercises.includes(exercise.name)}
+					<div class="h-12 rounded-full my-auto w-1 bg-primary" />
+				{/if}
+				<div class="rounded-full bg-muted w-12 h-12 flex justify-center items-center">img</div>
+				<div class="grid text-left flex-grow">
+					<h2 class="font-sans !font-bold text-lg leading-tight">
+						{$t(`exercises.${exercise.name}.name`)}
+					</h2>
+					<p>
+						{$t(`muscles.${exercise.primaryMuscle.name}`)}
+					</p>
+				</div>
+				<Button
+					href="/"
+					size="icon"
+					class="p-2 bg-transparent hover:bg-transparent text-muted-foreground"
+				>
+					<IconInfoCircle />
+				</Button>
+			</button>
+		{/each}
+	</div>
 </section>
 {#if selectedExercises.length > 0}
-	<button
-		class="add primary"
-		transition:fly={{ y: 20, duration: 300, opacity: 0 }}
-		on:click={addExercisesToWorkout}
-	>
-		{$t(`pages.workout.addExercise.add${selectedExercises.length > 0 ? 's' : ''}`, {
-			values: { count: selectedExercises.length }
-		})}
-	</button>
+	<div class="fixed bottom-16 left-4 right-4" transition:fly={{ y: 20, duration: 300, opacity: 0 }}>
+		<Button class="w-full" on:click={() => addExercisesToWorkout(selectedExercises)}>
+			{$t(`pages.workout.addExercise.add${selectedExercises.length > 1 ? 's' : ''}`, {
+				values: { count: selectedExercises.length }
+			})}
+		</Button>
+	</div>
 {/if}
-
-<style lang="scss">
-	button.add {
-		position: fixed;
-		bottom: 4rem;
-		left: 1rem;
-		right: 1rem;
-	}
-
-	section.container {
-		button.exercise {
-			width: 100%;
-			height: auto;
-			padding: 0.75rem 0rem 0.75rem 0.5rem;
-			justify-content: flex-start;
-			gap: 1rem;
-			background: none;
-			border-bottom: 1px solid var(--base-500);
-			border-radius: 0;
-
-			&:last-child {
-				border-bottom: none;
-			}
-
-			.selected {
-				width: 0.25rem;
-				height: 3rem;
-				background: var(--primary-500);
-				border-radius: 0.25rem;
-				margin-right: -0.25rem;
-			}
-
-			.image {
-				width: 3rem;
-				height: 3rem;
-				background: var(--base-950);
-				border-radius: 9999px;
-				overflow: hidden;
-			}
-
-			.description {
-				text-align: left;
-				flex: 1;
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-
-				h2 {
-					font-size: var(--fs-500);
-					font-weight: 400;
-				}
-
-				p {
-					font-size: var(--fs-400);
-					font-weight: 300;
-					color: var(--base-700);
-				}
-			}
-
-			.more {
-				width: 48px;
-				height: 48px;
-				padding: 12px;
-				margin-left: auto;
-				color: var(--secondary-500);
-			}
-		}
-	}
-</style>

@@ -20,8 +20,10 @@
 	>
 	{#if $currentWorkout}
 		<div class="grid grid-cols-2 gap-2" transition:fly={{ opacity: 0, y: -20, duration: 300 }}>
-			<Button class="bg-card text-destructive">{$t('pages.settings.label')}</Button>
-			<Button class="bg-card text-info" on:click={showDiscardModal}>
+			<Button class="bg-muted text-destructive hover:bg-muted/90"
+				>{$t('pages.settings.label')}</Button
+			>
+			<Button class="bg-muted text-info hover:bg-muted/90" on:click={showDiscardModal}>
 				{$t('pages.workout.log.discardModal.discard')}
 			</Button>
 		</div>

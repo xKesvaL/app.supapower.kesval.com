@@ -5,7 +5,7 @@
 	export let fRel: string;
 </script>
 
-<header class="page-header">
+<header class="page-header bg-muted/50">
 	<div class="start">
 		<a href={fRel}>
 			<IconArrowLeft />
