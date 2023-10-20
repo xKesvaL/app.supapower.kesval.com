@@ -8,6 +8,7 @@
 	import * as Table from '$lib/components/ui/table';
 	import ExerciseDataTableActions from './ExerciseDataTableActions.svelte';
 	import ExerciseDataTableExerciseActions from './ExerciseDataTableExerciseActions.svelte';
+	import ExerciseDataIconCheck from './ExerciseDataIconCheck.svelte';
 
 	export let exerciseSets: WorkoutExerciseSet[] = [];
 
@@ -33,7 +34,9 @@
 		}),
 		table.column({
 			accessor: 'done',
-			header: '✅'
+			header: () => {
+				return createRender(ExerciseDataIconCheck);
+			}
 		}),
 		table.column({
 			accessor: 'type',
