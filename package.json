@@ -38,6 +38,7 @@
     "@total-typescript/ts-reset": "^0.5.1",
     "@types/node": "latest",
     "@types/nprogress": "^0.2.0",
+    "@types/uuid": "^9.0.6",
     "@typescript-eslint/eslint-plugin": "latest",
     "@typescript-eslint/parser": "latest",
     "autoprefixer": "^10.4.14",
@@ -74,5 +75,8 @@
     "vite": "latest",
     "zod": "latest"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "uuid": "^9.0.1"
+  }
 }

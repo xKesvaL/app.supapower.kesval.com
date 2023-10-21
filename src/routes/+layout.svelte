@@ -27,10 +27,11 @@
 	import FlowRegister from '$lib/containers/flows/flowRegister/FlowRegister.svelte';
 	import { setupViewTransition } from 'sveltekit-view-transition';
 
-	import type { WorkoutStore } from '$lib/firebase/workout/types';
 	import WorkoutInProgress from '$lib/containers/workout/layout/WorkoutInProgress.svelte';
 	import Overlay from '$lib/components/layout/Overlay.svelte';
 	import { overlayShown } from '$lib/stores/overlay';
+	import { createCurrentWorkoutStore } from '$lib/stores/currentWorkout/store';
+	import type { CurrentWorkoutStore } from '$lib/stores/currentWorkout/types';
 
 	nprogress.configure({ minimum: 0.2, easing: 'ease', speed: 250 });
 	$: $navigating ? nprogress.start() : nprogress.done();
@@ -38,16 +39,18 @@
 	const user = createUserStore(auth);
 
 	let userData: UserDataStore;
-	let currentWorkout: WorkoutStore;
+	let currentWorkout: CurrentWorkoutStore;
 
 	$: if ($user) {
 		userData = createDocStore(firestore, doc(firestore, 'users', $user.uid));
-		currentWorkout = createDocStore(firestore, doc(firestore, 'workout', $user.uid));
+		currentWorkout = createCurrentWorkoutStore($user.uid);
 	}
 
 	$: setContext('user', user);
 	$: setContext('userData', userData);
 	$: setContext('currentWorkout', currentWorkout);
+
+	$: currentWorkoutDoc = currentWorkout?.workoutDoc;
 
 	setupViewTransition();
 </script>
@@ -80,9 +83,9 @@
 
 			<!-- Workout in Progress reminder -->
 			<!-- Shown if not in /workout/log[/...] or /settings[/...] -->
-			{#if !$page.url.pathname.startsWith('/workout/log') && !$page.url.pathname.startsWith('/settings') && !$page.url.pathname.startsWith('/admin') && $currentWorkout}
+			{#if !$page.url.pathname.startsWith('/workout/log') && !$page.url.pathname.startsWith('/settings') && !$page.url.pathname.startsWith('/admin') && $currentWorkoutDoc}
 				<WorkoutInProgress />
-			{:else if $currentWorkout === undefined || $currentWorkout}
+			{:else if $currentWorkoutDoc === undefined || $currentWorkoutDoc}
 				<!-- 
 					If current workout is loading or exists but is in the pages cited before,
 					we leave it in the DOM to provide a smooth animation and let the discard modal work

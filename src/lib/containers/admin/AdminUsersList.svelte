@@ -8,7 +8,7 @@
 	import IconInfoCircle from '$lib/icons/IconInfoCircle.svelte';
 	import { ROUTES } from '$lib/config';
 	import autoAnimate from '@formkit/auto-animate';
-	import { updateUserDataType } from '$lib/firebase/user/actions';
+	import { updateUserData } from '$lib/firebase/user/actions';
 	import { overlayShown, overlayStrength } from '$lib/stores/overlay';
 	import { t } from 'svelte-i18n';
 	import { capitalizeFirstLetter } from '$lib/utils/functions';
@@ -33,7 +33,7 @@
 	};
 
 	const setUserType = (uid: string, type: UserType) => {
-		updateUserDataType(uid, type);
+		updateUserData(uid, { type });
 		overlayShown.set(false);
 		currentShownUser = null;
 	};

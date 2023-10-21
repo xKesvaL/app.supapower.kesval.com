@@ -1,6 +1,6 @@
 import { writeBatch, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { firestore } from '../config';
-import type { UserData, UserDataWorkout, UserType } from './types';
+import type { UserData, UserDataWorkout } from './types';
 import type { Locale } from '$lib/typings/standard';
 
 const defaultUserData: Omit<UserData, 'uid' | 'username' | 'lang' | 'workout'> = {
@@ -40,24 +40,8 @@ const createUserData = async (data: CreateUserDataFunctionData) => {
 	await batch.commit();
 };
 
-const updateUserDataWorkout = async (uid: string, workout: UserDataWorkout) => {
-	await updateDoc(doc(firestore, 'users', uid), {
-		workout
-	});
-};
-
-const updateUserDataType = async (uid: string, type: UserType) => {
-	await updateDoc(doc(firestore, 'users', uid), { type });
-};
-
 const updateUserData = async (uid: string, data: Partial<UserData>) => {
 	await updateDoc(doc(firestore, 'users', uid), data);
 };
 
-export {
-	isUsernameUnique,
-	createUserData,
-	updateUserDataWorkout,
-	updateUserDataType,
-	updateUserData
-};
+export { isUsernameUnique, createUserData, updateUserData };

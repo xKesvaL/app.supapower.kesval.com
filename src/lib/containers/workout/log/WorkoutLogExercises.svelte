@@ -1,12 +1,11 @@
 <script lang="ts">
 	import ExerciseDataTable from '$lib/components/exercises/data/ExerciseDataTable.svelte';
-	import type { UserDataStoreContext } from '$lib/firebase/user/types';
-	import { updateSetsOfCurrentWorkoutExercise } from '$lib/firebase/workout/actions';
-	import type { WorkoutStoreContext } from '$lib/firebase/workout/types';
+	import type { CurrentWorkoutStoreContext } from '$lib/stores/currentWorkout/types';
 	import { getContext } from 'svelte';
 
-	const currentWorkout: WorkoutStoreContext = getContext('currentWorkout');
-	const userData: UserDataStoreContext = getContext('userData');
+	const { workoutDoc, exercisesCol }: CurrentWorkoutStoreContext = getContext('currentWorkout');
+
+	$: console.log($exercisesCol);
 
 	// const addSet = async (index: number) => {
 	// 	const exercises = $currentWorkout.exercises;
@@ -31,9 +30,14 @@
 </script>
 
 <section class="container">
-	{#each $currentWorkout.exercises as exercise}
-		<ExerciseDataTable exerciseSets={exercise.sets} />
-	{/each}
+	{#if $exercisesCol === undefined}
+		<span class="loading"> </span>
+	{:else if $exercisesCol}
+		{#each $exercisesCol as exercise, index}
+			<h2>{exercise.exerciseName}</h2>
+			<ExerciseDataTable exerciseSets={exercise.sets} {index} />
+		{/each}
+	{/if}
 </section>
 
 <style lang="scss">

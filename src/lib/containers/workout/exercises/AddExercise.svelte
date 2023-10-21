@@ -5,17 +5,8 @@
 	import { t } from 'svelte-i18n';
 	import autoAnimate from '@formkit/auto-animate';
 	import { fly } from 'svelte/transition';
-	import type {
-		WorkoutExercise,
-		WorkoutExerciseSetType,
-		WorkoutStore
-	} from '$lib/firebase/workout/types';
+	import type { CurrentWorkoutStore, WorkoutExercise } from '$lib/stores/currentWorkout/types';
 	import { getContext } from 'svelte';
-	import {
-		createCurrentWorkout,
-		updateCurrentWorkoutExercises
-	} from '$lib/firebase/workout/actions';
-	import type { UserStoreContext } from '$lib/firebase/auth/types';
 	import { goto } from '$app/navigation';
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
@@ -25,8 +16,8 @@
 	let selectedExercises: ExerciseName[] = [];
 	let search: string = '';
 
-	const user: UserStoreContext = getContext('user');
-	const currentWorkout: WorkoutStore = getContext('currentWorkout');
+	const { workoutDoc, exercisesCol, ...currentWorkout }: CurrentWorkoutStore =
+		getContext('currentWorkout');
 
 	const selectExercise = (exercise: ExerciseName) => {
 		if (selectedExercises.includes(exercise)) {
@@ -38,46 +29,30 @@
 	};
 
 	const addExercisesToWorkout = async (exercises: ExerciseName[]) => {
-		if (!$currentWorkout) {
-			await createCurrentWorkout($user.uid, {
+		if (!$workoutDoc) {
+			await currentWorkout.createWorkout({
 				startDate: new Date().toISOString(),
-				endDate: null,
-				exercises: exercises.map((e) => {
-					return {
-						exerciseName: e,
-						sets: [
-							{
-								reps: null,
-								weight: null,
-								rpe: null,
-								type: 'working',
-								done: false
-							}
-						],
-						timer: 120
-					} satisfies WorkoutExercise;
-				})
+				endDate: null
 			});
-		} else {
-			await updateCurrentWorkoutExercises($user.uid, [
-				...$currentWorkout.exercises,
-				...selectedExercises.map((e): WorkoutExercise => {
-					return {
-						exerciseName: e,
-						sets: [
-							{
-								reps: null,
-								weight: null,
-								rpe: null,
-								type: 'working' as WorkoutExerciseSetType,
-								done: false
-							}
-						],
-						timer: 120
-					};
-				})
-			]);
 		}
+
+		await currentWorkout.addExercises(
+			exercises.map((e) => {
+				return {
+					exerciseName: e,
+					sets: [
+						{
+							reps: null,
+							weight: null,
+							rpe: null,
+							type: 'working',
+							done: false
+						}
+					],
+					timer: 120
+				} satisfies WorkoutExercise;
+			})
+		);
 
 		await goto(fRel);
 	};

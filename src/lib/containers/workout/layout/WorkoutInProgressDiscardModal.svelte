@@ -3,9 +3,8 @@
 	import { page } from '$app/stores';
 	import { Button } from '$lib/components/ui/button';
 	import { ROUTES } from '$lib/config';
-	import type { UserStoreContext } from '$lib/firebase/auth/types';
-	import { deleteCurrentWorkout } from '$lib/firebase/workout/actions';
 	import IconX from '$lib/icons/IconX.svelte';
+	import type { CurrentWorkoutStoreContext } from '$lib/stores/currentWorkout/types';
 	import { currentWorkoutDiscardModalState } from '$lib/stores/currentWorkoutDiscardModal';
 	import { capitalizeFirstLetter } from '$lib/utils/functions';
 	import { getContext } from 'svelte';
@@ -14,7 +13,7 @@
 
 	let loading = false;
 
-	const user: UserStoreContext = getContext('user');
+	const currentWorkout: CurrentWorkoutStoreContext = getContext('currentWorkout');
 
 	const closeDiscardModal = () => {
 		currentWorkoutDiscardModalState.set(false);
@@ -23,7 +22,7 @@
 	const discard = async () => {
 		loading = true;
 
-		await deleteCurrentWorkout($user.uid);
+		await currentWorkout.deleteWorkout();
 
 		loading = false;
 		currentWorkoutDiscardModalState.set(false);

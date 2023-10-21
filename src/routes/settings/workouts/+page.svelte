@@ -11,7 +11,7 @@
 	import { getContext } from 'svelte';
 	import { t } from 'svelte-i18n';
 	import Image from '$lib/components/base/Image.svelte';
-	import { updateUserDataWorkout } from '$lib/firebase/user/actions';
+	import { updateUserData } from '$lib/firebase/user/actions';
 	import { Slider } from '$lib/components/ui/slider';
 	import { theme } from '$lib/stores/theme';
 
@@ -30,7 +30,7 @@
 	const handleSave = async () => {
 		loading = true;
 
-		await updateUserDataWorkout($userData?.uid, workout);
+		await updateUserData($userData?.uid, { workout });
 
 		loading = false;
 	};

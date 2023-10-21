@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { UserDataStoreContext } from '$lib/firebase/user/types';
-	import type { WorkoutExerciseSet } from '$lib/firebase/workout/types';
+	import type { WorkoutExerciseSet } from '$lib/stores/currentWorkout/types';
 	import { getContext } from 'svelte';
 	import { createTable, Render, Subscribe, createRender } from 'svelte-headless-table';
 	import { t } from 'svelte-i18n';
@@ -11,6 +11,7 @@
 	import ExerciseDataIconCheck from './ExerciseDataIconCheck.svelte';
 
 	export let exerciseSets: WorkoutExerciseSet[] = [];
+	export let index: number;
 
 	const userData = getContext<UserDataStoreContext>('userData');
 

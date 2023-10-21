@@ -5,24 +5,24 @@
 	import WorkoutLogHeader from '$lib/containers/workout/log/WorkoutLogHeader.svelte';
 	import WorkoutLogStats from '$lib/containers/workout/log/WorkoutLogStats.svelte';
 
-	import type { WorkoutStore } from '$lib/firebase/workout/types';
 	import WorkoutLogFooter from '$lib/containers/workout/log/WorkoutLogFooter.svelte';
 	import WorkoutLogExercises from '$lib/containers/workout/log/WorkoutLogExercises.svelte';
+	import type { CurrentWorkoutStore } from '$lib/stores/currentWorkout/types';
 
 	export let data: LayoutData;
 
 	$: ({ fRel } = data);
 
-	const currentWorkout: WorkoutStore = getContext('currentWorkout') || null;
+	const { workoutDoc } = getContext<CurrentWorkoutStore>('currentWorkout');
 </script>
 
 <WorkoutLogHeader {fRel} />
-<WorkoutLogStats {currentWorkout} />
-{#if $currentWorkout === undefined}
+<WorkoutLogStats />
+{#if $workoutDoc === undefined}
 	<section class="container load">
 		<span class="loading" />
 	</section>
-{:else if $currentWorkout !== null}
+{:else if $workoutDoc !== null}
 	<WorkoutLogExercises />
 {/if}
 <WorkoutLogFooter />
