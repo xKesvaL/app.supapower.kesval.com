@@ -98,7 +98,7 @@
 
 	$: setDisplayMode(displayMode);
 
-	let online = navigator.onLine;
+	let online = true;
 
 	const windowOnline = () => {
 		online = true;

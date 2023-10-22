@@ -5,7 +5,7 @@
 	import { Label } from '$lib/components/ui/label';
 	import { Input } from '$lib/components/ui/input';
 
-	import { authLoginWithPassword, authWithGoogle } from '$lib/firebase/auth/actions';
+	import { authLoginWithPassword /* authWithGoogle */ } from '$lib/firebase/auth/actions';
 	import { AuthLoginWithPasswordSchema } from '$lib/firebase/auth/schemas';
 	import type { AuthError } from '$lib/firebase/auth/types';
 
@@ -17,12 +17,12 @@
 	import IconEyeOff from '$lib/icons/IconEyeOff.svelte';
 	import IconEye from '$lib/icons/IconEye.svelte';
 	import { ROUTES } from '$lib/config';
-	import IconGoogle from '$lib/icons/IconGoogle.svelte';
+	// import IconGoogle from '$lib/icons/IconGoogle.svelte';
 
 	let fieldErrors: FormattedZodError = {};
 	let authError: AuthError | null = null;
 	let loading = false;
-	let googleLoading = false;
+	// let googleLoading = false;
 	let showPassword = false;
 
 	const dispatch = createEventDispatcher();
@@ -55,20 +55,20 @@
 		loading = false;
 	};
 
-	const loginWithGoogle = async (e: Event) => {
-		e.preventDefault();
-		googleLoading = true;
-		fieldErrors = {};
-		authError = null;
+	// const loginWithGoogle = async (e: Event) => {
+	// 	e.preventDefault();
+	// 	googleLoading = true;
+	// 	fieldErrors = {};
+	// 	authError = null;
 
-		const authRes = await authWithGoogle();
+	// 	const authRes = await authWithGoogle();
 
-		if (authRes.error) {
-			authError = authRes.error;
-		}
+	// 	if (authRes.error) {
+	// 		authError = authRes.error;
+	// 	}
 
-		googleLoading = false;
-	};
+	// 	googleLoading = false;
+	// };
 
 	const switchTo = () => {
 		dispatch('switchTo', 'register');
@@ -142,7 +142,7 @@
 				{$t('auth.login.action')}
 			{/if}
 		</Button>
-		<Button on:click={loginWithGoogle} variant="secondary" type="button" class="gap-2">
+		<!-- <Button on:click={loginWithGoogle} variant="secondary" type="button" class="gap-2">
 			{#if googleLoading}
 				<span class="loading" />
 			{:else}
@@ -151,7 +151,7 @@
 				</div>
 				{$t('auth.login.actionGoogle')}
 			{/if}
-		</Button>
+		</Button> -->
 		<Button
 			on:click={() => switchTo()}
 			role="button"

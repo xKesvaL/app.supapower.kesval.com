@@ -124,7 +124,7 @@
 			{$t(`auth.switchTo.register`)}
 		</Button>
 		{#if authError}
-			<span class="error" transition:blur={{ duration: 300 }}
+			<span class="error text-center" transition:blur={{ duration: 300 }}
 				>{$t(`auth.errors.register.${authError.code}`)}</span
 			>
 		{/if}
