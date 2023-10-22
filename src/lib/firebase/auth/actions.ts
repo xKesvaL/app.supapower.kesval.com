@@ -1,8 +1,10 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 
 import { auth } from '../config';
 
 import type { AuthResponse } from './types';
+
+const googleAuthProvider = new GoogleAuthProvider();
 
 const authLoginWithPassword = async (email: string, password: string): Promise<AuthResponse> => {
 	let res: AuthResponse = {
@@ -52,4 +54,28 @@ const authRegisterWithPassword = async (email: string, password: string): Promis
 	return res;
 };
 
-export { authLoginWithPassword, authRegisterWithPassword };
+const authWithGoogle = async (): Promise<AuthResponse> => {
+	let res: AuthResponse = {
+		success: false
+	};
+
+	await signInWithPopup(auth, googleAuthProvider)
+		.then(() => {
+			res = {
+				success: true
+			};
+		})
+		.catch((e) => {
+			res = {
+				success: false,
+				error: {
+					code: e.code,
+					type: 'popup'
+				}
+			};
+		});
+
+	return res;
+};
+
+export { authLoginWithPassword, authRegisterWithPassword, authWithGoogle };

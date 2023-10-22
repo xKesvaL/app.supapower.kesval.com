@@ -1,11 +1,8 @@
 import { firestore } from '$lib/firebase/config';
-import dayjs from 'dayjs';
-import duration from 'dayjs/plugin/duration';
 import type { CurrentWorkoutStore, Workout, WorkoutExercise, WorkoutExerciseSet } from './types';
 import { createCollectionStore, createDocStore } from 'firebase-svelte';
 import { collection, deleteDoc, doc, updateDoc, writeBatch } from 'firebase/firestore';
 import { derived } from 'svelte/store';
-dayjs.extend(duration);
 
 import { v4 } from 'uuid';
 
@@ -38,8 +35,6 @@ export const createCurrentWorkoutStore = (uid: string): CurrentWorkoutStore => {
 			);
 		}, 0);
 	});
-
-
 
 	///////////////////////////////////////
 	///////////////////////////////////////
@@ -91,6 +86,7 @@ export const createCurrentWorkoutStore = (uid: string): CurrentWorkoutStore => {
 			sets: [
 				...currentSets,
 				{
+					place: currentSets.length,
 					type: 'working',
 					weight: null,
 					reps: null,
@@ -124,6 +120,6 @@ export const createCurrentWorkoutStore = (uid: string): CurrentWorkoutStore => {
 		addExerciseSet,
 		removeExerciseSet,
 		volumeDone,
-		setsDone,
+		setsDone
 	};
 };

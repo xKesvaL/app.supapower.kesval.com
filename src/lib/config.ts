@@ -2,6 +2,8 @@ import type { Locale, Brand, Routes } from './typings/standard';
 
 export const DEFAULT_LOCALE: Locale = 'en';
 
+export const VERSION = '0.0.1';
+
 export const BRAND = {
 	name: 'SupaPower',
 	url: 'https://app.supapower.kesval.com',
@@ -14,7 +16,7 @@ export const BRAND = {
 		dark: '/images/logos/logo.png'
 	},
 	color: {
-		primary: '#6c20df',
+		primary: '#5920df',
 		secondary: '#df20b9',
 		info: '',
 		danger: '',

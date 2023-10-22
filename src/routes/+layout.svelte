@@ -1,13 +1,14 @@
 <script lang="ts">
 	import { navigating, page } from '$app/stores';
 
-	import { setContext } from 'svelte';
+	import { onMount } from 'svelte';
 
 	import { createDocStore, createUserStore } from 'firebase-svelte';
 	import { auth, firestore } from '$lib/firebase/config';
 	import { doc } from 'firebase/firestore';
 
 	import '@kesval/design';
+	import '$lib/styles/poppins.scss';
 	import '$lib/styles/inter.scss';
 	import '$lib/styles/main.scss';
 	import '$lib/styles/nprogress.scss';
@@ -30,11 +31,30 @@
 	import WorkoutInProgress from '$lib/containers/workout/layout/WorkoutInProgress.svelte';
 	import Overlay from '$lib/components/layout/Overlay.svelte';
 	import { overlayShown } from '$lib/stores/overlay';
+
 	import { createCurrentWorkoutStore } from '$lib/stores/currentWorkout/store';
 	import type { CurrentWorkoutStore } from '$lib/stores/currentWorkout/types';
 
+	import {
+		setDisplayMode,
+		type DisplayMode,
+		setPromptEvent,
+		setCurrentWorkout,
+		setUserData,
+		setUser,
+		setOnline
+	} from '$lib/utils/context';
+
 	nprogress.configure({ minimum: 0.2, easing: 'ease', speed: 250 });
 	$: $navigating ? nprogress.start() : nprogress.done();
+
+	///////////////////////////////////////
+	///////////////////////////////////////
+	//////////
+	//////////   FIREBASE DATA
+	//////////
+	///////////////////////////////////////
+	///////////////////////////////////////
 
 	const user = createUserStore(auth);
 
@@ -46,14 +66,56 @@
 		currentWorkout = createCurrentWorkoutStore($user.uid);
 	}
 
-	$: setContext('user', user);
-	$: setContext('userData', userData);
-	$: setContext('currentWorkout', currentWorkout);
-
+	$: setUser(user);
+	$: setUserData(userData);
+	$: setCurrentWorkout(currentWorkout);
 	$: currentWorkoutDoc = currentWorkout?.workoutDoc;
 
+	// VIEW TRANSITION API
+
 	setupViewTransition();
+
+	///////////////////////////////////////
+	///////////////////////////////////////
+	//////////
+	//////////   CONTEXTS
+	//////////
+	///////////////////////////////////////
+	///////////////////////////////////////
+
+	const onBeforeInstallPrompt = (e: Event) => {
+		e.preventDefault();
+		setPromptEvent(e);
+	};
+
+	let displayMode: DisplayMode = 'browser';
+
+	onMount(() => {
+		window.matchMedia('(display-mode: standalone)').addEventListener('change', (e) => {
+			displayMode = e.matches ? 'standalone' : 'browser';
+		});
+	});
+
+	$: setDisplayMode(displayMode);
+
+	let online = navigator.onLine;
+
+	const windowOnline = () => {
+		online = true;
+	};
+
+	const windowOffline = () => {
+		online = false;
+	};
+
+	$: setOnline(online);
 </script>
+
+<svelte:window
+	on:beforeinstallprompt={onBeforeInstallPrompt}
+	on:online={windowOnline}
+	on:offline={windowOffline}
+/>
 
 <svelte:head>
 	<meta name="theme-color" content={BRAND.color.primary} />

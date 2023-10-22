@@ -25,5 +25,5 @@ sw.addEventListener('activate', (event) => {
 });
 
 sw.addEventListener('fetch', (event) => {
-	event.respondWith(getFromCache(CACHE, ASSETS, event.request) as any);
+	event.respondWith(getFromCache(CACHE, ASSETS, event.request) as never);
 });

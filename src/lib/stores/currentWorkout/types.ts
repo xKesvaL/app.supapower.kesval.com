@@ -28,6 +28,7 @@ export interface CurrentWorkoutStoreContext extends CurrentWorkoutStore {
 }
 
 export interface WorkoutExerciseSet {
+	place: number;
 	type: 'warmup' | 'working';
 	weight: number | null;
 	reps: number | null;

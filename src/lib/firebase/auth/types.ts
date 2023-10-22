@@ -6,9 +6,9 @@ export interface AuthResponse {
 	error?: AuthError;
 }
 
-export type AuthError = AuthErrorLogin | AuthErrorRegister;
+export type AuthError = AuthErrorLogin | AuthErrorRegister | AuthErrorPopup;
 
-export type AuthType = 'login' | 'register' | 'reauth';
+export type AuthType = 'login' | 'register' | 'reauth' | 'popup';
 
 export interface AuthErrorBase {
 	type: AuthType;
@@ -22,6 +22,11 @@ export interface AuthErrorLogin extends AuthErrorBase {
 export interface AuthErrorRegister extends AuthErrorBase {
 	type: 'register';
 	code: AuthErrorCodeRegister;
+}
+
+export interface AuthErrorPopup extends AuthErrorBase {
+	type: 'popup';
+	code: AuthErrorCodePopup;
 }
 
 export type AuthErrorCodeLogin =
@@ -44,6 +49,16 @@ export type AuthErrorCodeReauth =
 	| 'auth/wrong-password'
 	| 'auth/invalid-verification-code'
 	| 'auth/invalid-verification-id';
+
+export type AuthErrorCodePopup =
+	| 'auth/account-exists-with-different-credential'
+	| 'auth/auth-domain-config-required'
+	| 'auth/cancelled-popup-request'
+	| 'auth/operation-not-allowed'
+	| 'auth/operation-not-supported-in-this-environment'
+	| 'auth/popup-blocked'
+	| 'auth/popup-closed-by-user'
+	| 'auth/unauthorized-domain';
 
 export type UserStore = Readable<User | undefined | null>;
 

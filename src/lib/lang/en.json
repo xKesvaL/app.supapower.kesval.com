@@ -16,6 +16,16 @@
         "min": "Password must be at least 8 characters long",
         "required": "Password is required"
       },
+      "popup": {
+        "auth/account-exists-with-different-credential": "Account already exists with a different connexion type. Try email and password, for example",
+        "auth/auth-domain-config-required": "Auth domain config required. Please contact an administrator.",
+        "auth/cancelled-popup-request": "Cancelled popup request, please try again.",
+        "auth/operation-not-allowed": "Operation not allowed. Please contact an administrator.",
+        "auth/operation-not-supported-in-this-environment": "Operation not supported. Please contact an administrator.",
+        "auth/popup-blocked": "Popup blocked, please allow popups for this website",
+        "auth/popup-closed-by-user": "Popup closed, please try again.",
+        "auth/unauthorized-domain": "Unauthorized domain. Please contact an administrator."
+      },
       "register": {
         "auth/email-already-in-use": "Email already in use",
         "auth/invalid-email": "Invalid email",
@@ -33,6 +43,7 @@
     },
     "login": {
       "action": "Log In",
+      "actionGoogle": "Login with Google",
       "forgotPassword": "Forgot password?",
       "label": "Login"
     },
@@ -71,6 +82,7 @@
       },
       "steps": {
         "0": {
+          "info": "Keep in mind that your username is permanent for the moment. We plan on adding modifying username as a feature, but it is not a priority.",
           "inputs": {
             "username": {
               "error": {

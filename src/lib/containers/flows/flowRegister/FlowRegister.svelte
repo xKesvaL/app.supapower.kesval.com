@@ -177,6 +177,9 @@
 									<span class="error">{$t(username.error)}</span>
 								{/if}
 							</Label>
+							<p class="mt-2 text-sm text-muted-foreground">
+								{$t('flows.register.steps.0.info')}
+							</p>
 						{:else if currentStep === 1}
 							<div class="workoutTypes">
 								<button
