@@ -3,39 +3,19 @@
 	import type { CurrentWorkoutStoreContext } from '$lib/stores/currentWorkout/types';
 	import { getContext } from 'svelte';
 
-	const { workoutDoc, exercisesCol }: CurrentWorkoutStoreContext = getContext('currentWorkout');
+	const { exercisesCol }: CurrentWorkoutStoreContext = getContext('currentWorkout');
 
-	$: console.log($exercisesCol);
+	let ids: string[] = [];
 
-	// const addSet = async (index: number) => {
-	// 	const exercises = $currentWorkout.exercises;
-	// 	exercises[index]?.sets.push({
-	// 		reps: null,
-	// 		weight: null,
-	// 		rpe: null,
-	// 		type: 'working',
-	// 		done: false
-	// 	});
-
-	// 	updateSetsOfCurrentWorkoutExercise($userData.uid, exercises);
-	// };
-
-	// const removeSet = async (index: number, set: number) => {
-	// 	const exercises = $currentWorkout.exercises;
-
-	// 	exercises[index]?.sets.splice(set, 1);
-
-	// 	updateSetsOfCurrentWorkoutExercise($userData.uid, exercises);
-	// };
+	$: ids = $exercisesCol?.map((e) => `${e.id}-${e.sets.length}`) || [];
 </script>
 
 <section class="container">
 	{#if $exercisesCol === undefined}
 		<span class="loading"> </span>
 	{:else if $exercisesCol}
-		{#each $exercisesCol as exercise, index}
-			<h2>{exercise.exerciseName}</h2>
-			<ExerciseDataTable exerciseSets={exercise.sets} {index} />
+		{#each $exercisesCol as exercise, i (ids[i])}
+			<ExerciseDataTable {exercise} />
 		{/each}
 	{/if}
 </section>

@@ -206,6 +206,13 @@
           "discard": "Discard Workout"
         },
         "duration": "duration",
+        "exercises": {
+          "table": {
+            "actions": {
+              "removeSet": "Remove set"
+            }
+          }
+        },
         "previous": "previous",
         "reps": "reps",
         "rpe": "rpe",

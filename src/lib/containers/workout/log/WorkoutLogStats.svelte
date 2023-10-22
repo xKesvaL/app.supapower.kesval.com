@@ -9,7 +9,8 @@
 	import type { CurrentWorkoutStoreContext } from '$lib/stores/currentWorkout/types';
 
 	const userData: UserDataStoreContext = getContext('userData');
-	const { workoutDoc, exercisesCol } = getContext<CurrentWorkoutStoreContext>('currentWorkout');
+	const { workoutDoc, setsDone, volumeDone } =
+		getContext<CurrentWorkoutStoreContext>('currentWorkout');
 
 	dayjs.extend(duration);
 
@@ -18,21 +19,6 @@
 	setInterval(() => {
 		durationDate = dayjs.duration(-dayjs($workoutDoc?.startDate).diff(new Date()));
 	}, 1000);
-
-	let volume = 0;
-	let sets = 0;
-
-	$: if ($workoutDoc && $exercisesCol) {
-		volume = 0;
-		sets = 0;
-		$exercisesCol.forEach((exercise) => {
-			sets += exercise.sets.filter((set) => set.done).length;
-			volume += exercise.sets.reduce(
-				(acc, set) => acc + (set.done ? (set.weight || 0) * (set.reps || 0) : 0),
-				0
-			);
-		});
-	}
 </script>
 
 {#if $workoutDoc}
@@ -53,14 +39,14 @@
 			<span class="text-xs">
 				{capitalizeFirstLetter($t('pages.workout.log.volume'))}
 			</span>
-			{volume}
+			{$volumeDone}
 			{$userData.units.weight}
 		</div>
 		<div>
 			<span class="text-xs">
 				{capitalizeFirstLetter($t('pages.workout.log.sets'))}
 			</span>
-			{sets}
+			{$setsDone}
 			{$t('pages.workout.log.sets')}
 		</div>
 	</section>

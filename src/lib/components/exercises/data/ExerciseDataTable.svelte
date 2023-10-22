@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { UserDataStoreContext } from '$lib/firebase/user/types';
-	import type { WorkoutExerciseSet } from '$lib/stores/currentWorkout/types';
+	import type { WorkoutExercise } from '$lib/stores/currentWorkout/types';
 	import { getContext } from 'svelte';
 	import { createTable, Render, Subscribe, createRender } from 'svelte-headless-table';
 	import { t } from 'svelte-i18n';
@@ -9,43 +9,33 @@
 	import ExerciseDataTableActions from './ExerciseDataTableActions.svelte';
 	import ExerciseDataTableExerciseActions from './ExerciseDataTableExerciseActions.svelte';
 	import ExerciseDataIconCheck from './ExerciseDataIconCheck.svelte';
+	import ExerciseDataAddSetButton from './ExerciseDataAddSetButton.svelte';
 
-	export let exerciseSets: WorkoutExerciseSet[] = [];
-	export let index: number;
+	export let exercise: WorkoutExercise & { id: string };
 
 	const userData = getContext<UserDataStoreContext>('userData');
 
-	const table = createTable(readable(exerciseSets));
-
-	const columns = table.createColumns([
-		table.column({
+	const table = createTable(readable(exercise.sets));
+	const columns = table?.createColumns([
+		table?.column({
 			accessor: 'weight',
 			header: $userData.units.weight,
 			cell: (cell) => `${cell.value || 0}`
 		}),
-		table.column({
+		table?.column({
 			accessor: 'reps',
 			header: $t('pages.workout.log.reps'),
 			cell: (cell) => `${cell.value || 0}`
 		}),
-		table.column({
+		table?.column({
 			accessor: 'rpe',
 			header: $t('pages.workout.log.rpe'),
 			cell: (cell) => `${cell.value || 0}`
 		}),
-		table.column({
+		table?.column({
 			accessor: 'done',
 			header: () => {
 				return createRender(ExerciseDataIconCheck);
-			}
-		}),
-		table.column({
-			accessor: 'type',
-			header: () => {
-				return createRender(ExerciseDataTableActions);
-			},
-			cell: () => {
-				return createRender(ExerciseDataTableExerciseActions);
 			}
 		})
 	]);
@@ -53,6 +43,7 @@
 	const { headerRows, pageRows, tableAttrs, tableBodyAttrs } = table.createViewModel(columns);
 </script>
 
+<h2>{exercise.exerciseName}</h2>
 <Table.Root {...$tableAttrs} class="text-center">
 	<Table.Header>
 		{#each $headerRows as headerRow}
@@ -68,6 +59,9 @@
 							</Table.Head>
 						</Subscribe>
 					{/each}
+					<Table.Head class="uppercase text-center px-0">
+						<ExerciseDataTableActions exerciseId={exercise.id} />
+					</Table.Head>
 				</Table.Row>
 			</Subscribe>
 		{/each}
@@ -84,8 +78,12 @@
 							</Table.Cell>
 						</Subscribe>
 					{/each}
+					<Table.Cell class="p-2">
+						<ExerciseDataTableExerciseActions {exercise} setIndex={i} />
+					</Table.Cell>
 				</Table.Row>
 			</Subscribe>
 		{/each}
 	</Table.Body>
 </Table.Root>
+<ExerciseDataAddSetButton exerciseId={exercise.id} />

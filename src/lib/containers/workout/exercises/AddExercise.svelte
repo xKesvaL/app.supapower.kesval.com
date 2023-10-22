@@ -64,13 +64,22 @@
 		{#each exerciseList as exercise}
 			<button
 				on:click={() => selectExercise(exercise.name)}
-				class="w-full px-2 py-3 gap-4 flex border-b last:border-none items-center"
-				use:autoAnimate={{ duration: 200 }}
+				class="w-full px-2 py-3 gap-4 flex border-b last:border-none items-center relative"
 			>
 				{#if selectedExercises.includes(exercise.name)}
-					<div class="h-12 rounded-full my-auto w-1 bg-primary" />
+					<div
+						class="h-12 rounded-full my-auto w-1 bg-primary absolute left-0"
+						transition:fly={{ x: -20, duration: 200 }}
+					/>
 				{/if}
-				<div class="rounded-full bg-muted w-12 h-12 flex justify-center items-center">img</div>
+				<div
+					class="rounded-full bg-muted w-12 h-12 flex justify-center items-center transition-all duration-200"
+					style={selectedExercises.includes(exercise.name)
+						? 'margin-left: 8px;'
+						: 'margin-left: 0;'}
+				>
+					img
+				</div>
 				<div class="grid text-left flex-grow">
 					<h2 class="font-sans !font-bold text-lg leading-tight">
 						{$t(`exercises.${exercise.name}.name`)}

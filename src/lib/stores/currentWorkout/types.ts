@@ -1,7 +1,7 @@
 import type { ExerciseName } from '$lib/data/types/exerciseTypes';
 import type { Readable } from 'svelte/store';
 
-export type ExercisesStore = Readable<WorkoutExercise[] | undefined | null>;
+export type ExercisesStore = Readable<(WorkoutExercise & { id: string })[] | undefined | null>;
 
 export type ExercisesStoreContext = Readable<WorkoutExercise[]>;
 
@@ -12,6 +12,15 @@ export interface CurrentWorkoutStore {
 	exercisesCol: ExercisesStore;
 	addExercise: (exercise: WorkoutExercise) => Promise<void>;
 	addExercises: (exercises: WorkoutExercise[]) => Promise<void>;
+	removeExercise: (exerciseId: string) => Promise<void>;
+	addExerciseSet: (exerciseId: string, currentSets: WorkoutExerciseSet[]) => Promise<void>;
+	removeExerciseSet: (
+		exerciseId: string,
+		currentSets: WorkoutExerciseSet[],
+		index: number
+	) => Promise<void>;
+	volumeDone: Readable<number>;
+	setsDone: Readable<number>;
 }
 
 export interface CurrentWorkoutStoreContext extends CurrentWorkoutStore {
