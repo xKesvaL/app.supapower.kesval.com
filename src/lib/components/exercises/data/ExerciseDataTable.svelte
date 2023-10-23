@@ -4,11 +4,13 @@
 	import { readable } from 'svelte/store';
 	import * as Table from '$lib/components/ui/table';
 	import ExerciseDataTableActions from './ExerciseDataTableActions.svelte';
-	import ExerciseDataTableExerciseActions from './ExerciseDataTableExerciseActions.svelte';
+	import ExerciseDataTableSetActions from './ExerciseDataTableSetActions.svelte';
 	import ExerciseDataIconCheck from './ExerciseDataIconCheck.svelte';
 	import ExerciseDataAddSetButton from './ExerciseDataAddSetButton.svelte';
 	import { getUserData, setExercise } from '$lib/utils/context';
 	import { createExerciseStore } from '$lib/stores/currentWorkout/store';
+	import ExerciseDataCheckbox from './ExerciseDataCheckbox.svelte';
+	import { capitalizeFirstLetter } from '$lib/utils/functions';
 
 	export let exerciseId: string;
 
@@ -39,6 +41,13 @@
 			accessor: 'done',
 			header: () => {
 				return createRender(ExerciseDataIconCheck);
+			},
+			cell: (cell) => {
+				return createRender(ExerciseDataCheckbox, {
+					defaultChecked: cell.value,
+					exerciseId,
+					setIndex: Number(cell.rowColId().split(':')[0])
+				});
 			}
 		})
 	]);
@@ -47,7 +56,10 @@
 </script>
 
 <div class="flex flex-col gap-2">
-	<h2>{$exerciseDoc?.exerciseName || '...'}</h2>
+	<div class="flex justify-between items-center">
+		<h2 class="text-xl">{capitalizeFirstLetter($exerciseDoc?.exerciseName || '...')}</h2>
+		<ExerciseDataTableActions {exerciseId} />
+	</div>
 	<Table.Root {...$tableAttrs} class="text-center table-fixed">
 		<Table.Header>
 			{#each $headerRows as headerRow}
@@ -63,9 +75,6 @@
 								</Table.Head>
 							</Subscribe>
 						{/each}
-						<Table.Head class="uppercase text-center px-0">
-							<ExerciseDataTableActions {exerciseId} />
-						</Table.Head>
 					</Table.Row>
 				</Subscribe>
 			{/each}
@@ -74,21 +83,16 @@
 			{#each $pageRows as row, i (row.id)}
 				<Subscribe rowAttrs={row.attrs()} let:rowAttrs>
 					<Table.Row {...rowAttrs}>
-						<Table.Cell class="p-2">{i + 1}</Table.Cell>
+						<Table.Cell class="p-2">
+							<ExerciseDataTableSetActions {exerciseId} setIndex={i} />
+						</Table.Cell>
 						{#each row.cells as cell (cell.id)}
 							<Subscribe attrs={cell.attrs()} let:attrs>
-								<Table.Cell {...attrs} class="p-2">
+								<Table.Cell {...attrs} class="p-2 !pr-2">
 									<Render of={cell.render()} />
 								</Table.Cell>
 							</Subscribe>
 						{/each}
-						<Table.Cell class="p-2">
-							<ExerciseDataTableExerciseActions
-								sets={$exerciseDoc.sets}
-								{exerciseId}
-								setIndex={i}
-							/>
-						</Table.Cell>
 					</Table.Row>
 				</Subscribe>
 			{/each}

@@ -136,7 +136,7 @@
 			{#if googleLoading}
 				<span class="loading" />
 			{:else}
-				<div class="w-6 h-6">
+				<div class="w-5 h-5">
 					<IconGoogle />
 				</div>
 				{$t('auth.register.actionGoogle')}

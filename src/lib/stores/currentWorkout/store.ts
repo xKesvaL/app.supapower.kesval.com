@@ -1,7 +1,7 @@
 import { firestore } from '$lib/firebase/config';
 import type {
 	CurrentWorkoutStore,
-	ExerciseStoreContext,
+	ExerciseStore,
 	Workout,
 	WorkoutExercise,
 	WorkoutExerciseSet
@@ -85,9 +85,25 @@ export const createCurrentWorkoutStore = (uid: string): CurrentWorkoutStore => {
 		await deleteDoc(doc(firestore, 'workout', uid, 'exercises', exerciseId));
 	};
 
-	const addExerciseSet = async (exerciseId: string, currentSets: WorkoutExerciseSet[]) => {
-		const exerciseRef = doc(firestore, 'workout', uid, 'exercises', exerciseId);
+	return {
+		workoutDoc: workoutDocStore,
+		createWorkout,
+		deleteWorkout,
+		exercisesCol: exercisesCollectionStore,
+		addExercise,
+		addExercises,
+		removeExercise,
+		volumeDone,
+		setsDone
+	};
+};
 
+export const createExerciseStore = (uid: string, exerciseId: string): ExerciseStore => {
+	const exerciseRef = doc(firestore, 'workout', uid, 'exercises', exerciseId);
+
+	const exerciseDoc = createDocStore<WorkoutExercise>(firestore, exerciseRef);
+
+	const addExerciseSet = async (currentSets: WorkoutExerciseSet[]) => {
 		await updateDoc(exerciseRef, {
 			sets: [
 				...currentSets,
@@ -102,40 +118,16 @@ export const createCurrentWorkoutStore = (uid: string): CurrentWorkoutStore => {
 		});
 	};
 
-	const removeExerciseSet = async (
-		exerciseId: string,
-		currentSets: WorkoutExerciseSet[],
-		index: number
-	) => {
-		const exerciseRef = doc(firestore, 'workout', uid, 'exercises', exerciseId);
-
+	const removeExerciseSet = async (currentSets: WorkoutExerciseSet[], index: number) => {
 		await updateDoc(exerciseRef, {
 			sets: currentSets.filter((_, i) => i !== index)
 		});
 	};
 
 	return {
-		workoutDoc: workoutDocStore,
-		createWorkout,
-		deleteWorkout,
-		exercisesCol: exercisesCollectionStore,
-		addExercise,
-		addExercises,
-		removeExercise,
+		exerciseDoc,
+		id: exerciseId,
 		addExerciseSet,
-		removeExerciseSet,
-		volumeDone,
-		setsDone
-	};
-};
-
-export const createExerciseStore = (uid: string, exerciseId: string) => {
-	const exerciseDoc = createDocStore<WorkoutExercise>(
-		firestore,
-		doc(firestore, 'workout', uid, 'exercises', exerciseId)
-	) as unknown as ExerciseStoreContext;
-
-	return {
-		exerciseDoc
+		removeExerciseSet
 	};
 };

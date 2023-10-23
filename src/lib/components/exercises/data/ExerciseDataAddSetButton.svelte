@@ -1,15 +1,14 @@
 <script lang="ts">
 	import Button from '$lib/components/ui/button/button.svelte';
-	import type { CurrentWorkoutStoreContext } from '$lib/stores/currentWorkout/types';
-	import { getContext } from 'svelte';
+	import { getExercise } from '$lib/utils/context';
 	import { t } from 'svelte-i18n';
 
 	export let exerciseId: string;
 
-	const { exercisesCol, ...currentWorkout } = getContext<CurrentWorkoutStoreContext>('currentWorkout');
+	const { addExerciseSet, exerciseDoc } = getExercise(exerciseId);
 
 	const addSet = async () => {
-		await currentWorkout.addExerciseSet(exerciseId, $exercisesCol?.filter((e) => e.id === exerciseId)[0]?.sets || []);
+		await addExerciseSet($exerciseDoc.sets || []);
 	};
 </script>
 
