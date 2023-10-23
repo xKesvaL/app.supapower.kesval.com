@@ -7,7 +7,7 @@
 	import IconMoon from '$lib/icons/IconMoon.svelte';
 	import IconRuler2 from '$lib/icons/IconRuler2.svelte';
 	import IconUserCircle from '$lib/icons/IconUserCircle.svelte';
-	import IconBroadcast from '$lib/icons/IconBroadcast.svelte';
+	import IconCirclesRelation from '$lib/icons/IconCirclesRelation.svelte';
 	import { t } from 'svelte-i18n';
 
 	const suffix = `?frel=${ROUTES.settings}`;
@@ -37,7 +37,7 @@
 			>
 			<a href="{ROUTES.settingsConnections}{suffix}">
 				<div class="icon">
-					<IconBroadcast />
+					<IconCirclesRelation />
 				</div>
 				{$t('pages.settings.list.connections.label')}
 				<span class="icon">
