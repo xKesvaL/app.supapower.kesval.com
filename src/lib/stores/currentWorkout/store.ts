@@ -7,8 +7,7 @@ import type {
 	WorkoutExerciseSet
 } from './types';
 import { createCollectionStore, createDocStore } from 'firebase-svelte';
-import { collection, deleteDoc, doc, updateDoc, writeBatch } from 'firebase/firestore';
-import { derived } from 'svelte/store';
+import { collection, deleteDoc, doc, setDoc, writeBatch } from 'firebase/firestore';
 
 import { v4 } from 'uuid';
 
@@ -19,28 +18,6 @@ export const createCurrentWorkoutStore = (uid: string): CurrentWorkoutStore => {
 		firestore,
 		collection(firestore, 'workout', uid, 'exercises')
 	);
-
-	const volumeDone = derived(exercisesCollectionStore, ($exercises) => {
-		return $exercises?.reduce((acc, exercise) => {
-			return (
-				acc +
-				exercise.sets.reduce((acc, set) => {
-					return acc + (set.done ? (set.weight || 0) * (set.reps || 0) : 0);
-				}, 0)
-			);
-		}, 0);
-	});
-
-	const setsDone = derived(exercisesCollectionStore, ($exercises) => {
-		return $exercises?.reduce((acc, exercise) => {
-			return (
-				acc +
-				exercise.sets.reduce((acc, set) => {
-					return acc + (set.done ? 1 : 0);
-				}, 0)
-			);
-		}, 0);
-	});
 
 	///////////////////////////////////////
 	///////////////////////////////////////
@@ -92,41 +69,36 @@ export const createCurrentWorkoutStore = (uid: string): CurrentWorkoutStore => {
 		exercisesCol: exercisesCollectionStore,
 		addExercise,
 		addExercises,
-		removeExercise,
-		volumeDone,
-		setsDone
+		removeExercise
 	};
 };
 
 export const createExerciseStore = (uid: string, exerciseId: string): ExerciseStore => {
 	const exerciseRef = doc(firestore, 'workout', uid, 'exercises', exerciseId);
-
 	const exerciseDoc = createDocStore<WorkoutExercise>(firestore, exerciseRef);
+	const exerciseSets = createCollectionStore<WorkoutExerciseSet>(
+		firestore,
+		collection(exerciseRef, 'sets')
+	);
 
-	const addExerciseSet = async (currentSets: WorkoutExerciseSet[]) => {
-		await updateDoc(exerciseRef, {
-			sets: [
-				...currentSets,
-				{
-					type: 'working',
-					weight: null,
-					reps: null,
-					rpe: null,
-					done: false
-				} satisfies WorkoutExerciseSet
-			]
-		});
+	const addExerciseSet = async (id: string) => {
+		await setDoc(doc(exerciseRef, 'sets', id), {
+			type: 'working',
+			weight: null,
+			reps: null,
+			rpe: null,
+			done: false
+		} satisfies WorkoutExerciseSet);
 	};
 
-	const removeExerciseSet = async (currentSets: WorkoutExerciseSet[], index: number) => {
-		await updateDoc(exerciseRef, {
-			sets: currentSets.filter((_, i) => i !== index)
-		});
+	const removeExerciseSet = async (id: string) => {
+		await deleteDoc(doc(exerciseRef, 'sets', id));
 	};
 
 	return {
 		exerciseDoc,
 		id: exerciseId,
+		exerciseSets,
 		addExerciseSet,
 		removeExerciseSet
 	};

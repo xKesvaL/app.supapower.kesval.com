@@ -2,13 +2,14 @@
 	import Button from '$lib/components/ui/button/button.svelte';
 	import { getExercise } from '$lib/utils/context';
 	import { t } from 'svelte-i18n';
+	import { v4 } from 'uuid';
 
 	export let exerciseId: string;
 
-	const { addExerciseSet, exerciseDoc } = getExercise(exerciseId);
+	const { addExerciseSet, exerciseSets } = getExercise(exerciseId);
 
 	const addSet = async () => {
-		await addExerciseSet($exerciseDoc.sets || []);
+		await addExerciseSet(`${$exerciseSets.length + 1}${v4()}`);
 	};
 </script>
 

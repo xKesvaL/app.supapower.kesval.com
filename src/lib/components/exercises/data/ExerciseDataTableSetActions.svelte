@@ -6,12 +6,13 @@
 	import { t } from 'svelte-i18n';
 
 	export let exerciseId: string;
-	export let setIndex: number;
+	export let index: number;
+	export let id: string;
 
-	const { exerciseDoc, removeExerciseSet } = getExercise(exerciseId);
+	const { removeExerciseSet } = getExercise(exerciseId);
 
 	const removeSet = async () => {
-		removeExerciseSet($exerciseDoc?.sets || [], setIndex);
+		removeExerciseSet(id);
 	};
 </script>
 
@@ -23,7 +24,7 @@
 			size="icon"
 			class="relative w-full h-8 p-0 bg-muted"
 		>
-			{setIndex + 1}
+			{index + 1}
 		</Button>
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content>

@@ -1,5 +1,5 @@
 import type { ExerciseName } from '$lib/data/types/exerciseTypes';
-import type { DocStore } from 'firebase-svelte/dist/firestore/stores';
+import type { CollectionStore, DocStore } from 'firebase-svelte/dist/firestore/stores';
 import type { Readable } from 'svelte/store';
 
 export type ExercisesStore = Readable<(WorkoutExercise & { id: string })[] | undefined | null>;
@@ -7,15 +7,12 @@ export type ExercisesStore = Readable<(WorkoutExercise & { id: string })[] | und
 export interface ExerciseStore {
 	exerciseDoc: DocStore<WorkoutExercise>;
 	id: string;
-	addExerciseSet: (currentSets: WorkoutExerciseSet[]) => Promise<void>;
-	removeExerciseSet: (
-		currentSets: WorkoutExerciseSet[],
-		index: number
-	) => Promise<void>;
+	exerciseSets: CollectionStore<WorkoutExerciseSet & { id: string }>;
+	addExerciseSet: (id: string) => Promise<void>;
+	removeExerciseSet: (id: string) => Promise<void>;
 }
 
 export type ExercisesStoreContext = Readable<WorkoutExercise[]>;
-
 
 export interface CurrentWorkoutStore {
 	workoutDoc: WorkoutStore;
@@ -25,8 +22,6 @@ export interface CurrentWorkoutStore {
 	addExercise: (exercise: WorkoutExercise) => Promise<void>;
 	addExercises: (exercises: WorkoutExercise[]) => Promise<void>;
 	removeExercise: (exerciseId: string) => Promise<void>;
-	volumeDone: Readable<number>;
-	setsDone: Readable<number>;
 }
 
 export interface CurrentWorkoutStoreContext extends CurrentWorkoutStore {
@@ -45,7 +40,6 @@ export type WorkoutExerciseSetType = WorkoutExerciseSet['type'];
 
 export interface WorkoutExercise {
 	exerciseName: ExerciseName;
-	sets: WorkoutExerciseSet[];
 	timer: number;
 }
 

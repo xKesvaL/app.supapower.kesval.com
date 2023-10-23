@@ -17,10 +17,10 @@
 	const userData = getUserData();
 	const exercise = createExerciseStore($userData.uid, exerciseId);
 	$: setExercise(exerciseId, exercise);
-	$: ({ exerciseDoc } = exercise);
+	$: ({ exerciseDoc, exerciseSets } = exercise);
 
-	let table = createTable(readable($exerciseDoc?.sets || []));
-	$: table = createTable(readable($exerciseDoc?.sets || []));
+	let table = createTable(readable($exerciseSets || []));
+	$: table = createTable(readable($exerciseSets || []));
 	const columns = table?.createColumns([
 		table?.column({
 			accessor: 'weight',
@@ -80,11 +80,11 @@
 			{/each}
 		</Table.Header>
 		<Table.Body {...$tableBodyAttrs}>
-			{#each $pageRows as row, i (row.id)}
+			{#each $pageRows as row, index (row.id)}
 				<Subscribe rowAttrs={row.attrs()} let:rowAttrs>
 					<Table.Row {...rowAttrs}>
 						<Table.Cell class="p-2">
-							<ExerciseDataTableSetActions {exerciseId} setIndex={i} />
+							<ExerciseDataTableSetActions {exerciseId} id={$exerciseSets[index]?.id || ''} {index} />
 						</Table.Cell>
 						{#each row.cells as cell (cell.id)}
 							<Subscribe attrs={cell.attrs()} let:attrs>
