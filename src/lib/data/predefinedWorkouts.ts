@@ -1,7 +1,7 @@
 // These are the defaults workouts provided by the app.
 // More workouts can be added by the user or found in the community.
 
-import type { PredefinedWorkout } from '$lib/firebase/workout/types';
+import type { PredefinedWorkout } from '$lib/stores/currentWorkout/types';
 
 export interface WorkoutList {
 	[key: string]: PredefinedWorkout;
@@ -21,7 +21,8 @@ export const predefinedWorkouts: WorkoutList = {
 						done: false
 					}
 				],
-				timer: 120
+				timer: 120,
+				place: 1
 			}
 		]
 	},
@@ -38,7 +39,8 @@ export const predefinedWorkouts: WorkoutList = {
 						done: false
 					}
 				],
-				timer: 120
+				timer: 120,
+				place: 1
 			}
 		]
 	},
@@ -55,7 +57,8 @@ export const predefinedWorkouts: WorkoutList = {
 						done: false
 					}
 				],
-				timer: 120
+				timer: 120,
+				place: 1
 			}
 		]
 	},
@@ -72,7 +75,8 @@ export const predefinedWorkouts: WorkoutList = {
 						done: false
 					}
 				],
-				timer: 120
+				timer: 120,
+				place: 1
 			}
 		]
 	},
@@ -89,7 +93,8 @@ export const predefinedWorkouts: WorkoutList = {
 						done: false
 					}
 				],
-				timer: 120
+				timer: 120,
+				place: 1
 			}
 		]
 	}

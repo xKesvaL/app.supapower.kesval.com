@@ -3,18 +3,19 @@
 	import IconX from '$lib/icons/IconX.svelte';
 	import type {
 		CurrentWorkoutStoreContext,
-		WorkoutExercise
+		WorkoutExerciseSet
 	} from '$lib/stores/currentWorkout/types';
 	import { getContext } from 'svelte';
 	import { t } from 'svelte-i18n';
 
 	const currentWorkout = getContext<CurrentWorkoutStoreContext>('currentWorkout');
 
-	export let exercise: WorkoutExercise & { id: string };
+	export let sets: WorkoutExerciseSet[];
+	export let exerciseId: string;
 	export let setIndex: number;
 
 	const onDelete = async () => {
-		currentWorkout.removeExerciseSet(exercise.id, exercise.sets, setIndex);
+		currentWorkout.removeExerciseSet(exerciseId, sets, setIndex);
 	};
 </script>
 

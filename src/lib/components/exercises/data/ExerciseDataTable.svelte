@@ -1,7 +1,4 @@
 <script lang="ts">
-	import type { UserDataStoreContext } from '$lib/firebase/user/types';
-	import type { WorkoutExercise } from '$lib/stores/currentWorkout/types';
-	import { getContext } from 'svelte';
 	import { createTable, Render, Subscribe, createRender } from 'svelte-headless-table';
 	import { t } from 'svelte-i18n';
 	import { readable } from 'svelte/store';
@@ -10,12 +7,18 @@
 	import ExerciseDataTableExerciseActions from './ExerciseDataTableExerciseActions.svelte';
 	import ExerciseDataIconCheck from './ExerciseDataIconCheck.svelte';
 	import ExerciseDataAddSetButton from './ExerciseDataAddSetButton.svelte';
+	import { getUserData, setExercise } from '$lib/utils/context';
+	import { createExerciseStore } from '$lib/stores/currentWorkout/store';
 
-	export let exercise: WorkoutExercise & { id: string };
+	export let exerciseId: string;
 
-	const userData = getContext<UserDataStoreContext>('userData');
+	const userData = getUserData();
+	const exercise = createExerciseStore($userData.uid, exerciseId);
+	$: setExercise(exerciseId, exercise);
+	$: ({ exerciseDoc } = exercise);
 
-	const table = createTable(readable(exercise.sets));
+	let table = createTable(readable($exerciseDoc?.sets || []));
+	$: table = createTable(readable($exerciseDoc?.sets || []));
 	const columns = table?.createColumns([
 		table?.column({
 			accessor: 'weight',
@@ -40,50 +43,56 @@
 		})
 	]);
 
-	const { headerRows, pageRows, tableAttrs, tableBodyAttrs } = table.createViewModel(columns);
+	$: ({ headerRows, pageRows, tableAttrs, tableBodyAttrs } = table.createViewModel(columns));
 </script>
 
-<h2>{exercise.exerciseName}</h2>
-<Table.Root {...$tableAttrs} class="text-center">
-	<Table.Header>
-		{#each $headerRows as headerRow}
-			<Subscribe rowAttrs={headerRow.attrs()}>
-				<Table.Row>
-					<Table.Head class="uppercase text-center px-0">
-						{$t('pages.workout.log.sets')}
-					</Table.Head>
-					{#each headerRow.cells as cell (cell.id)}
-						<Subscribe attrs={cell.attrs()} let:attrs props={cell.props()}>
-							<Table.Head {...attrs} class="uppercase text-center px-0">
-								<Render of={cell.render()} />
-							</Table.Head>
-						</Subscribe>
-					{/each}
-					<Table.Head class="uppercase text-center px-0">
-						<ExerciseDataTableActions exerciseId={exercise.id} />
-					</Table.Head>
-				</Table.Row>
-			</Subscribe>
-		{/each}
-	</Table.Header>
-	<Table.Body {...$tableBodyAttrs}>
-		{#each $pageRows as row, i (row.id)}
-			<Subscribe rowAttrs={row.attrs()} let:rowAttrs>
-				<Table.Row {...rowAttrs}>
-					<Table.Cell class="p-2">{i + 1}</Table.Cell>
-					{#each row.cells as cell (cell.id)}
-						<Subscribe attrs={cell.attrs()} let:attrs>
-							<Table.Cell {...attrs} class="p-2">
-								<Render of={cell.render()} />
-							</Table.Cell>
-						</Subscribe>
-					{/each}
-					<Table.Cell class="p-2">
-						<ExerciseDataTableExerciseActions {exercise} setIndex={i} />
-					</Table.Cell>
-				</Table.Row>
-			</Subscribe>
-		{/each}
-	</Table.Body>
-</Table.Root>
-<ExerciseDataAddSetButton exerciseId={exercise.id} />
+<div class="flex flex-col gap-2">
+	<h2>{$exerciseDoc?.exerciseName || '...'}</h2>
+	<Table.Root {...$tableAttrs} class="text-center table-fixed">
+		<Table.Header>
+			{#each $headerRows as headerRow}
+				<Subscribe rowAttrs={headerRow.attrs()}>
+					<Table.Row>
+						<Table.Head class="uppercase text-center px-0">
+							{$t('pages.workout.log.sets')}
+						</Table.Head>
+						{#each headerRow.cells as cell (cell.id)}
+							<Subscribe attrs={cell.attrs()} let:attrs props={cell.props()}>
+								<Table.Head {...attrs} class="uppercase text-center px-0">
+									<Render of={cell.render()} />
+								</Table.Head>
+							</Subscribe>
+						{/each}
+						<Table.Head class="uppercase text-center px-0">
+							<ExerciseDataTableActions {exerciseId} />
+						</Table.Head>
+					</Table.Row>
+				</Subscribe>
+			{/each}
+		</Table.Header>
+		<Table.Body {...$tableBodyAttrs}>
+			{#each $pageRows as row, i (row.id)}
+				<Subscribe rowAttrs={row.attrs()} let:rowAttrs>
+					<Table.Row {...rowAttrs}>
+						<Table.Cell class="p-2">{i + 1}</Table.Cell>
+						{#each row.cells as cell (cell.id)}
+							<Subscribe attrs={cell.attrs()} let:attrs>
+								<Table.Cell {...attrs} class="p-2">
+									<Render of={cell.render()} />
+								</Table.Cell>
+							</Subscribe>
+						{/each}
+						<Table.Cell class="p-2">
+							<ExerciseDataTableExerciseActions
+								sets={$exerciseDoc.sets}
+								{exerciseId}
+								setIndex={i}
+							/>
+						</Table.Cell>
+					</Table.Row>
+				</Subscribe>
+			{/each}
+		</Table.Body>
+	</Table.Root>
+	<ExerciseDataAddSetButton {exerciseId} />
+</div>

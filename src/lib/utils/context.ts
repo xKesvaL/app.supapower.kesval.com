@@ -2,7 +2,10 @@ import type { UserStore, UserStoreContext } from '$lib/firebase/auth/types';
 import type { UserDataStore, UserDataStoreContext } from '$lib/firebase/user/types';
 import type {
 	CurrentWorkoutStore,
-	CurrentWorkoutStoreContext
+	CurrentWorkoutStoreContext,
+	ExerciseStore,
+	ExerciseStoreContext,
+	WorkoutExercise
 } from '$lib/stores/currentWorkout/types';
 import { getContext, setContext } from 'svelte';
 
@@ -78,4 +81,12 @@ export const getOnline = () => {
 
 export const setOnline = (online: boolean) => {
 	return setContext<boolean>('online', online);
+};
+
+export const getExercise = (exerciseId: string) => {
+	return getContext<ExerciseStoreContext>(exerciseId);
+};
+
+export const setExercise = (exerciseId: string, exercise: ExerciseStore | ExerciseStoreContext) => {
+	return setContext<ExerciseStore | ExerciseStoreContext>(exerciseId, exercise);
 };

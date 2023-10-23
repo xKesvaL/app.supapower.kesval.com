@@ -3,7 +3,11 @@ import type { Readable } from 'svelte/store';
 
 export type ExercisesStore = Readable<(WorkoutExercise & { id: string })[] | undefined | null>;
 
+export type ExerciseStore = Readable<(WorkoutExercise & { id: string }) | undefined | null>;
+
 export type ExercisesStoreContext = Readable<WorkoutExercise[]>;
+
+export type ExerciseStoreContext = Readable<WorkoutExercise & { id: string }>;
 
 export interface CurrentWorkoutStore {
 	workoutDoc: WorkoutStore;
@@ -28,7 +32,6 @@ export interface CurrentWorkoutStoreContext extends CurrentWorkoutStore {
 }
 
 export interface WorkoutExerciseSet {
-	place: number;
 	type: 'warmup' | 'working';
 	weight: number | null;
 	reps: number | null;
@@ -42,6 +45,7 @@ export interface WorkoutExercise {
 	exerciseName: ExerciseName;
 	sets: WorkoutExerciseSet[];
 	timer: number;
+	place: number;
 }
 
 export interface PredefinedWorkout {

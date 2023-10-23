@@ -1,20 +1,20 @@
-import type { Workout } from '$lib/firebase/workout/types';
+import type { PredefinedWorkout } from '$lib/stores/currentWorkout/types';
 import { predefinedWorkouts } from './predefinedWorkouts';
 
 export interface ProgramList {
 	[key: string]: {
-		[key: string]: Workout;
+		[key: string]: PredefinedWorkout;
 	};
 }
 
 export const predefinedPrograms: ProgramList = {
 	ppl: {
-		push: predefinedWorkouts['ppl.push'] as Workout,
-		pull: predefinedWorkouts['ppl.pull'] as Workout,
-		legs: predefinedWorkouts['ppl.legs'] as Workout
+		push: predefinedWorkouts['ppl.push'] as PredefinedWorkout,
+		pull: predefinedWorkouts['ppl.pull'] as PredefinedWorkout,
+		legs: predefinedWorkouts['ppl.legs'] as PredefinedWorkout
 	},
 	upperLower: {
-		upper: predefinedWorkouts['upperLower.upper'] as Workout,
-		lower: predefinedWorkouts['upperLower.lower'] as Workout
+		upper: predefinedWorkouts['upperLower.upper'] as PredefinedWorkout,
+		lower: predefinedWorkouts['upperLower.lower'] as PredefinedWorkout
 	}
 };

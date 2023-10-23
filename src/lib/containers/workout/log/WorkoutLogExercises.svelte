@@ -1,21 +1,18 @@
 <script lang="ts">
 	import ExerciseDataTable from '$lib/components/exercises/data/ExerciseDataTable.svelte';
 	import type { CurrentWorkoutStoreContext } from '$lib/stores/currentWorkout/types';
+	import autoAnimate from '@formkit/auto-animate';
 	import { getContext } from 'svelte';
 
 	const { exercisesCol }: CurrentWorkoutStoreContext = getContext('currentWorkout');
-
-	let ids: string[] = [];
-
-	$: ids = $exercisesCol?.map((e) => `${e.id}-${e.sets.length}`) || [];
 </script>
 
-<section class="container">
+<section class="container" use:autoAnimate>
 	{#if $exercisesCol === undefined}
 		<span class="loading"> </span>
 	{:else if $exercisesCol}
-		{#each $exercisesCol as exercise, i (ids[i])}
-			<ExerciseDataTable {exercise} />
+		{#each $exercisesCol as exercise (exercise.id)}
+			<ExerciseDataTable exerciseId={exercise.id} />
 		{/each}
 	{/if}
 </section>

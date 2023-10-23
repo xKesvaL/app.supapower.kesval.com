@@ -3,7 +3,6 @@
 	import { exerciseList } from '$lib/data/exerciseList';
 	import IconInfoCircle from '$lib/icons/IconInfoCircle.svelte';
 	import { t } from 'svelte-i18n';
-	import autoAnimate from '@formkit/auto-animate';
 	import { fly } from 'svelte/transition';
 	import type { CurrentWorkoutStore, WorkoutExercise } from '$lib/stores/currentWorkout/types';
 	import { getContext } from 'svelte';
@@ -37,7 +36,7 @@
 		}
 
 		await currentWorkout.addExercises(
-			exercises.map((e) => {
+			exercises.map((e, i) => {
 				return {
 					exerciseName: e,
 					sets: [
@@ -49,7 +48,8 @@
 							done: false
 						}
 					],
-					timer: 120
+					timer: 120,
+					place: ($exercisesCol?.length || 0) + i
 				} satisfies WorkoutExercise;
 			})
 		);

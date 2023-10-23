@@ -1,5 +1,11 @@
 import { firestore } from '$lib/firebase/config';
-import type { CurrentWorkoutStore, Workout, WorkoutExercise, WorkoutExerciseSet } from './types';
+import type {
+	CurrentWorkoutStore,
+	ExerciseStoreContext,
+	Workout,
+	WorkoutExercise,
+	WorkoutExerciseSet
+} from './types';
 import { createCollectionStore, createDocStore } from 'firebase-svelte';
 import { collection, deleteDoc, doc, updateDoc, writeBatch } from 'firebase/firestore';
 import { derived } from 'svelte/store';
@@ -86,7 +92,6 @@ export const createCurrentWorkoutStore = (uid: string): CurrentWorkoutStore => {
 			sets: [
 				...currentSets,
 				{
-					place: currentSets.length,
 					type: 'working',
 					weight: null,
 					reps: null,
@@ -121,5 +126,16 @@ export const createCurrentWorkoutStore = (uid: string): CurrentWorkoutStore => {
 		removeExerciseSet,
 		volumeDone,
 		setsDone
+	};
+};
+
+export const createExerciseStore = (uid: string, exerciseId: string) => {
+	const exerciseDoc = createDocStore<WorkoutExercise>(
+		firestore,
+		doc(firestore, 'workout', uid, 'exercises', exerciseId)
+	) as unknown as ExerciseStoreContext;
+
+	return {
+		exerciseDoc
 	};
 };
