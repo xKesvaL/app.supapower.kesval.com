@@ -36,7 +36,7 @@
 		}
 
 		await currentWorkout.addExercises(
-			exercises.map((e, i) => {
+			exercises.map((e) => {
 				return {
 					exerciseName: e,
 					sets: [
@@ -48,8 +48,7 @@
 							done: false
 						}
 					],
-					timer: 120,
-					place: ($exercisesCol?.length || 0) + i
+					timer: 120
 				} satisfies WorkoutExercise;
 			})
 		);

@@ -45,7 +45,6 @@ export interface WorkoutExercise {
 	exerciseName: ExerciseName;
 	sets: WorkoutExerciseSet[];
 	timer: number;
-	place: number;
 }
 
 export interface PredefinedWorkout {
