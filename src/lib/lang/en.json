@@ -57,6 +57,7 @@
     },
     "register": {
       "action": "Register",
+      "actionGoogle": "Register with Google",
       "label": "Register"
     },
     "switchTo": {
@@ -149,6 +150,10 @@
         "displayName": "Display Name",
         "displayNameExplanation": "This is your display name, which is shown to other users. It is not unique nor identifies you. It allows you to customize how you are shown to other users.",
         "displayNamePlaceholder": "My Cool Display Name ✌",
+        "email": "Email",
+        "emailPlaceholder": "email@example.com",
+        "emailSent": "Email sent",
+        "emailVerify": "Verify",
         "username": "Username",
         "usernameSoon": "Sorry, but you can't change your username yet. This feature is coming soon!"
       },
@@ -160,6 +165,12 @@
       "list": {
         "account": {
           "label": "Account"
+        },
+        "connections": {
+          "googleLink": "Link your Google account",
+          "googleLinked": "Google account linked",
+          "googleUnlink": "Unlink your Google account",
+          "label": "Connections"
         },
         "language": {
           "label": "Language"

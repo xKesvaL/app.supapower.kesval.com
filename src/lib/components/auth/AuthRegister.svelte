@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { t } from 'svelte-i18n';
 
-	import { authRegisterWithPassword } from '$lib/firebase/auth/actions';
+	import { authRegisterWithPassword, authWithGoogle } from '$lib/firebase/auth/actions';
 	import { AuthRegisterWithPasswordSchema } from '$lib/firebase/auth/schemas';
 	import type { AuthError } from '$lib/firebase/auth/types';
 
@@ -16,10 +16,12 @@
 	import { Label } from '../ui/label';
 	import { Input } from '../ui/input';
 	import { Button } from '../ui/button';
+	import IconGoogle from '$lib/icons/IconGoogle.svelte';
 
 	let fieldErrors: FormattedZodError = {};
 	let authError: AuthError | null = null;
 	let loading = false;
+	let googleLoading = false;
 	let showPassword = false;
 	let password = '';
 
@@ -51,6 +53,21 @@
 		}
 
 		loading = false;
+	};
+
+	const loginWithGoogle = async (e: Event) => {
+		e.preventDefault();
+		googleLoading = true;
+		fieldErrors = {};
+		authError = null;
+
+		const authRes = await authWithGoogle();
+
+		if (authRes.error) {
+			authError = authRes.error;
+		}
+
+		googleLoading = false;
 	};
 
 	const switchTo = () => {
@@ -113,6 +130,16 @@
 				<span class="loading" />
 			{:else}
 				{$t('auth.register.action')}
+			{/if}
+		</Button>
+		<Button on:click={loginWithGoogle} variant="secondary" type="button" class="gap-2">
+			{#if googleLoading}
+				<span class="loading" />
+			{:else}
+				<div class="w-6 h-6">
+					<IconGoogle />
+				</div>
+				{$t('auth.register.actionGoogle')}
 			{/if}
 		</Button>
 		<Button

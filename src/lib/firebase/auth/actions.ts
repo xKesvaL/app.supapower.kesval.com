@@ -1,4 +1,9 @@
-import { GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import {
+	GoogleAuthProvider,
+	createUserWithEmailAndPassword,
+	signInWithEmailAndPassword,
+	signInWithPopup
+} from 'firebase/auth';
 
 import { auth } from '../config';
 
@@ -18,6 +23,7 @@ const authLoginWithPassword = async (email: string, password: string): Promise<A
 			};
 		})
 		.catch((e) => {
+			console.error(e);
 			res = {
 				success: false,
 				error: {
@@ -42,6 +48,7 @@ const authRegisterWithPassword = async (email: string, password: string): Promis
 			};
 		})
 		.catch((e) => {
+			console.error(e);
 			res = {
 				success: false,
 				error: {
@@ -66,6 +73,7 @@ const authWithGoogle = async (): Promise<AuthResponse> => {
 			};
 		})
 		.catch((e) => {
+			console.error(e);
 			res = {
 				success: false,
 				error: {

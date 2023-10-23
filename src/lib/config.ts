@@ -34,6 +34,7 @@ export const ROUTES = {
 	settingsTheme: '/settings/theme',
 	settingsUnits: '/settings/units',
 	settingsWorkouts: '/settings/workouts',
+	settingsConnections: '/settings/connections',
 	workout: '/workout',
 	workoutSelf: '/workout/self',
 	workoutCommunity: '/workout/community',

@@ -7,6 +7,7 @@
 	import IconMoon from '$lib/icons/IconMoon.svelte';
 	import IconRuler2 from '$lib/icons/IconRuler2.svelte';
 	import IconUserCircle from '$lib/icons/IconUserCircle.svelte';
+	import IconBroadcast from '$lib/icons/IconBroadcast.svelte';
 	import { t } from 'svelte-i18n';
 
 	const suffix = `?frel=${ROUTES.settings}`;
@@ -30,6 +31,15 @@
 					<IconLock />
 				</div>
 				{$t('pages.settings.list.account.label')}
+				<span class="icon">
+					<IconChevronRight />
+				</span></a
+			>
+			<a href="{ROUTES.settingsConnections}{suffix}">
+				<div class="icon">
+					<IconBroadcast />
+				</div>
+				{$t('pages.settings.list.connections.label')}
 				<span class="icon">
 					<IconChevronRight />
 				</span></a
