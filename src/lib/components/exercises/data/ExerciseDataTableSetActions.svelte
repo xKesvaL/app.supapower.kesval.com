@@ -6,13 +6,13 @@
 	import { t } from 'svelte-i18n';
 
 	export let exerciseId: string;
+	export let setId: string;
 	export let index: number;
-	export let id: string;
 
 	const { removeExerciseSet } = getExercise(exerciseId);
 
 	const removeSet = async () => {
-		removeExerciseSet(id);
+		removeExerciseSet(setId);
 	};
 </script>
 
@@ -22,7 +22,7 @@
 			variant="ghost"
 			builders={[builder]}
 			size="icon"
-			class="relative w-full h-8 p-0 bg-muted"
+			class="relative w-full p-0 bg-muted h-10"
 		>
 			{index + 1}
 		</Button>

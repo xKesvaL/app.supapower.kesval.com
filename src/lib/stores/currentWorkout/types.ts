@@ -10,6 +10,7 @@ export interface ExerciseStore {
 	exerciseSets: CollectionStore<WorkoutExerciseSet & { id: string }>;
 	addExerciseSet: (id: string) => Promise<void>;
 	removeExerciseSet: (id: string) => Promise<void>;
+	updateExerciseSet: (id: string, data: Partial<WorkoutExerciseSet>) => Promise<void>;
 }
 
 export type ExercisesStoreContext = Readable<WorkoutExercise[]>;

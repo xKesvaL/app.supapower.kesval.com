@@ -7,7 +7,7 @@ import type {
 	WorkoutExerciseSet
 } from './types';
 import { createCollectionStore, createDocStore } from 'firebase-svelte';
-import { collection, deleteDoc, doc, setDoc, writeBatch } from 'firebase/firestore';
+import { collection, deleteDoc, doc, setDoc, updateDoc, writeBatch } from 'firebase/firestore';
 
 import { v4 } from 'uuid';
 
@@ -76,7 +76,7 @@ export const createCurrentWorkoutStore = (uid: string): CurrentWorkoutStore => {
 export const createExerciseStore = (uid: string, exerciseId: string): ExerciseStore => {
 	const exerciseRef = doc(firestore, 'workout', uid, 'exercises', exerciseId);
 	const exerciseDoc = createDocStore<WorkoutExercise>(firestore, exerciseRef);
-	const exerciseSets = createCollectionStore<WorkoutExerciseSet>(
+	const exerciseSets = createCollectionStore<WorkoutExerciseSet & { id: string }>(
 		firestore,
 		collection(exerciseRef, 'sets')
 	);
@@ -95,11 +95,16 @@ export const createExerciseStore = (uid: string, exerciseId: string): ExerciseSt
 		await deleteDoc(doc(exerciseRef, 'sets', id));
 	};
 
+	const updateExerciseSet = async (id: string, data: Partial<WorkoutExerciseSet>) => {
+		await updateDoc(doc(exerciseRef, 'sets', id), data as never);
+	};
+
 	return {
 		exerciseDoc,
 		id: exerciseId,
 		exerciseSets,
 		addExerciseSet,
-		removeExerciseSet
+		removeExerciseSet,
+		updateExerciseSet
 	};
 };

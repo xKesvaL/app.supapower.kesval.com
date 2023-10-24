@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Checkbox } from '$lib/components/ui/checkbox';
+	import { Input } from '$lib/components/ui/input';
 	import type { WorkoutExerciseSet } from '$lib/stores/currentWorkout/types';
 	import { getExercise } from '$lib/utils/context';
 
@@ -10,17 +10,15 @@
 
 	const set: WorkoutExerciseSet = $exerciseSets.find((set) => set.id === setId)!;
 
-	let checked = set.done;
+	let weight = set.weight;
 
-	const updateChecked = async (check: boolean | 'indeterminate' | undefined) => {
+	const updateChecked = async (w: number) => {
 		updateExerciseSet(setId, {
-			done: typeof check === 'boolean' ? check : false
+			weight: w
 		});
 	};
+
+	$: updateChecked(Number(weight));
 </script>
 
-<Checkbox
-	class="w-5 h-5 flex justify-center items-center mx-auto"
-	bind:checked
-	onCheckedChange={updateChecked}
-/>
+<Input bind:value={weight} type="number" class="text-center p-2" />
