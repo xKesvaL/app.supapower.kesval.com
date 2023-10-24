@@ -11,14 +11,22 @@
 	const set: WorkoutExerciseSet = $exerciseSets.find((set) => set.id === setId)!;
 
 	let weight = set.weight;
+	let timer: NodeJS.Timeout;
+	const TIMEOUT = 5000;
 
-	const updateChecked = async (w: number) => {
-		updateExerciseSet(setId, {
-			weight: w
-		});
+	const update = async (d: number) => {
+		clearTimeout(timer);
+		timer = setTimeout(() => {
+			updateExerciseSet(setId, {
+				weight: d || 0
+			});
+		}, TIMEOUT);
 	};
 
-	$: updateChecked(Number(weight));
+	$: {
+		weight = parseInt(weight as never as string);
+		update(weight);
+	}
 </script>
 
 <Input bind:value={weight} type="number" class="text-center p-2" />
