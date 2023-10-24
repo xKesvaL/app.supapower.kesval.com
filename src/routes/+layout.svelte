@@ -4,8 +4,9 @@
 	import { onMount } from 'svelte';
 
 	import { createDocStore, createUserStore } from 'firebase-svelte';
-	import { auth, firestore } from '$lib/firebase/config';
+	import { app, auth, firestore } from '$lib/firebase/config';
 	import { doc } from 'firebase/firestore';
+	import { getAnalytics, type Analytics, setUserId, logEvent } from 'firebase/analytics';
 
 	import '@kesval/design';
 	import '$lib/styles/poppins.scss';
@@ -42,8 +43,13 @@
 		setCurrentWorkout,
 		setUserData,
 		setUser,
-		setOnline
+		setOnline,
+		setAnalytics,
+		setPerformance
 	} from '$lib/utils/context';
+
+	import { getPerformance, type FirebasePerformance } from 'firebase/performance';
+	import { onCLS, onFCP, onFID, onINP, onLCP, onTTFB, type ReportCallback } from 'web-vitals';
 
 	nprogress.configure({ minimum: 0.2, easing: 'ease', speed: 250 });
 	$: $navigating ? nprogress.start() : nprogress.done();
@@ -88,18 +94,6 @@
 		setPromptEvent(e);
 	};
 
-	let displayMode: DisplayMode = 'browser';
-
-	onMount(() => {
-		window.matchMedia('(display-mode: standalone)').addEventListener('change', (e) => {
-			displayMode = e.matches ? 'standalone' : 'browser';
-		});
-	});
-
-	$: setDisplayMode(displayMode);
-
-	let online = true;
-
 	const windowOnline = () => {
 		online = true;
 	};
@@ -108,6 +102,42 @@
 		online = false;
 	};
 
+	const sendToGoogleAnalytics: ReportCallback = ({ name, delta, value, id }) => {
+		logEvent(analytics, name, {
+			value: delta,
+			metric_id: id,
+			metric_value: value,
+			metric_delta: delta
+		});
+	};
+
+	let online = true;
+	let displayMode: DisplayMode = 'browser';
+	let analytics: Analytics;
+	let performance: FirebasePerformance;
+
+	onMount(() => {
+		window.matchMedia('(display-mode: standalone)').addEventListener('change', (e) => {
+			displayMode = e.matches ? 'standalone' : 'browser';
+		});
+
+		analytics = getAnalytics(app);
+		performance = getPerformance(app);
+
+		onCLS(sendToGoogleAnalytics);
+		onFCP(sendToGoogleAnalytics);
+		onFID(sendToGoogleAnalytics);
+		onLCP(sendToGoogleAnalytics);
+		onTTFB(sendToGoogleAnalytics);
+		onINP(sendToGoogleAnalytics);
+	});
+
+	$: setDisplayMode(displayMode);
+	$: setAnalytics(analytics);
+	$: if (analytics && $user) {
+		setUserId(analytics, $user?.uid);
+	}
+	$: setPerformance(performance);
 	$: setOnline(online);
 </script>
 

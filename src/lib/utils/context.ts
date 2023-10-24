@@ -5,7 +5,9 @@ import type {
 	CurrentWorkoutStoreContext,
 	ExerciseStore
 } from '$lib/stores/currentWorkout/types';
+import type { Analytics } from 'firebase/analytics';
 import { getContext, setContext } from 'svelte';
+import type { FirebasePerformance } from 'firebase/performance';
 
 export const contextKeys = [
 	'currentWorkout',
@@ -87,4 +89,20 @@ export const getExercise = (exerciseId: string) => {
 
 export const setExercise = (exerciseId: string, exercise: ExerciseStore) => {
 	return setContext<ExerciseStore>(exerciseId, exercise);
+};
+
+export const setAnalytics = (analytics: Analytics) => {
+	return setContext<Analytics>('analytics', analytics);
+};
+
+export const getAnalytics = () => {
+	return getContext<Analytics>('analytics');
+};
+
+export const setPerformance = (performance: FirebasePerformance) => {
+	return setContext<FirebasePerformance>('performance', performance);
+};
+
+export const getPerformance = () => {
+	return getContext<FirebasePerformance>('performance');
 };

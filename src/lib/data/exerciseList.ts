@@ -25,6 +25,56 @@ export const exerciseList: Exercise[] = [
 		type: 'weight-reps'
 	},
 	{
+		name: 'bench-dumbbell',
+		primaryMuscle: { name: 'chest', activation: 95 },
+		otherMuscles: [
+			{ name: 'shoulders-anterior', activation: 52 },
+			{ name: 'triceps', activation: 44 }
+		],
+		equipment: 'dumbbell',
+		type: 'weight-reps'
+	},
+	{
+		name: 'bench-incline-dumbbell',
+		primaryMuscle: { name: 'chest', activation: 79 },
+		otherMuscles: [
+			{ name: 'shoulders-anterior', activation: 69 },
+			{ name: 'triceps', activation: 44 }
+		],
+		equipment: 'dumbbell',
+		type: 'weight-reps'
+	},
+	{
+		name: 'shoulder-press',
+		primaryMuscle: { name: 'shoulders-anterior', activation: 86 },
+		otherMuscles: [
+			{ name: 'triceps', activation: 59 },
+			{ name: 'chest', activation: 42 }
+		],
+		equipment: 'barbell',
+		type: 'weight-reps'
+	},
+	{
+		name: 'shoulder-press-dumbbell',
+		primaryMuscle: { name: 'shoulders-anterior', activation: 92 },
+		otherMuscles: [
+			{ name: 'triceps', activation: 59 },
+			{ name: 'chest', activation: 32 }
+		],
+		equipment: 'dumbbell',
+		type: 'weight-reps'
+	},
+	{
+		name: 'lateral-raise',
+		primaryMuscle: { name: 'shoulders-medial', activation: 90 },
+		otherMuscles: [
+			{ name: 'traps', activation: 59 },
+			{ name: 'shoulders-anterior', activation: 32 }
+		],
+		equipment: 'dumbbell',
+		type: 'weight-reps'
+	},
+	{
 		name: 'deadlift',
 		primaryMuscle: { name: 'hamstrings', activation: 80 },
 		otherMuscles: [

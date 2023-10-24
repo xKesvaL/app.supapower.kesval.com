@@ -1,5 +1,4 @@
 <script lang="ts">
-	import ExerciseDataAddSetButton from '$lib/components/exercises/data/ExerciseDataAddSetButton.svelte';
 	import ExerciseDataTable from '$lib/components/exercises/data/ExerciseDataTable.svelte';
 	import ExerciseDataTableActions from '$lib/components/exercises/data/ExerciseDataTableActions.svelte';
 	import type { CurrentWorkoutStoreContext } from '$lib/stores/currentWorkout/types';
@@ -8,7 +7,6 @@
 	import { getContext } from 'svelte';
 
 	const { exercisesCol }: CurrentWorkoutStoreContext = getContext('currentWorkout');
-
 </script>
 
 <section class="container" use:autoAnimate>
@@ -22,7 +20,6 @@
 					<ExerciseDataTableActions exerciseId={exercise.id} />
 				</div>
 				<ExerciseDataTable exerciseId={exercise.id} />
-				<ExerciseDataAddSetButton exerciseId={exercise.id} />
 			</div>
 		{/each}
 	{/if}

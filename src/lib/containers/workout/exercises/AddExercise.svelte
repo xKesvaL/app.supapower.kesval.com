@@ -39,15 +39,6 @@
 			exercises.map((e) => {
 				return {
 					exerciseName: e,
-					sets: [
-						{
-							reps: null,
-							weight: null,
-							rpe: null,
-							type: 'working',
-							done: false
-						}
-					],
 					timer: 120
 				} satisfies WorkoutExercise;
 			})

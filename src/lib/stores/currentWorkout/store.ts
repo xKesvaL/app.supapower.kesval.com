@@ -46,13 +46,13 @@ export const createCurrentWorkoutStore = (uid: string): CurrentWorkoutStore => {
 	///////////////////////////////////////
 
 	const addExercise = async (exercise: WorkoutExercise) => {
-		await exercisesCollectionStore.add(`${exercise.exerciseName}-${v4()}`, exercise as never);
+		await exercisesCollectionStore.add(v4(), exercise as never);
 	};
 
 	const addExercises = async (exercises: WorkoutExercise[]) => {
 		const batch = writeBatch(firestore);
 		exercises.forEach((exercise) => {
-			const ref = doc(firestore, 'workout', uid, 'exercises', `${exercise.exerciseName}-${v4()}`);
+			const ref = doc(firestore, 'workout', uid, 'exercises', v4());
 			batch.set(ref, exercise);
 		});
 		await batch.commit();

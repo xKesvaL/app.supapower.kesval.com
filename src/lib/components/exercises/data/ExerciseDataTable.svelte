@@ -8,6 +8,7 @@
 	import ExerciseDataCheckbox from './ExerciseDataCheckbox.svelte';
 	import ExerciseDataWeight from './ExerciseDataWeight.svelte';
 	import ExerciseDataReps from './ExerciseDataReps.svelte';
+	import ExerciseDataAddSetButton from './ExerciseDataAddSetButton.svelte';
 
 	export let exerciseId: string;
 
@@ -62,3 +63,4 @@
 		{/each}
 	</Table.Body>
 </Table.Root>
+<ExerciseDataAddSetButton {exerciseId} />

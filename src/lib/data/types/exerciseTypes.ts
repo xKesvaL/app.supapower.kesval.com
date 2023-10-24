@@ -19,7 +19,17 @@ export const exerciseTypes = [
 	'duration-distance'
 ] as const;
 
-export const exerciseNames = ['squat', 'bench', 'deadlift'] as const;
+export const exerciseNames = [
+	'squat',
+	'bench',
+	'bench-dumbbell',
+	'bench-incline',
+	'bench-incline-dumbbell',
+	'shoulder-press',
+	'shoulder-press-dumbbell',
+	'lateral-raise',
+	'deadlift'
+] as const;
 
 export type ExerciseType = (typeof exerciseTypes)[number];
 
