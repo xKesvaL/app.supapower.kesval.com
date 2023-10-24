@@ -1,11 +1,10 @@
 import type { ExerciseName } from '$lib/data/types/exerciseTypes';
-import type { CollectionStore, DocStore } from 'firebase-svelte/dist/firestore/stores';
+import type { CollectionStore } from 'firebase-svelte/dist/firestore/stores';
 import type { Readable } from 'svelte/store';
 
 export type ExercisesStore = Readable<(WorkoutExercise & { id: string })[] | undefined | null>;
 
 export interface ExerciseStore {
-	exerciseDoc: DocStore<WorkoutExercise>;
 	id: string;
 	exerciseSets: CollectionStore<WorkoutExerciseSet & { id: string }>;
 	addExerciseSet: (id: string) => Promise<void>;

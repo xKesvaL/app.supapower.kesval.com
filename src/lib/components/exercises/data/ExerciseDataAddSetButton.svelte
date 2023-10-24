@@ -5,10 +5,10 @@
 
 	export let exerciseId: string;
 
-	const { addExerciseSet } = getExercise(exerciseId);
+	$: exercise = getExercise(exerciseId);
 
 	const addSet = async () => {
-		await addExerciseSet(`${Date.now()}`);
+		await exercise?.addExerciseSet(`${Date.now()}`);
 	};
 </script>
 

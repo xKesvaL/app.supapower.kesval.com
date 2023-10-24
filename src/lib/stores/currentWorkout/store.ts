@@ -75,7 +75,6 @@ export const createCurrentWorkoutStore = (uid: string): CurrentWorkoutStore => {
 
 export const createExerciseStore = (uid: string, exerciseId: string): ExerciseStore => {
 	const exerciseRef = doc(firestore, 'workout', uid, 'exercises', exerciseId);
-	const exerciseDoc = createDocStore<WorkoutExercise>(firestore, exerciseRef);
 	const exerciseSets = createCollectionStore<WorkoutExerciseSet & { id: string }>(
 		firestore,
 		collection(exerciseRef, 'sets')
@@ -100,7 +99,6 @@ export const createExerciseStore = (uid: string, exerciseId: string): ExerciseSt
 	};
 
 	return {
-		exerciseDoc,
 		id: exerciseId,
 		exerciseSets,
 		addExerciseSet,
