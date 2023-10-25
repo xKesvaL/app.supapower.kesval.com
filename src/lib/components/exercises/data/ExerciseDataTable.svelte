@@ -1,14 +1,11 @@
 <script lang="ts">
 	import { t } from 'svelte-i18n';
 	import * as Table from '$lib/components/ui/table';
-	import ExerciseDataTableSetActions from './ExerciseDataTableSetActions.svelte';
 	import ExerciseDataIconCheck from './ExerciseDataIconCheck.svelte';
 	import { getUserData, setExercise } from '$lib/utils/context';
 	import { createExerciseStore } from '$lib/stores/currentWorkout/store';
-	import ExerciseDataCheckbox from './ExerciseDataCheckbox.svelte';
-	import ExerciseDataWeight from './ExerciseDataWeight.svelte';
-	import ExerciseDataReps from './ExerciseDataReps.svelte';
 	import ExerciseDataAddSetButton from './ExerciseDataAddSetButton.svelte';
+	import ExerciseDataTableRow from './ExerciseDataTableRow.svelte';
 
 	export let exerciseId: string;
 
@@ -39,27 +36,7 @@
 	<Table.Body>
 		{#each $exerciseSets || [] as set, index (set.id)}
 			{@const setId = set.id}
-			<Table.Row>
-				<Table.Cell class="p-2">
-					<ExerciseDataTableSetActions {exerciseId} {setId} {index} />
-				</Table.Cell>
-				<Table.Cell class="p-2">
-					{#key $exerciseSets.length}
-						<ExerciseDataWeight {exerciseId} {setId} />
-					{/key}
-				</Table.Cell>
-				<Table.Cell class="p-2">
-					{#key $exerciseSets.length}
-						<ExerciseDataReps {exerciseId} {setId} />
-					{/key}
-				</Table.Cell>
-
-				<Table.Cell class="p-2 !pr-2">
-					{#key $exerciseSets.length}
-						<ExerciseDataCheckbox {exerciseId} {setId} />
-					{/key}
-				</Table.Cell>
-			</Table.Row>
+			<ExerciseDataTableRow {exerciseId} {setId} {index} />
 		{/each}
 	</Table.Body>
 </Table.Root>
