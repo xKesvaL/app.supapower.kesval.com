@@ -74,6 +74,24 @@
     },
     "squat": {
       "name": "Squat"
+    },
+    "bench-dumbbell": {
+      "name": "Bench Press (Dumbbell)"
+    },
+    "bench-incline": {
+      "name": "Incline Bench Press"
+    },
+    "bench-incline-dumbbell": {
+      "name": "Incline Bench Press (Dumbbell)"
+    },
+    "shoulder-press": {
+      "name": "Shoulder Press"
+    },
+    "shoulder-press-dumbbell": {
+      "name": "Shoulder Press (Dumbbell)"
+    },
+    "lateral-raise": {
+      "name": "Lateral Raise"
     }
   },
   "flows": {
@@ -112,7 +130,10 @@
   "muscles": {
     "chest": "Chest",
     "hamstrings": "Hamstrings",
-    "quadriceps": "Quadriceps"
+    "quadriceps": "Quadriceps",
+    "shoulders-anterior": "Shoulders Anterior",
+    "shoulders-medial": "Shoulders Medial",
+    "shoulders-posterior": "Shoulders Posterior"
   },
   "pages": {
     "admin": {

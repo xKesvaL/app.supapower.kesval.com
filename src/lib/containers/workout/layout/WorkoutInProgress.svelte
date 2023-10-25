@@ -2,12 +2,12 @@
 	import { page } from '$app/stores';
 	import { ROUTES } from '$lib/config';
 	import IconPlayerPlay from '$lib/icons/IconPlayerPlay.svelte';
-	import IconX from '$lib/icons/IconX.svelte';
 	import { capitalizeFirstLetter } from '$lib/utils/functions';
 	import { t } from 'svelte-i18n';
 	import WorkoutInProgressDiscardModal from './WorkoutInProgressDiscardModal.svelte';
 	import { currentWorkoutDiscardModalState } from '$lib/stores/currentWorkoutDiscardModal';
 	import { Button } from '$lib/components/ui/button';
+	import IconCheck from '$lib/icons/IconCheck.svelte';
 
 	export let shown = true;
 
@@ -25,7 +25,7 @@
 	<div class="actions">
 		<Button
 			href="{ROUTES.workoutLog}?frel={$page.url.pathname}"
-			class="bg-transparent hover:bg-transparent p-0 gap-2 text-sm h-auto text-info"
+			class="bg-transparent hover:bg-transparent p-0 gap-2 text-sm h-auto text-info brightness-150"
 		>
 			<div class="w-6 h-6">
 				<IconPlayerPlay />
@@ -33,13 +33,13 @@
 			{capitalizeFirstLetter($t('std.resume'))}
 		</Button>
 		<Button
-			class="bg-transparent hover:bg-transparent p-0 gap-2 text-sm h-auto text-destructive"
+			class="bg-transparent hover:bg-transparent p-0 gap-2 text-sm h-auto text-success brightness-150 font-normal"
 			on:click={showDiscardModal}
 		>
 			<div class="w-6 h-6">
-				<IconX />
+				<IconCheck />
 			</div>
-			{capitalizeFirstLetter($t('std.discard'))}
+			{capitalizeFirstLetter($t('std.finish'))}
 		</Button>
 	</div>
 </footer>
