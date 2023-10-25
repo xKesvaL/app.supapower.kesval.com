@@ -8,6 +8,7 @@ import type {
 import type { Analytics } from 'firebase/analytics';
 import { getContext, setContext } from 'svelte';
 import type { FirebasePerformance } from 'firebase/performance';
+import type { AppCheck } from 'firebase/app-check';
 
 export const contextKeys = [
 	'currentWorkout',
@@ -105,4 +106,12 @@ export const setPerformance = (performance: FirebasePerformance) => {
 
 export const getPerformance = () => {
 	return getContext<FirebasePerformance>('performance');
+};
+
+export const setAppCheck = (appCheck: AppCheck) => {
+	return setContext<AppCheck>('appCheck', appCheck);
+};
+
+export const getAppCheck = () => {
+	return getContext<AppCheck>('appCheck');
 };

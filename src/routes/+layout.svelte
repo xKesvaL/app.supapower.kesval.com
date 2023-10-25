@@ -45,11 +45,17 @@
 		setUser,
 		setOnline,
 		setAnalytics,
-		setPerformance
+		setPerformance,
+		setAppCheck
 	} from '$lib/utils/context';
 
 	import { getPerformance, type FirebasePerformance } from 'firebase/performance';
 	import { onCLS, onFCP, onFID, onINP, onLCP, onTTFB, type ReportCallback } from 'web-vitals';
+	import {
+		initializeAppCheck,
+		type AppCheck,
+		ReCaptchaEnterpriseProvider
+	} from 'firebase/app-check';
 
 	nprogress.configure({ minimum: 0.2, easing: 'ease', speed: 250 });
 	$: $navigating ? nprogress.start() : nprogress.done();
@@ -115,6 +121,7 @@
 	let displayMode: DisplayMode = 'browser';
 	let analytics: Analytics;
 	let performance: FirebasePerformance;
+	let appCheck: AppCheck;
 
 	onMount(() => {
 		window.matchMedia('(display-mode: standalone)').addEventListener('change', (e) => {
@@ -123,6 +130,10 @@
 
 		analytics = getAnalytics(app);
 		performance = getPerformance(app);
+		appCheck = initializeAppCheck(app, {
+			provider: new ReCaptchaEnterpriseProvider('6LfYs8ooAAAAALiN97IX3qkZeYvlqlnsJVwr7Qyb'),
+			isTokenAutoRefreshEnabled: true
+		});
 
 		onCLS(sendToGoogleAnalytics);
 		onFCP(sendToGoogleAnalytics);
@@ -139,6 +150,7 @@
 	}
 	$: setPerformance(performance);
 	$: setOnline(online);
+	$: setAppCheck(appCheck);
 </script>
 
 <svelte:window
