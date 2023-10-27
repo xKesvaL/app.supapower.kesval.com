@@ -19,8 +19,8 @@ export interface CurrentWorkoutStore {
 	createWorkout: (workout?: Workout) => Promise<void>;
 	deleteWorkout: () => Promise<void>;
 	exercisesCol: ExercisesStore;
-	addExercise: (exercise: WorkoutExercise) => Promise<void>;
-	addExercises: (exercises: WorkoutExercise[]) => Promise<void>;
+	addExercise: (index: number, exercise: WorkoutExercise) => Promise<void>;
+	addExercises: (index: number, exercises: WorkoutExercise[]) => Promise<void>;
 	removeExercise: (exerciseId: string) => Promise<void>;
 }
 
