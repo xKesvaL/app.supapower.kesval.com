@@ -4,7 +4,7 @@ export async function GET() {
 	const data = {
 		name: BRAND.name,
 		short_name: BRAND.name,
-		start_url: `/?version=${VERSION}`,
+		start_url: `${BRAND.url}/?version=${VERSION}`,
 		icons: [
 			{
 				src: '/android-chrome-192x192.png',
