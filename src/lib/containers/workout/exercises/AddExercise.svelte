@@ -36,6 +36,7 @@
 		}
 
 		await currentWorkout.addExercises(
+			exercises.length,
 			exercises.map((e) => {
 				return {
 					exerciseName: e,

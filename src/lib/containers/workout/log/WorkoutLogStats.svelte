@@ -8,8 +8,11 @@
 	import { fly } from 'svelte/transition';
 	import type { CurrentWorkoutStoreContext } from '$lib/stores/currentWorkout/types';
 
+	export let volume: number;
+	export let sets: number;
+
 	const userData: UserDataStoreContext = getContext('userData');
-	const { workoutDoc, setsDone, volumeDone } =
+	const { workoutDoc } =
 		getContext<CurrentWorkoutStoreContext>('currentWorkout');
 
 	dayjs.extend(duration);
@@ -39,14 +42,14 @@
 			<span class="text-xs">
 				{capitalizeFirstLetter($t('pages.workout.log.volume'))}
 			</span>
-			{$volumeDone}
+			{volume}
 			{$userData.units.weight}
 		</div>
 		<div>
 			<span class="text-xs">
 				{capitalizeFirstLetter($t('pages.workout.log.sets'))}
 			</span>
-			{$setsDone}
+			{sets}
 			{$t('pages.workout.log.sets')}
 		</div>
 	</section>

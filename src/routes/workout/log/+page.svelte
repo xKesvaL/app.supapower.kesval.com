@@ -14,16 +14,19 @@
 	$: ({ fRel } = data);
 
 	const { workoutDoc } = getContext<CurrentWorkoutStore>('currentWorkout');
+
+	let volume = 0;
+	let sets = 0;
 </script>
 
 <WorkoutLogHeader {fRel} />
-<WorkoutLogStats />
+<WorkoutLogStats {volume} {sets} />
 {#if $workoutDoc === undefined}
 	<section class="container load">
 		<span class="loading" />
 	</section>
 {:else if $workoutDoc !== null}
-	<WorkoutLogExercises />
+	<WorkoutLogExercises bind:totalVolume={volume} bind:totalSets={sets} />
 {/if}
 <WorkoutLogFooter />
 

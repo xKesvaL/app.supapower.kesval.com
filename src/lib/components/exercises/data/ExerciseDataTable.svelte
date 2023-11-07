@@ -8,11 +8,16 @@
 	import ExerciseDataTableRow from './ExerciseDataTableRow.svelte';
 
 	export let exerciseId: string;
+	export let sets: number;
+	export let volume: number;
 
 	const userData = getUserData();
 	const exercise = createExerciseStore($userData.uid, exerciseId);
 	$: setExercise(exerciseId, exercise);
 	$: ({ exerciseSets } = exercise);
+
+	$: sets = $exerciseSets?.filter(set => set.done).length;
+	$: volume = $exerciseSets?.reduce((acc, set) => acc + (set.done ? ((set.weight || 0) * (set.reps || 0), 0) : 0), 0);
 </script>
 
 <Table.Root class="text-center table-fixed">
