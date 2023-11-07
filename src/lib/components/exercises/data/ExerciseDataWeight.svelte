@@ -4,4 +4,4 @@
 	export let weight: number | null;
 </script>
 
-<Input bind:value={weight} type="number" class="text-center p-2 border-muted" />
+<Input bind:value={weight} type="number" class="text-center p-2 border border-border/50" />
