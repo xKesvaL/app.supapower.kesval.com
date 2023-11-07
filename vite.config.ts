@@ -1,9 +1,15 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
+import { kitRoutes } from 'vite-plugin-kit-routes';
 
 export default defineConfig({
-	plugins: [sveltekit()],
+	plugins: [
+		sveltekit(),
+		kitRoutes({
+			extra_search_params: 'with'
+		})
+	],
 	resolve: {
 		alias: {
 			$routes: resolve('./src/routes'),

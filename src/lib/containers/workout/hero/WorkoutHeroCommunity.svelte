@@ -1,8 +1,8 @@
 <script>
-	import { ROUTES } from '$lib/config';
 	import { capitalizeFirstLetter } from '$lib/utils/functions';
 	import { t } from 'svelte-i18n';
 	import WorkoutCommunityCard from '../community/WorkoutCommunityCard.svelte';
+	import { PAGES } from '$lib/ROUTES';
 </script>
 
 <section class="container">
@@ -11,7 +11,7 @@
 			<h2>
 				{$t('pages.workout.community.label')}
 			</h2>
-			<a class="button primary" href={ROUTES.workoutCommunity}>
+			<a class="button primary" href={PAGES.workout_community()}>
 				{capitalizeFirstLetter($t('std.more'))}</a
 			>
 		</header>

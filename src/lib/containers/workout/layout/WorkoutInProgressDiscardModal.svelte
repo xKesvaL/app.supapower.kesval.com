@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
+	import { PAGES } from '$lib/ROUTES';
 	import { Button } from '$lib/components/ui/button';
-	import { ROUTES } from '$lib/config';
 	import IconX from '$lib/icons/IconX.svelte';
 	import type { CurrentWorkoutStoreContext } from '$lib/stores/currentWorkout/types';
 	import { currentWorkoutDiscardModalState } from '$lib/stores/currentWorkoutDiscardModal';
@@ -26,8 +26,8 @@
 
 		loading = false;
 		currentWorkoutDiscardModalState.set(false);
-		if ($page.url.pathname.startsWith(ROUTES.workout)) {
-			await goto(ROUTES.home);
+		if ($page.url.pathname.startsWith(PAGES.workout())) {
+			await goto(PAGES._ROOT());
 		}
 	};
 </script>

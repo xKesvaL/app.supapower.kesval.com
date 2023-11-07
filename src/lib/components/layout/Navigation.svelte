@@ -7,40 +7,40 @@
 	import IconBarbell from '$lib/icons/IconBarbell.svelte';
 	import IconTool from '$lib/icons/IconTool.svelte';
 	import IconMeat from '$lib/icons/IconMeat.svelte';
-	import { ROUTES } from '$lib/config';
 	import { getContext } from 'svelte';
 	import type { UserDataStoreContext } from '$lib/firebase/user/types';
+	import { PAGES } from '$lib/ROUTES';
 
 	const userData: UserDataStoreContext = getContext('userData');
 </script>
 
 <nav>
-	<a href={ROUTES.home} class:active={$page.url.pathname === ROUTES.home}>
+	<a href={PAGES._ROOT()} class:active={$page.url.pathname === PAGES._ROOT()}>
 		<div class="icon">
 			<IconHouse />
 		</div>
 		<span>{$t('pages.home.label')}</span>
 	</a>
-	<a href={ROUTES.food} class:active={$page.url.pathname.startsWith(ROUTES.food)}>
+	<a href={PAGES.food()} class:active={$page.url.pathname.startsWith(PAGES.food())}>
 		<div class="icon">
 			<IconMeat />
 		</div>
 		<span>{$t('pages.food.label')}</span>
 	</a>
-	<a href={ROUTES.workout} class:active={$page.url.pathname.startsWith(ROUTES.workout)}>
+	<a href={PAGES.workout()} class:active={$page.url.pathname.startsWith(PAGES.workout())}>
 		<div class="icon">
 			<IconBarbell />
 		</div>
 		<span>{$t('pages.workout.label')}</span>
 	</a>
-	<a href={ROUTES.profile} class:active={$page.url.pathname.startsWith(ROUTES.profile)}>
+	<a href={PAGES.profile()} class:active={$page.url.pathname.startsWith(PAGES.profile())}>
 		<div class="icon">
 			<IconUser />
 		</div>
 		<span>{$t('pages.profile.label')}</span>
 	</a>
 	{#if $userData.type === 'admin'}
-		<a href={ROUTES.admin} class:active={$page.url.pathname.startsWith(ROUTES.admin)}>
+		<a href={PAGES.admin()} class:active={$page.url.pathname.startsWith(PAGES.admin())}>
 			<div class="icon">
 				<IconTool />
 			</div>

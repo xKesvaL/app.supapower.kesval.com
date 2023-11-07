@@ -74,6 +74,7 @@
     "typescript": "^5.2.2",
     "uuid": "^9.0.1",
     "vite": "latest",
+    "vite-plugin-kit-routes": "^0.0.7",
     "zod": "latest"
   },
   "type": "module",

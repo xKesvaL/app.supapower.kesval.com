@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { ROUTES } from '$lib/config';
+	import { PAGES } from '$lib/ROUTES';
 	import IconDiscountCheckFilled from '$lib/icons/IconDiscountCheckFilled.svelte';
 </script>
 
-<a href={ROUTES.home}>
+<a href={PAGES._ROOT()}>
 	<header>
 		<h2>Savage</h2>
 		<p>

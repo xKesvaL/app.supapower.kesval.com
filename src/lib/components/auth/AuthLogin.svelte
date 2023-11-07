@@ -16,7 +16,6 @@
 	import { createEventDispatcher } from 'svelte';
 	import IconEyeOff from '$lib/icons/IconEyeOff.svelte';
 	import IconEye from '$lib/icons/IconEye.svelte';
-	import { ROUTES } from '$lib/config';
 	import IconGoogle from '$lib/icons/IconGoogle.svelte';
 
 	let fieldErrors: FormattedZodError = {};
@@ -70,8 +69,8 @@
 		googleLoading = false;
 	};
 
-	const switchTo = () => {
-		dispatch('switchTo', 'register');
+	const switchTo = (to: 'register' | 'forgot-password') => {
+		dispatch('switchTo', to);
 	};
 
 	const toggleShowPassword = () => {
@@ -98,9 +97,10 @@
 				<span> {$t('auth.fields.password.label')}</span>
 				<span class="text-right">
 					<Button
-						href={ROUTES.forgotpassword}
+						on:click={() => switchTo('forgot-password')}
 						variant="link"
 						class="p-0 text-muted-foreground h-auto"
+						type="button"
 					>
 						{$t('auth.login.forgotPassword')}
 					</Button>
@@ -153,7 +153,7 @@
 			{/if}
 		</Button>
 		<Button
-			on:click={() => switchTo()}
+			on:click={() => switchTo('register')}
 			role="button"
 			class="text-muted-foreground text-sm mx-auto p-0 h-auto"
 			variant="link"

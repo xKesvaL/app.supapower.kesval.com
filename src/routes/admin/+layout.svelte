@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { ROUTES } from '$lib/config';
+	import { PAGES } from '$lib/ROUTES';
 	import type { UserDataStoreContext } from '$lib/firebase/user/types';
 	import { getContext } from 'svelte';
 
 	const userData: UserDataStoreContext = getContext('userData');
 
-	$: $userData.type !== 'admin' && goto(ROUTES.home);
+	$: $userData.type !== 'admin' && goto(PAGES._ROOT());
 </script>
 
 {#if $userData.type === 'admin'}

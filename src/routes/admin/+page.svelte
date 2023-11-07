@@ -1,5 +1,5 @@
 <script>
-	import { ROUTES } from '$lib/config';
+	import { PAGES } from '$lib/ROUTES';
 </script>
 
-<a href="{ROUTES.adminUsers}?frel={ROUTES.admin}">users</a>
+<a href={PAGES.admin_users({ frel: PAGES.admin() })}>users</a>

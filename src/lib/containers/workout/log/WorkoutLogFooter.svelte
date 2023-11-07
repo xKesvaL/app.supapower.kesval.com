@@ -2,10 +2,10 @@
 	import { currentWorkoutDiscardModalState } from '$lib/stores/currentWorkoutDiscardModal';
 	import { getContext } from 'svelte';
 	import { t } from 'svelte-i18n';
-	import { ROUTES } from '$lib/config';
 	import { fly } from 'svelte/transition';
 	import { Button } from '$lib/components/ui/button';
 	import type { CurrentWorkoutStore } from '$lib/stores/currentWorkout/types';
+	import { PAGES } from '$lib/ROUTES';
 
 	const { workoutDoc }: CurrentWorkoutStore = getContext('currentWorkout');
 
@@ -15,8 +15,9 @@
 </script>
 
 <footer class="container">
-	<Button href="{ROUTES.workoutLogAddexercise}?frel={ROUTES.workoutLog}" class="button primary"
-		>{$t('pages.workout.log.addExercise')}</Button
+	<Button
+		href={PAGES.workout_log_add_exercise({ frel: PAGES.workout_log() })}
+		class="button primary">{$t('pages.workout.log.addExercise')}</Button
 	>
 	{#if $workoutDoc}
 		<div class="grid grid-cols-2 gap-2" transition:fly={{ opacity: 0, y: -20, duration: 300 }}>

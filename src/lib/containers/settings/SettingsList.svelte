@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { ROUTES } from '$lib/config';
 	import IconBarbell from '$lib/icons/IconBarbell.svelte';
 	import IconChevronRight from '$lib/icons/IconChevronRight.svelte';
 	import IconLanguage from '$lib/icons/IconLanguage.svelte';
@@ -9,15 +8,16 @@
 	import IconUserCircle from '$lib/icons/IconUserCircle.svelte';
 	import IconCirclesRelation from '$lib/icons/IconCirclesRelation.svelte';
 	import { t } from 'svelte-i18n';
+	import { PAGES } from '$lib/ROUTES';
 
-	const suffix = `?frel=${ROUTES.settings}`;
+	const frel = PAGES.settings();
 </script>
 
 <section>
 	<nav>
 		<div>
 			<h2>{$t('pages.settings.list.yourAccount')}</h2>
-			<a href="{ROUTES.settingsProfile}{suffix}">
+			<a href={PAGES.settings_profile({ frel })}>
 				<div class="icon">
 					<IconUserCircle />
 				</div>
@@ -26,7 +26,7 @@
 					<IconChevronRight />
 				</span>
 			</a>
-			<a href="{ROUTES.settingsAccount}{suffix}">
+			<a href={PAGES.settings_account({ frel })}>
 				<div class="icon">
 					<IconLock />
 				</div>
@@ -35,7 +35,7 @@
 					<IconChevronRight />
 				</span></a
 			>
-			<a href="{ROUTES.settingsConnections}{suffix}">
+			<a href={PAGES.settings_connections({ frel })}>
 				<div class="icon">
 					<IconCirclesRelation />
 				</div>
@@ -47,7 +47,7 @@
 		</div>
 		<div>
 			<h2>{$t('pages.settings.list.preferences')}</h2>
-			<a href="{ROUTES.settingsWorkouts}{suffix}">
+			<a href={PAGES.settings_workouts({ frel })}>
 				<div class="icon">
 					<IconBarbell />
 				</div>
@@ -56,7 +56,7 @@
 					<IconChevronRight />
 				</span>
 			</a>
-			<a href="{ROUTES.settingsUnits}{suffix}">
+			<a href={PAGES.settings_units({ frel })}>
 				<div class="icon">
 					<IconRuler2 />
 				</div>
@@ -65,7 +65,7 @@
 					<IconChevronRight />
 				</span></a
 			>
-			<a href="{ROUTES.settingsLanguage}{suffix}">
+			<a href={PAGES.settings_language({ frel })}>
 				<div class="icon">
 					<IconLanguage />
 				</div>
@@ -74,7 +74,7 @@
 					<IconChevronRight />
 				</span></a
 			>
-			<a href="{ROUTES.settingsTheme}{suffix}">
+			<a href={PAGES.settings_theme({ frel })}>
 				<div class="icon">
 					<IconMoon />
 				</div>

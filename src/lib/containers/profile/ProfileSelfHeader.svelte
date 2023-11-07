@@ -1,6 +1,6 @@
 <script lang="ts">
+	import { PAGES } from '$lib/ROUTES';
 	import { Button } from '$lib/components/ui/button';
-	import { ROUTES } from '$lib/config';
 	import type { UserData } from '$lib/firebase/user/types';
 	import IconSettings from '$lib/icons/IconSettings.svelte';
 	import { getContext } from 'svelte';
@@ -19,7 +19,7 @@
 		<Button
 			size="icon"
 			class="p-1 bg-transparent hover:bg-transparent text-foreground"
-			href="{ROUTES.settings}?frel={ROUTES.profile}"
+			href="{PAGES.settings()}?frel={PAGES.profile()}"
 		>
 			<IconSettings />
 			<span class="visually-hidden">{$t('pages.settings.label')}</span>

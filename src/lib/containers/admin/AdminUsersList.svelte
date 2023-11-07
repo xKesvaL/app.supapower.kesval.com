@@ -6,13 +6,13 @@
 	import type { Readable } from 'svelte/store';
 	import { userTypes, type UserData, type UserType } from '$lib/firebase/user/types';
 	import IconInfoCircle from '$lib/icons/IconInfoCircle.svelte';
-	import { ROUTES } from '$lib/config';
 	import autoAnimate from '@formkit/auto-animate';
 	import { updateUserData } from '$lib/firebase/user/actions';
 	import { overlayShown, overlayStrength } from '$lib/stores/overlay';
 	import { t } from 'svelte-i18n';
 	import { capitalizeFirstLetter } from '$lib/utils/functions';
 	import { Button } from '$lib/components/ui/button';
+	import { PAGES } from '$lib/ROUTES';
 
 	const usersStore: Readable<UserData[] | null | undefined> = createCollectionStore(
 		firestore,
@@ -65,10 +65,9 @@
 							</div>
 						</div>
 						<Button
-							href="{ROUTES.adminUsersUsername.replace(
-								'{username}',
-								user.username
-							)}?frel={ROUTES.adminUsers}"
+							href="{PAGES.admin_users_username({
+								username: user.username
+							})}?frel={PAGES.admin_users()}"
 							size="icon"
 							class="p-2 bg-transparent hover:bg-transparent text-foreground"
 						>

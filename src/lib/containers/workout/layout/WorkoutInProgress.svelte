@@ -1,6 +1,5 @@
 <script>
 	import { page } from '$app/stores';
-	import { ROUTES } from '$lib/config';
 	import IconPlayerPlay from '$lib/icons/IconPlayerPlay.svelte';
 	import { capitalizeFirstLetter } from '$lib/utils/functions';
 	import { t } from 'svelte-i18n';
@@ -8,6 +7,7 @@
 	import { currentWorkoutDiscardModalState } from '$lib/stores/currentWorkoutDiscardModal';
 	import { Button } from '$lib/components/ui/button';
 	import IconCheck from '$lib/icons/IconCheck.svelte';
+	import { PAGES } from '$lib/ROUTES';
 
 	export let shown = true;
 
@@ -24,7 +24,7 @@
 	<div class="in-progress">{$t('std.workoutInProgress')}</div>
 	<div class="actions">
 		<Button
-			href="{ROUTES.workoutLog}?frel={$page.url.pathname}"
+			href={PAGES.workout_log({ frel: $page.url.pathname })}
 			class="bg-transparent hover:bg-transparent p-0 gap-2 text-sm h-auto text-info brightness-150"
 		>
 			<div class="w-6 h-6">

@@ -1,12 +1,12 @@
 <script lang="ts">
+	import { PAGES } from '$lib/ROUTES';
 	import { Button } from '$lib/components/ui/button';
-	import { ROUTES } from '$lib/config';
 	import IconArrowLeft from '$lib/icons/IconArrowLeft.svelte';
 	import { t } from 'svelte-i18n';
 
 	export let fRel: string;
 
-	$: fRel = fRel == ROUTES.home ? ROUTES.profile : fRel;
+	$: fRel = fRel == PAGES._ROOT() ? PAGES.profile() : fRel;
 </script>
 
 <header class="page-header">
