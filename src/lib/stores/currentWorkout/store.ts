@@ -6,17 +6,46 @@ import type {
 	WorkoutExercise,
 	WorkoutExerciseSet
 } from './types';
-import { createCollectionStore, createDocStore } from 'firebase-svelte';
-import { collection, deleteDoc, doc, setDoc, updateDoc, writeBatch } from 'firebase/firestore';
+import { createCollectionStore } from 'firebase-svelte';
+import {
+	DocumentReference,
+	collection,
+	deleteDoc,
+	doc,
+	setDoc,
+	updateDoc,
+	where,
+	writeBatch
+} from 'firebase/firestore';
+import { derived } from 'svelte/store';
 
 import { v4 } from 'uuid';
 
 export const createCurrentWorkoutStore = (uid: string): CurrentWorkoutStore => {
-	const workoutDocStore = createDocStore<Workout>(firestore, doc(firestore, 'workout', uid));
+	let workoutId: string | null = null;
+	let workoutRef: DocumentReference | null = null;
+
+	const workoutColStore = createCollectionStore<Workout & { id: string }>(
+		firestore,
+		collection(firestore, 'workout'),
+		[where('endDate', '==', null), where('uid', '==', uid)]
+	);
+
+	const workoutDocStore = derived(workoutColStore, (workouts) => {
+		if (workouts?.length) {
+			return workouts[0];
+		}
+		return null;
+	});
+
+	workoutDocStore.subscribe((workout) => {
+		workoutId = workout?.id ?? null;
+		workoutRef = workout ? doc(firestore, 'workout', workout.id) : null;
+	});
 
 	const exercisesCollectionStore = createCollectionStore<WorkoutExercise & { id: string }>(
 		firestore,
-		collection(firestore, 'workout', uid, 'exercises')
+		collection(workoutRef, 'exercises')
 	);
 
 	///////////////////////////////////////
@@ -27,14 +56,20 @@ export const createCurrentWorkoutStore = (uid: string): CurrentWorkoutStore => {
 	///////////////////////////////////////
 	///////////////////////////////////////
 
+	/**
+	 *
+	 * @returns {string} id of the workout
+	 */
 	const createWorkout = async (
 		workout: Workout = { startDate: new Date().toISOString(), endDate: null }
 	) => {
-		await workoutDocStore.set(workout);
+		const id = v4();
+		await workoutColStore.add(id, workout as Workout & { id: string });
+		return id;
 	};
 
 	const deleteWorkout = async () => {
-		await deleteDoc(workoutDocStore.ref!);
+		// await deleteDoc(workoutDocStore.ref!);
 	};
 
 	///////////////////////////////////////
@@ -52,17 +87,18 @@ export const createCurrentWorkoutStore = (uid: string): CurrentWorkoutStore => {
 	const addExercises = async (index: number, exercises: WorkoutExercise[]) => {
 		const batch = writeBatch(firestore);
 		exercises.forEach((exercise, i) => {
-			const ref = doc(firestore, 'workout', uid, 'exercises', `${index + i}${v4()}`);
+			const ref = doc(firestore, 'workout', workoutId, 'exercises', `${index + i}${v4()}`);
 			batch.set(ref, exercise);
 		});
 		await batch.commit();
 	};
 
 	const removeExercise = async (exerciseId: string) => {
-		await deleteDoc(doc(firestore, 'workout', uid, 'exercises', exerciseId));
+		await deleteDoc(doc(firestore, 'workout', workoutId, 'exercises', exerciseId));
 	};
 
 	return {
+		workoutCol: workoutColStore,
 		workoutDoc: workoutDocStore,
 		createWorkout,
 		deleteWorkout,
@@ -73,8 +109,8 @@ export const createCurrentWorkoutStore = (uid: string): CurrentWorkoutStore => {
 	};
 };
 
-export const createExerciseStore = (uid: string, exerciseId: string): ExerciseStore => {
-	const exerciseRef = doc(firestore, 'workout', uid, 'exercises', exerciseId);
+export const createExerciseStore = (workoutId: string, exerciseId: string): ExerciseStore => {
+	const exerciseRef = doc(firestore, 'workout', workoutId, 'exercises', exerciseId);
 	const exerciseSets = createCollectionStore<WorkoutExerciseSet & { id: string }>(
 		firestore,
 		collection(exerciseRef, 'sets')

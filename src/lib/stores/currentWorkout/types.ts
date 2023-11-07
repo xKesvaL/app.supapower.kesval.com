@@ -15,8 +15,9 @@ export interface ExerciseStore {
 export type ExercisesStoreContext = Readable<WorkoutExercise[]>;
 
 export interface CurrentWorkoutStore {
-	workoutDoc: WorkoutStore;
-	createWorkout: (workout?: Workout) => Promise<void>;
+	workoutCol: WorkoutColStore;
+	workoutDoc: WorkoutDocStore;
+	createWorkout: (workout?: Workout) => Promise<string>;
 	deleteWorkout: () => Promise<void>;
 	exercisesCol: ExercisesStore;
 	addExercise: (index: number, exercise: WorkoutExercise) => Promise<void>;
@@ -25,7 +26,8 @@ export interface CurrentWorkoutStore {
 }
 
 export interface CurrentWorkoutStoreContext extends CurrentWorkoutStore {
-	workoutDoc: WorkoutStoreContext;
+	workoutCol: WorkoutColStoreContext;
+	workoutDoc: WorkoutDocStoreContext;
 }
 
 export interface WorkoutExerciseSet {
@@ -52,9 +54,13 @@ export interface Workout {
 	endDate: string | null;
 }
 
-export type WorkoutStore = Readable<Workout | undefined | null>;
+export type WorkoutDocStore = Readable<Workout | undefined | null>;
 
-export type WorkoutStoreContext = Readable<Workout>;
+export type WorkoutDocStoreContext = Readable<Workout>;
+
+export type WorkoutColStore = Readable<(Workout & { id: string })[] | undefined | null>;
+
+export type WorkoutColStoreContext = Readable<(Workout & { id: string })[]>;
 
 export interface WorkoutStats {
 	sets: number;

@@ -82,7 +82,6 @@
 	$: setUserData(userData);
 	$: setCurrentWorkout(currentWorkout);
 	$: currentWorkoutDoc = currentWorkout?.workoutDoc;
-
 	// VIEW TRANSITION API
 
 	setupViewTransition();
